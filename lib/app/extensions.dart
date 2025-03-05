@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import '../presentation/resourses/assets_manager.dart';
 import '../presentation/resourses/constant_manager.dart';
 
 const String light = "light_theme";
@@ -27,6 +29,24 @@ extension RoleExtension on Role {
         return AppConstants.admin;
       case Role.user:
         return AppConstants.user;
+    }
+  }
+
+  String get svg {
+    switch (this) {
+      case Role.admin:
+        return SvgAssets.admin;
+      case Role.user:
+        return SvgAssets.user;
+    }
+  }
+
+  String get string {
+    switch (this) {
+      case Role.admin:
+        return "admin".tr();
+      case Role.user:
+        return "user".tr();
     }
   }
 }

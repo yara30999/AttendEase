@@ -37,7 +37,7 @@ class LoginButton extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               spacing: 10,
               children: [
-                Text(tr("login.loginButton")),
+                Text(tr("login_label")),
                 const CircularProgressIndicator(
                   color: ColorsManager.white,
                   strokeAlign: CircularProgressIndicator.strokeAlignInside,
@@ -54,7 +54,7 @@ class LoginButton extends StatelessWidget {
               );
             }
           },
-          child: Text(tr("login.loginButton")),
+          child: Text(tr("login_label")),
         );
       },
     );

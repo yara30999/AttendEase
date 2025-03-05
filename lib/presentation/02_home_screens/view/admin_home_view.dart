@@ -11,7 +11,9 @@ class AdminHomeView extends StatelessWidget {
     return const Scaffold(
       appBar: CustomAppBar(),
       drawer: CustomDrawer(),
-      body: Column(children: [LogoutButtonBlocConsumer(), Text('admin home ')]),
+      body: Column(
+        children: [LogoutButtonBlocConsumer(), Text('admin home admin ')],
+      ),
     );
   }
 }

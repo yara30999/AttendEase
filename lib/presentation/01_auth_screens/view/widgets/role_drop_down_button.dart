@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import '../../../../app/extensions.dart';
+import '../../../02_home_screens/view_model/theme_bloc/theme_bloc.dart';
 import '../../../resourses/assets_manager.dart';
 import '../../../resourses/colors_manager.dart';
 import '../../../resourses/styles_manager.dart';
@@ -24,7 +25,21 @@ class _RoleDropdownState extends State<RoleDropdown> {
       child: Row(
         spacing: 16,
         children: [
-          const Icon(Icons.sunny, color: ColorsManager.darkGreen),
+          SvgPicture.asset(
+            SvgAssets.admin,
+            fit: BoxFit.scaleDown,
+            height: 20,
+            colorFilter:
+                context.watch<ThemeBloc>().state.themeMode == ThemeMode.dark
+                    ? const ColorFilter.mode(
+                      ColorsManager.white,
+                      BlendMode.srcIn,
+                    )
+                    : const ColorFilter.mode(
+                      ColorsManager.grey,
+                      BlendMode.srcIn,
+                    ),
+          ),
           Text(tr('admin')),
         ],
       ),
@@ -34,7 +49,21 @@ class _RoleDropdownState extends State<RoleDropdown> {
       child: Row(
         spacing: 16,
         children: [
-          const Icon(Icons.nightlight_round, color: ColorsManager.goldenSand),
+          SvgPicture.asset(
+            SvgAssets.user,
+            height: 20,
+            fit: BoxFit.scaleDown,
+            colorFilter:
+                context.watch<ThemeBloc>().state.themeMode == ThemeMode.dark
+                    ? const ColorFilter.mode(
+                      ColorsManager.white,
+                      BlendMode.srcIn,
+                    )
+                    : const ColorFilter.mode(
+                      ColorsManager.grey,
+                      BlendMode.srcIn,
+                    ),
+          ),
           Text(tr('user')),
         ],
       ),
@@ -44,14 +73,22 @@ class _RoleDropdownState extends State<RoleDropdown> {
   @override
   Widget build(BuildContext context) {
     Role initialRole = context.read<AuthBloc>().memberRole;
+    ThemeMode themeMode = context.watch<ThemeBloc>().state.themeMode;
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
       decoration: BoxDecoration(
-        border: Border.all(color: ColorsManager.lightOrange),
-        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          width: 2,
+          color:
+              themeMode == ThemeMode.dark
+                  ? ColorsManager.lightOrange
+                  : ColorsManager.darkGreen,
+        ),
+        borderRadius: BorderRadius.circular(30),
       ),
       child: DropdownButton<Role>(
         value: initialRole,
+        padding: EdgeInsets.all(0),
         items: roleOptions,
         onChanged: (Role? newSelectedRole) {
           if (newSelectedRole != null) {
@@ -62,11 +99,24 @@ class _RoleDropdownState extends State<RoleDropdown> {
           }
         },
         borderRadius: const BorderRadius.all(
-          Radius.circular(16),
-        ), //for dropdown menu
+          //for dropdown menu
+          Radius.circular(30),
+        ),
         underline: Container(), // Remove the default underline
-        icon: SvgPicture.asset(SvgAssets.dropdownArrow, width: 16),
-        style: Styles.style24Bold().copyWith(color: ColorsManager.darkGreen),
+        icon: SvgPicture.asset(
+          SvgAssets.dropdownArrow,
+          width: 16,
+          colorFilter:
+              themeMode == ThemeMode.dark
+                  ? const ColorFilter.mode(ColorsManager.white, BlendMode.srcIn)
+                  : const ColorFilter.mode(ColorsManager.grey, BlendMode.srcIn),
+        ),
+        style: Styles.style16Medium().copyWith(
+          color:
+              themeMode == ThemeMode.dark
+                  ? ColorsManager.lightOrange
+                  : ColorsManager.darkGreen,
+        ),
         isExpanded: true, // Make the dropdown take full width
       ),
     );

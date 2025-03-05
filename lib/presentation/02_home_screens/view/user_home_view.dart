@@ -17,7 +17,9 @@ class _UserHomeViewState extends State<UserHomeView> {
     return const Scaffold(
       appBar: CustomAppBar(),
       drawer: CustomDrawer(),
-      body: Column(children: [LogoutButtonBlocConsumer(), Text('user home ')]),
+      body: Column(
+        children: [LogoutButtonBlocConsumer(), Text('user home user ')],
+      ),
     );
   }
 }

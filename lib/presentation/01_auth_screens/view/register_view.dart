@@ -4,7 +4,7 @@ import 'dart:ui' as dui;
 import '../../../app/di.dart';
 import '../../../app/validation_service.dart';
 import '../../resourses/assets_manager.dart';
-import '../../resourses/styles_manager.dart';
+import '../../resourses/routes_manager.dart';
 import 'widgets/buttons/register_btn_bloc_consumer.dart';
 import 'widgets/custom_text_form_field.dart';
 import 'widgets/custom_text_row.dart';
@@ -103,18 +103,19 @@ class _RegisterViewState extends State<RegisterView> {
                     },
                   ),
                   const SizedBox(height: 24),
-                  Text('theme'.tr(), style: Styles.style16Medium()),
-                  const SizedBox(height: 10),
                   const RoleDropdown(),
                   const SizedBox(height: 24),
                   RegisterButton(_formKey, name, email, password),
                   const SizedBox(height: 10),
                   CustomTextRow(
-                    questionTxt: 'alreadyHaveAnAccount'.tr(),
-                    clickTxt: 'loginLabel'.tr(),
+                    questionTxt: 'haveAccount'.tr(),
+                    clickTxt: 'login_label'.tr(),
                     onTap: () {
                       //go back to login page
-                      Navigator.pop(context);
+                      Navigator.pushReplacementNamed(
+                        context,
+                        Routes.loginRoute,
+                      );
                     },
                   ),
                   const SizedBox(height: 10),

@@ -40,7 +40,7 @@ class RegisterButton extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               spacing: 10,
               children: [
-                Text(tr("createAccount")),
+                Text(tr("register_label")),
                 const CircularProgressIndicator(
                   color: ColorsManager.white,
                   strokeAlign: CircularProgressIndicator.strokeAlignInside,
@@ -61,7 +61,7 @@ class RegisterButton extends StatelessWidget {
               );
             }
           },
-          child: Text(tr("createAccount")),
+          child: Text(tr("register_label")),
         );
       },
     );

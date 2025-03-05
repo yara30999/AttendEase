@@ -31,7 +31,7 @@ class ResetPasswordButton extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               spacing: 10,
               children: [
-                Text(tr('resetPassword')),
+                Text(tr('resetPassword_label')),
                 const CircularProgressIndicator(
                   color: ColorsManager.white,
                   strokeAlign: CircularProgressIndicator.strokeAlignInside,
@@ -48,7 +48,7 @@ class ResetPasswordButton extends StatelessWidget {
               );
             }
           },
-          child: Text(tr('resetPassword')),
+          child: Text(tr('resetPassword_label')),
         );
       },
     );

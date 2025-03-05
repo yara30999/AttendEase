@@ -25,10 +25,10 @@ class LanguageToggleSwitch extends StatelessWidget {
         spacing: 10, // between each item in the switch
         borderWidth: 2.0,
         style: ToggleStyle(
-          borderColor: ColorsManager.black, // Custom border color
+          borderColor: ColorsManager.lightOrange, // Custom border color
           backgroundColor: Colors.transparent,
-          indicatorBorder: Border.all(color: ColorsManager.black, width: 2),
-          indicatorColor: ColorsManager.black,
+          indicatorBorder: Border.all(color: ColorsManager.lightOrange, width: 2),
+          indicatorColor: ColorsManager.lightOrange,
         ),
         iconBuilder: (value, foreground) {
           return value

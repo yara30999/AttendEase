@@ -76,24 +76,29 @@ ThemeData getlightTheme() {
       prefixIconColor: ColorsManager.darkGreen,
       //default border
       border: const OutlineInputBorder(
-          borderSide: BorderSide(color: ColorsManager.darkGreen, width: 2),
-          borderRadius: BorderRadius.all(Radius.circular(50))),
+        borderSide: BorderSide(color: ColorsManager.darkGreen, width: 2),
+        borderRadius: BorderRadius.all(Radius.circular(50)),
+      ),
       // enabled border style
       enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: ColorsManager.darkGreen, width: 2),
-          borderRadius: BorderRadius.all(Radius.circular(50))),
+        borderSide: BorderSide(color: ColorsManager.darkGreen, width: 2),
+        borderRadius: BorderRadius.all(Radius.circular(50)),
+      ),
       // focused border style
       focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: ColorsManager.darkGreen, width: 2),
-          borderRadius: BorderRadius.all(Radius.circular(50))),
+        borderSide: BorderSide(color: ColorsManager.darkGreen, width: 2),
+        borderRadius: BorderRadius.all(Radius.circular(50)),
+      ),
       // error border style
       errorBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: ColorsManager.red, width: 2),
-          borderRadius: BorderRadius.all(Radius.circular(50))),
+        borderSide: BorderSide(color: ColorsManager.red, width: 2),
+        borderRadius: BorderRadius.all(Radius.circular(50)),
+      ),
       // focused border style
       focusedErrorBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: ColorsManager.red, width: 2),
-          borderRadius: BorderRadius.all(Radius.circular(50))),
+        borderSide: BorderSide(color: ColorsManager.red, width: 2),
+        borderRadius: BorderRadius.all(Radius.circular(50)),
+      ),
     ),
   );
 }
@@ -171,24 +176,29 @@ ThemeData getDarkTheme() {
       prefixIconColor: ColorsManager.lightOrange,
       //default border
       border: const OutlineInputBorder(
-          borderSide: BorderSide(color: ColorsManager.lightOrange, width: 2),
-          borderRadius: BorderRadius.all(Radius.circular(50))),
+        borderSide: BorderSide(color: ColorsManager.lightOrange, width: 2),
+        borderRadius: BorderRadius.all(Radius.circular(50)),
+      ),
       // enabled border style
       enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: ColorsManager.lightOrange, width: 2),
-          borderRadius: BorderRadius.all(Radius.circular(50))),
+        borderSide: BorderSide(color: ColorsManager.lightOrange, width: 2),
+        borderRadius: BorderRadius.all(Radius.circular(50)),
+      ),
       // focused border style
       focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: ColorsManager.lightOrange, width: 2),
-          borderRadius: BorderRadius.all(Radius.circular(50))),
+        borderSide: BorderSide(color: ColorsManager.lightOrange, width: 2),
+        borderRadius: BorderRadius.all(Radius.circular(50)),
+      ),
       // error border style
       errorBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: ColorsManager.red, width: 2),
-          borderRadius: BorderRadius.all(Radius.circular(50))),
+        borderSide: BorderSide(color: ColorsManager.red, width: 2),
+        borderRadius: BorderRadius.all(Radius.circular(50)),
+      ),
       // focused border style
       focusedErrorBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: ColorsManager.red, width: 2),
-          borderRadius: BorderRadius.all(Radius.circular(50))),
+        borderSide: BorderSide(color: ColorsManager.red, width: 2),
+        borderRadius: BorderRadius.all(Radius.circular(50)),
+      ),
     ),
   );
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../resourses/constant_manager.dart';
 import '../../../resourses/styles_manager.dart';
 

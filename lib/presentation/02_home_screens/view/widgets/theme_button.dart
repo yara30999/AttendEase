@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../resourses/styles_manager.dart';
@@ -24,7 +25,7 @@ class ThemeButton extends StatelessWidget {
               title: FittedBox(
                 alignment: AlignmentDirectional.centerStart,
                 fit: BoxFit.scaleDown,
-                child: Text("Theme", style: Styles.style16Medium()),
+                child: Text("theme".tr(), style: Styles.style16Medium()),
               ),
             ),
             Padding(
@@ -43,7 +44,10 @@ class ThemeButton extends StatelessWidget {
                       ),
                       FittedBox(
                         fit: BoxFit.scaleDown,
-                        child: Text('Light', style: Styles.style16Medium()),
+                        child: Text(
+                          'light'.tr(),
+                          style: Styles.style16Medium(),
+                        ),
                       ),
                     ],
                   ),
@@ -60,7 +64,7 @@ class ThemeButton extends StatelessWidget {
                       ),
                       FittedBox(
                         fit: BoxFit.scaleDown,
-                        child: Text("Dark", style: Styles.style16Medium()),
+                        child: Text("dark".tr(), style: Styles.style16Medium()),
                       ),
                     ],
                   ),
