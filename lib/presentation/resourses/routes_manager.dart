@@ -8,6 +8,9 @@ import '../01_auth_screens/view/register_view.dart';
 import '../02_home_screens/view/admin_home_view.dart';
 import '../02_home_screens/view/user_home_view.dart';
 import '../../app/app_prefs.dart';
+import '../03_create_group_screen/view/create_group_view.dart';
+import '../04_group_details_screen/view/group_details_view.dart';
+import '../05_user_history_screen/view/user_history_view.dart';
 
 class Routes {
   static const String loginRoute = "/";
@@ -15,6 +18,9 @@ class Routes {
   static const String forgotPasswordRoute = "/forgot_password_route";
   static const String userHomeRoute = "/user_home_route";
   static const String adminHomeRoute = "/admin_home_route";
+  static const String createGroupRoute = "/create_group_route";
+  static const String groupDetailsRoute = "/group_details_route";
+  static const String userHistoryRoute = "/user_history_route";
 }
 
 class RouteGenerator {
@@ -34,6 +40,13 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const UserHomeView());
       case Routes.adminHomeRoute:
         return MaterialPageRoute(builder: (_) => const AdminHomeView());
+      case Routes.createGroupRoute:
+        return MaterialPageRoute(builder: (_) => const CreateGroupView());
+      case Routes.groupDetailsRoute:
+        return MaterialPageRoute(builder: (_) => const GroupDetailsView());
+      case Routes.userHistoryRoute:
+        return MaterialPageRoute(builder: (_) => const UserHistoryView());
+
       default:
         return unDefinedRoute();
     }
