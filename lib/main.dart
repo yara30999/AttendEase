@@ -1,24 +1,49 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'app/di.dart';
+import 'app/functions.dart';
+import 'app/my_app.dart';
 import 'firebase_options.dart';
+import 'presentation/01_auth_screens/view_model/auth_bloc/auth_bloc.dart';
+import 'presentation/02_home_screens/view_model/theme_bloc/theme_bloc.dart';
+import 'presentation/resourses/language_manager.dart';
+import 'simple_observer.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(title: 'Flutter Demo');
-  }
+  Bloc.observer = SimpleObserver();
+  await initAppModule();
+  await Hive.initFlutter();
+  hiveAdapters();
+  await hiveBoxes();
+  runApp(
+    EasyLocalization(
+      supportedLocales: [
+        LocalizationUtils.englishLocal,
+        LocalizationUtils.arabicLocal,
+      ],
+      path: 'assets/lang',
+      fallbackLocale: LocalizationUtils.englishLocal,
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create:
+                (_) => AuthBloc(instance(), instance(), instance(), instance()),
+          ),
+          BlocProvider(create: (_) => ThemeBloc(instance())..add(LoadTheme())),
+        ],
+        child: const MyApp(),
+      ),
+    ),
+  );
 }
