@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../app/functions.dart';
+import '../../../resourses/routes_manager.dart';
 import 'member_tile.dart';
 
 class MembersListView extends StatelessWidget {
@@ -17,7 +18,7 @@ class MembersListView extends StatelessWidget {
           name: 'John Doe $index', // Replace with actual member name
           onTap: () {
             // Navigate to user history
-            Navigator.pushNamed(context, '/user_history_route');
+            Navigator.pushNamed(context, Routes.userHistoryRoute);
           },
           onDelete: () {
             showDeleteUserConfirmationDialog(context);
