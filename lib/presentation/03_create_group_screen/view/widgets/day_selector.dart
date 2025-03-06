@@ -3,13 +3,10 @@ import 'package:flutter/material.dart';
 
 class DaySelector extends StatelessWidget {
   final Set<int> selectedDays;
-  final Function(int) onDaySelected;
+  final Function(int)? onDaySelected;
 
-  const DaySelector({
-    Key? key,
-    required this.selectedDays,
-    required this.onDaySelected,
-  }) : super(key: key);
+  const DaySelector({Key? key, required this.selectedDays, this.onDaySelected})
+    : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +16,7 @@ class DaySelector extends StatelessWidget {
         final dayName = _getDayName(index);
         final isSelected = selectedDays.contains(index);
         return GestureDetector(
-          onTap: () => onDaySelected(index),
+          onTap: onDaySelected == null ? null : () => onDaySelected!(index),
           child: Container(
             width: 40,
             height: 40,

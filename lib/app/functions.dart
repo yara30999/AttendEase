@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive/hive.dart';
 import '../domain/entities/auth_entity.dart';
 import '../presentation/02_home_screens/view_model/theme_bloc/theme_bloc.dart';
+import '../presentation/04_group_details_screen/view/widgets/delete_user_dialog.dart';
 import '../presentation/resourses/constant_manager.dart';
 
 Future<void> hiveBoxes() async {
@@ -27,5 +28,14 @@ void showToast(String message, Color color) {
     backgroundColor: color,
     textColor: Colors.white,
     fontSize: 16.0,
+  );
+}
+
+Future<void> showDeleteUserConfirmationDialog(BuildContext context) async {
+  return showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return DeleteUserDialog();
+    },
   );
 }
