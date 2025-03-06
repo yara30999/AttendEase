@@ -8,8 +8,6 @@ import '../../resourses/colors_manager.dart';
 import '../../resourses/styles_manager.dart';
 import 'widgets/day_selector.dart';
 import 'widgets/location_picker.dart';
-import '../../../app/di.dart';
-import '../../../app/validation_service.dart';
 import 'widgets/time_picker_field.dart';
 
 class CreateGroupView extends StatefulWidget {
@@ -21,7 +19,6 @@ class CreateGroupView extends StatefulWidget {
 
 class _CreateGroupViewState extends State<CreateGroupView> {
   final _formKey = GlobalKey<FormState>();
-  final _validationService = instance<IValidationService>();
   String _groupName = '';
   final Set<int> _selectedDays = {};
   TimeOfDay _checkInTime = const TimeOfDay(hour: 9, minute: 0);

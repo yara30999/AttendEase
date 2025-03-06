@@ -5,7 +5,9 @@ import '../../02_home_screens/view/widgets/custom_drawer.dart';
 import '../../03_create_group_screen/view/widgets/day_selector.dart';
 import '../../resourses/styles_manager.dart';
 import 'widgets/group_password_row.dart';
+import 'widgets/location_map_card.dart';
 import 'widgets/members_list_view.dart';
+import 'widgets/navigation_fab.dart';
 import 'widgets/time_row.dart';
 
 class GroupDetailsView extends StatelessWidget {
@@ -17,6 +19,13 @@ class GroupDetailsView extends StatelessWidget {
     return Scaffold(
       appBar: const CustomAppBar(),
       drawer: const CustomDrawer(),
+      floatingActionButton: NavigationFAB(
+        onPressed: () {
+          // TODO: Implement navigation to location
+          // You can use url_launcher to open in Google Maps
+          // or implement your own navigation logic
+        },
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -39,6 +48,9 @@ class GroupDetailsView extends StatelessWidget {
             TimeRow(label: context.tr('Check-in Time:'), time: '09:00 AM'),
             TimeRow(label: context.tr('Check-out Time:'), time: '05:00 PM'),
             GroupPasswordRow(),
+            // Location Map
+            Text(context.tr('Location'), style: Styles.style20Bold()),
+            const LocationMapCard(),
             Text(context.tr('Members:'), style: Styles.style20Bold()),
             MembersListView(),
           ],
