@@ -24,9 +24,7 @@ class AttendanceTile extends StatelessWidget {
     return Card(
       elevation: 4,
       color: isDarkMode ? ColorsManager.mediumBrown : ColorsManager.creamyBeige,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Row(
@@ -35,13 +33,15 @@ class AttendanceTile extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               decoration: BoxDecoration(
-                color: isDarkMode
-                    ? ColorsManager.darkBrown.withOpacity(0.3)
-                    : ColorsManager.sandYellow.withOpacity(0.3),
+                color:
+                    isDarkMode
+                        ? ColorsManager.darkBrown.withOpacity(0.3)
+                        : ColorsManager.sandYellow.withOpacity(0.3),
                 border: Border.all(
-                  color: isDarkMode
-                      ? ColorsManager.sandYellow
-                      : ColorsManager.darkBrown,
+                  color:
+                      isDarkMode
+                          ? ColorsManager.sandYellow
+                          : ColorsManager.darkBrown,
                   width: 2,
                 ),
                 borderRadius: BorderRadius.circular(12),
@@ -51,17 +51,19 @@ class AttendanceTile extends StatelessWidget {
                   Text(
                     DateFormat('dd').format(date),
                     style: Styles.style24Bold().copyWith(
-                      color: isDarkMode
-                          ? ColorsManager.sandYellow
-                          : ColorsManager.darkBrown,
+                      color:
+                          isDarkMode
+                              ? ColorsManager.sandYellow
+                              : ColorsManager.darkBrown,
                     ),
                   ),
                   Text(
                     DateFormat('EEE').format(date).toUpperCase(),
                     style: Styles.style14Medium().copyWith(
-                      color: isDarkMode
-                          ? ColorsManager.sandYellow
-                          : ColorsManager.darkBrown,
+                      color:
+                          isDarkMode
+                              ? ColorsManager.sandYellow
+                              : ColorsManager.darkBrown,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -78,7 +80,7 @@ class AttendanceTile extends StatelessWidget {
                   Expanded(
                     child: _buildTimeColumn(
                       context,
-                      'Check-in Time:'.tr(),
+                      context.tr('Check-in Time:'),
                       checkIn.format(context),
                       Icons.login,
                       isDarkMode,
@@ -88,15 +90,16 @@ class AttendanceTile extends StatelessWidget {
                   Container(
                     height: 40,
                     width: 1,
-                    color: isDarkMode
-                        ? ColorsManager.sandYellow.withOpacity(0.3)
-                        : ColorsManager.darkBrown.withOpacity(0.3),
+                    color:
+                        isDarkMode
+                            ? ColorsManager.sandYellow.withOpacity(0.3)
+                            : ColorsManager.darkBrown.withOpacity(0.3),
                   ),
                   // Check-out time
                   Expanded(
                     child: _buildTimeColumn(
                       context,
-                      'Check-out Time:'.tr(),
+                      context.tr('Check-out Time:'),
                       checkOut.format(context),
                       Icons.logout,
                       isDarkMode,
@@ -106,16 +109,17 @@ class AttendanceTile extends StatelessWidget {
                   Container(
                     height: 40,
                     width: 1,
-                    color: isDarkMode
-                        ? ColorsManager.sandYellow.withOpacity(0.3)
-                        : ColorsManager.darkBrown.withOpacity(0.3),
+                    color:
+                        isDarkMode
+                            ? ColorsManager.sandYellow.withOpacity(0.3)
+                            : ColorsManager.darkBrown.withOpacity(0.3),
                   ),
                   // Total hours
                   Expanded(
                     child: _buildTimeColumn(
                       context,
-                      'total'.tr(),
-                      '$totalHours ${'hours'.tr()}',
+                      context.tr('total'),
+                      '$totalHours ${context.tr('hours')}',
                       Icons.timer,
                       isDarkMode,
                     ),
@@ -130,12 +134,12 @@ class AttendanceTile extends StatelessWidget {
   }
 
   Widget _buildTimeColumn(
-      BuildContext context,
-      String label,
-      String time,
-      IconData icon,
-      bool isDarkMode,
-      ) {
+    BuildContext context,
+    String label,
+    String time,
+    IconData icon,
+    bool isDarkMode,
+  ) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -145,18 +149,20 @@ class AttendanceTile extends StatelessWidget {
             Icon(
               icon,
               size: 16,
-              color: isDarkMode
-                  ? ColorsManager.sandYellow
-                  : ColorsManager.darkBrown,
+              color:
+                  isDarkMode
+                      ? ColorsManager.sandYellow
+                      : ColorsManager.darkBrown,
             ),
             const SizedBox(width: 4),
             Flexible(
               child: Text(
                 label,
                 style: Styles.style12Medium().copyWith(
-                  color: isDarkMode
-                      ? ColorsManager.sandYellow.withOpacity(0.7)
-                      : ColorsManager.darkBrown.withOpacity(0.7),
+                  color:
+                      isDarkMode
+                          ? ColorsManager.sandYellow.withOpacity(0.7)
+                          : ColorsManager.darkBrown.withOpacity(0.7),
                 ),
                 overflow: TextOverflow.ellipsis,
               ),
@@ -167,9 +173,7 @@ class AttendanceTile extends StatelessWidget {
         Text(
           time,
           style: Styles.style14Medium().copyWith(
-            color: isDarkMode
-                ? ColorsManager.white
-                : ColorsManager.black,
+            color: isDarkMode ? ColorsManager.white : ColorsManager.black,
             fontWeight: FontWeight.bold,
           ),
         ),

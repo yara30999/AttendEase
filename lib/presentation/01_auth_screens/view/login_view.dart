@@ -52,7 +52,7 @@ class _LoginViewState extends State<LoginView> {
                   ),
                   const SizedBox(height: 24),
                   CustomTextField(
-                    label: 'emailLabel'.tr(),
+                    label: context.tr('emailLabel'),
                     inputType: TextInputType.emailAddress,
                     textDirection: dui.TextDirection.ltr,
                     onChanged: (value) {
@@ -63,7 +63,7 @@ class _LoginViewState extends State<LoginView> {
                   ),
                   const SizedBox(height: 24),
                   CustomTextField(
-                    label: 'passwordLabel'.tr(),
+                    label: context.tr('passwordLabel'),
                     inputType: TextInputType.visiblePassword,
                     textDirection: dui.TextDirection.ltr,
                     onChanged: (value) {
@@ -84,14 +84,14 @@ class _LoginViewState extends State<LoginView> {
                           Routes.forgotPasswordRoute,
                         );
                       },
-                      child: Text('forgotPassword'.tr()),
+                      child: Text(context.tr('forgotPassword')),
                     ),
                   ),
                   LoginButton(_formKey, _email, _password),
                   const SizedBox(height: 24),
                   CustomTextRow(
-                    questionTxt: 'doNotHaveAccount'.tr(),
-                    clickTxt: 'createAccount'.tr(),
+                    questionTxt: context.tr('doNotHaveAccount'),
+                    clickTxt: context.tr('createAccount'),
                     onTap: () {
                       Navigator.pushReplacementNamed(
                         context,
@@ -99,7 +99,7 @@ class _LoginViewState extends State<LoginView> {
                       );
                     },
                   ),
-                  CustomDividerWithText(label: 'or'.tr()),
+                  CustomDividerWithText(label: context.tr('or')),
                   const SizedBox(height: 16),
                   Padding(
                     padding: EdgeInsets.symmetric(

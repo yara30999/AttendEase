@@ -16,7 +16,10 @@ class ResetPasswordButton extends StatelessWidget {
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is ForgotPasswordSuccess) {
-          showToast('reset_password_mail_sent'.tr(), ColorsManager.mediumGreen);
+          showToast(
+            context.tr('reset_password_mail_sent'),
+            ColorsManager.mediumGreen,
+          );
           Navigator.pop(context);
         }
         if (state is ForgotPasswordError) {
@@ -31,7 +34,7 @@ class ResetPasswordButton extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               spacing: 10,
               children: [
-                Text(tr('resetPassword_label')),
+                Text(context.tr('resetPassword_label')),
                 const CircularProgressIndicator(
                   color: ColorsManager.white,
                   strokeAlign: CircularProgressIndicator.strokeAlignInside,
@@ -48,7 +51,7 @@ class ResetPasswordButton extends StatelessWidget {
               );
             }
           },
-          child: Text(tr('resetPassword_label')),
+          child: Text(context.tr('resetPassword_label')),
         );
       },
     );

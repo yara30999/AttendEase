@@ -54,7 +54,7 @@ class _RegisterViewState extends State<RegisterView> {
                     fit: BoxFit.contain,
                   ),
                   CustomTextField(
-                    label: 'usernameLabel'.tr(),
+                    label: context.tr('usernameLabel'),
                     inputType: TextInputType.name,
                     textDirection: dui.TextDirection.ltr,
                     onChanged: (value) {
@@ -65,7 +65,7 @@ class _RegisterViewState extends State<RegisterView> {
                   ),
                   const SizedBox(height: 24),
                   CustomTextField(
-                    label: 'emailLabel'.tr(),
+                    label: context.tr('emailLabel'),
                     inputType: TextInputType.emailAddress,
                     textDirection: dui.TextDirection.ltr,
                     onChanged: (value) {
@@ -76,7 +76,7 @@ class _RegisterViewState extends State<RegisterView> {
                   ),
                   const SizedBox(height: 24),
                   CustomTextField(
-                    label: 'passwordLabel'.tr(),
+                    label: context.tr('passwordLabel'),
                     inputType: TextInputType.visiblePassword,
                     textDirection: dui.TextDirection.ltr,
                     onChanged: (value) {
@@ -87,7 +87,7 @@ class _RegisterViewState extends State<RegisterView> {
                   ),
                   const SizedBox(height: 24),
                   CustomTextField(
-                    label: 'rePasswordLabel'.tr(),
+                    label: context.tr('rePasswordLabel'),
                     inputType: TextInputType.visiblePassword,
                     textDirection: dui.TextDirection.ltr,
                     onChanged: (value) {
@@ -108,8 +108,8 @@ class _RegisterViewState extends State<RegisterView> {
                   RegisterButton(_formKey, name, email, password),
                   const SizedBox(height: 10),
                   CustomTextRow(
-                    questionTxt: 'haveAccount'.tr(),
-                    clickTxt: 'login_label'.tr(),
+                    questionTxt: context.tr('haveAccount'),
+                    clickTxt: context.tr('login_label'),
                     onTap: () {
                       //go back to login page
                       Navigator.pushReplacementNamed(

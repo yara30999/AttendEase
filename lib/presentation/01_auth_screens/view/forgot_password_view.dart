@@ -42,7 +42,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                   fit: BoxFit.contain,
                 ),
                 CustomTextField(
-                  label: 'emailLabel'.tr(),
+                  label: context.tr('emailLabel'),
                   inputType: TextInputType.emailAddress,
                   textDirection: dui.TextDirection.ltr,
                   onChanged: (value) {

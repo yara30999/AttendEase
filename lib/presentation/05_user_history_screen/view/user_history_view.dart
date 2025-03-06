@@ -61,9 +61,10 @@ class _UserHistoryViewState extends State<UserHistoryView>
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
-              color: _isDarkMode
-                  ? ColorsManager.mediumBrown
-                  : ColorsManager.creamyBeige,
+              color:
+                  _isDarkMode
+                      ? ColorsManager.mediumBrown
+                      : ColorsManager.creamyBeige,
               child: TableCalendar(
                 firstDay: DateTime.now().subtract(const Duration(days: 365)),
                 lastDay: DateTime.now().add(const Duration(days: 365)),
@@ -80,65 +81,71 @@ class _UserHistoryViewState extends State<UserHistoryView>
                   formatButtonVisible: false,
                   leftChevronIcon: Icon(
                     Icons.chevron_left,
-                    color: _isDarkMode
-                        ? ColorsManager.sandYellow
-                        : ColorsManager.darkBrown,
+                    color:
+                        _isDarkMode
+                            ? ColorsManager.sandYellow
+                            : ColorsManager.darkBrown,
                   ),
                   rightChevronIcon: Icon(
                     Icons.chevron_right,
-                    color: _isDarkMode
-                        ? ColorsManager.sandYellow
-                        : ColorsManager.darkBrown,
+                    color:
+                        _isDarkMode
+                            ? ColorsManager.sandYellow
+                            : ColorsManager.darkBrown,
                   ),
                   titleTextStyle: Styles.style18Medium().copyWith(
-                    color: _isDarkMode
-                        ? ColorsManager.sandYellow
-                        : ColorsManager.darkBrown,
+                    color:
+                        _isDarkMode
+                            ? ColorsManager.sandYellow
+                            : ColorsManager.darkBrown,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 calendarStyle: CalendarStyle(
                   selectedDecoration: BoxDecoration(
-                    color: _isDarkMode
-                        ? ColorsManager.sandYellow
-                        : ColorsManager.darkBrown,
+                    color:
+                        _isDarkMode
+                            ? ColorsManager.sandYellow
+                            : ColorsManager.darkBrown,
                     shape: BoxShape.circle,
                   ),
                   todayDecoration: BoxDecoration(
                     color: (_isDarkMode
-                        ? ColorsManager.sandYellow
-                        : ColorsManager.darkBrown)
+                            ? ColorsManager.sandYellow
+                            : ColorsManager.darkBrown)
                         .withOpacity(0.5),
                     shape: BoxShape.circle,
                   ),
                   defaultTextStyle: TextStyle(
-                    color: _isDarkMode
-                        ? ColorsManager.white
-                        : ColorsManager.black,
+                    color:
+                        _isDarkMode ? ColorsManager.white : ColorsManager.black,
                   ),
                   weekendTextStyle: TextStyle(
-                    color: _isDarkMode
-                        ? ColorsManager.sandYellow
-                        : ColorsManager.darkBrown,
+                    color:
+                        _isDarkMode
+                            ? ColorsManager.sandYellow
+                            : ColorsManager.darkBrown,
                   ),
                   outsideTextStyle: TextStyle(
                     color: (_isDarkMode
-                        ? ColorsManager.sandYellow
-                        : ColorsManager.darkBrown)
+                            ? ColorsManager.sandYellow
+                            : ColorsManager.darkBrown)
                         .withOpacity(0.5),
                   ),
                 ),
                 daysOfWeekStyle: DaysOfWeekStyle(
                   weekdayStyle: TextStyle(
-                    color: _isDarkMode
-                        ? ColorsManager.sandYellow
-                        : ColorsManager.darkBrown,
+                    color:
+                        _isDarkMode
+                            ? ColorsManager.sandYellow
+                            : ColorsManager.darkBrown,
                     fontWeight: FontWeight.bold,
                   ),
                   weekendStyle: TextStyle(
-                    color: _isDarkMode
-                        ? ColorsManager.sandYellow
-                        : ColorsManager.darkBrown,
+                    color:
+                        _isDarkMode
+                            ? ColorsManager.sandYellow
+                            : ColorsManager.darkBrown,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -150,14 +157,16 @@ class _UserHistoryViewState extends State<UserHistoryView>
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             decoration: BoxDecoration(
-              color: _isDarkMode
-                  ? ColorsManager.darkBrown.withOpacity(0.1)
-                  : ColorsManager.sandYellow.withOpacity(0.1),
+              color:
+                  _isDarkMode
+                      ? ColorsManager.darkBrown.withOpacity(0.1)
+                      : ColorsManager.sandYellow.withOpacity(0.1),
               borderRadius: BorderRadius.circular(25),
               border: Border.all(
-                color: _isDarkMode
-                    ? ColorsManager.sandYellow
-                    : ColorsManager.darkBrown,
+                color:
+                    _isDarkMode
+                        ? ColorsManager.sandYellow
+                        : ColorsManager.darkBrown,
                 width: 2,
               ),
             ),
@@ -165,15 +174,17 @@ class _UserHistoryViewState extends State<UserHistoryView>
               controller: _tabController,
               indicator: BoxDecoration(
                 borderRadius: BorderRadius.circular(25),
-                color: _isDarkMode
-                    ? ColorsManager.sandYellow
-                    : ColorsManager.darkBrown,
+                color:
+                    _isDarkMode
+                        ? ColorsManager.sandYellow
+                        : ColorsManager.darkBrown,
               ),
               labelColor:
-              _isDarkMode ? ColorsManager.darkBrown : ColorsManager.white,
-              unselectedLabelColor: _isDarkMode
-                  ? ColorsManager.sandYellow
-                  : ColorsManager.darkBrown,
+                  _isDarkMode ? ColorsManager.darkBrown : ColorsManager.white,
+              unselectedLabelColor:
+                  _isDarkMode
+                      ? ColorsManager.sandYellow
+                      : ColorsManager.darkBrown,
               labelStyle: Styles.style16Medium().copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -186,12 +197,9 @@ class _UserHistoryViewState extends State<UserHistoryView>
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(
-                          Icons.history,
-                          size: 20,
-                        ),
+                        Icon(Icons.history, size: 20),
                         const SizedBox(width: 8),
-                        Text('History'.tr()),
+                        Text(context.tr('History')),
                       ],
                     ),
                   ),
@@ -202,12 +210,9 @@ class _UserHistoryViewState extends State<UserHistoryView>
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(
-                          Icons.assignment_late_outlined,
-                          size: 20,
-                        ),
+                        Icon(Icons.assignment_late_outlined, size: 20),
                         const SizedBox(width: 8),
-                        Text('Permissions'.tr()),
+                        Text(context.tr('Permissions')),
                       ],
                     ),
                   ),
@@ -218,9 +223,10 @@ class _UserHistoryViewState extends State<UserHistoryView>
 
           // Divider
           Divider(
-            color: _isDarkMode
-                ? ColorsManager.sandYellow.withOpacity(0.3)
-                : ColorsManager.darkBrown.withOpacity(0.3),
+            color:
+                _isDarkMode
+                    ? ColorsManager.sandYellow.withOpacity(0.3)
+                    : ColorsManager.darkBrown.withOpacity(0.3),
             thickness: 1,
             height: 1,
           ),
@@ -229,10 +235,7 @@ class _UserHistoryViewState extends State<UserHistoryView>
           Expanded(
             child: TabBarView(
               controller: _tabController,
-              children: [
-                _buildHistoryTab(),
-                _buildPermissionsTab(),
-              ],
+              children: [_buildHistoryTab(), _buildPermissionsTab()],
             ),
           ),
         ],
@@ -264,11 +267,12 @@ class _UserHistoryViewState extends State<UserHistoryView>
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(
-            'Permission Types:'.tr(),
+            context.tr('Permission Types:'),
             style: Styles.style18Medium().copyWith(
-              color: _isDarkMode
-                  ? ColorsManager.sandYellow
-                  : ColorsManager.darkBrown,
+              color:
+                  _isDarkMode
+                      ? ColorsManager.sandYellow
+                      : ColorsManager.darkBrown,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -282,7 +286,9 @@ class _UserHistoryViewState extends State<UserHistoryView>
                 padding: const EdgeInsets.only(bottom: 8.0),
                 child: PermissionTile(
                   date: DateTime.now().subtract(Duration(days: index)),
-                  type: PermissionType.values[index % PermissionType.values.length],
+                  type:
+                      PermissionType.values[index %
+                          PermissionType.values.length],
                   onTap: () {
                     // TODO: Handle permission tile tap
                   },

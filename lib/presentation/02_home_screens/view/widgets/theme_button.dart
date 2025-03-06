@@ -25,7 +25,7 @@ class ThemeButton extends StatelessWidget {
               title: FittedBox(
                 alignment: AlignmentDirectional.centerStart,
                 fit: BoxFit.scaleDown,
-                child: Text("theme".tr(), style: Styles.style16Medium()),
+                child: Text(context.tr("theme"), style: Styles.style16Medium()),
               ),
             ),
             Padding(
@@ -45,7 +45,7 @@ class ThemeButton extends StatelessWidget {
                       FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
-                          'light'.tr(),
+                          context.tr('light'),
                           style: Styles.style16Medium(),
                         ),
                       ),
@@ -64,7 +64,10 @@ class ThemeButton extends StatelessWidget {
                       ),
                       FittedBox(
                         fit: BoxFit.scaleDown,
-                        child: Text("dark".tr(), style: Styles.style16Medium()),
+                        child: Text(
+                          context.tr("dark"),
+                          style: Styles.style16Medium(),
+                        ),
                       ),
                     ],
                   ),

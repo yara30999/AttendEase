@@ -27,7 +27,7 @@ class LogoutButtonBlocConsumer extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               spacing: 10,
               children: [
-                Text(tr("logout_label")),
+                Text(context.tr("logout_label")),
                 const CircularProgressIndicator(
                   color: ColorsManager.white,
                   strokeAlign: CircularProgressIndicator.strokeAlignInside,
@@ -40,7 +40,7 @@ class LogoutButtonBlocConsumer extends StatelessWidget {
           onPressed: () {
             context.read<AuthBloc>().add(LogoutRequested());
           },
-          child: Text(tr("logout_label")),
+          child: Text(context.tr("logout_label")),
         );
       },
     );

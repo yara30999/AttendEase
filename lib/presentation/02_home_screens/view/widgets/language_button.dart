@@ -18,7 +18,7 @@ class LanguageButton extends StatelessWidget {
           title: FittedBox(
             alignment: AlignmentDirectional.centerStart,
             fit: BoxFit.scaleDown,
-            child: Text("language".tr(), style: Styles.style16Medium()),
+            child: Text(context.tr("language"), style: Styles.style16Medium()),
           ),
         ),
         Padding(
@@ -37,7 +37,10 @@ class LanguageButton extends StatelessWidget {
                   ),
                   FittedBox(
                     fit: BoxFit.scaleDown,
-                    child: Text('arabic'.tr(), style: Styles.style16Medium()),
+                    child: Text(
+                      context.tr('arabic'),
+                      style: Styles.style16Medium(),
+                    ),
                   ),
                 ],
               ),
@@ -54,7 +57,10 @@ class LanguageButton extends StatelessWidget {
                   ),
                   FittedBox(
                     fit: BoxFit.scaleDown,
-                    child: Text('english'.tr(), style: Styles.style16Medium()),
+                    child: Text(
+                      context.tr('english'),
+                      style: Styles.style16Medium(),
+                    ),
                   ),
                 ],
               ),

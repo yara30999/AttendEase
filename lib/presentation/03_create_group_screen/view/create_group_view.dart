@@ -30,7 +30,7 @@ class _CreateGroupViewState extends State<CreateGroupView> {
   void _validateAndCreateGroup() {
     if (_formKey.currentState!.validate()) {
       if (_selectedDays.isEmpty) {
-        showToast("Please select working days".tr(), ColorsManager.red);
+        showToast(context.tr("Please select working days"), ColorsManager.red);
         return;
       }
       // TODO: Implement group creation logic
@@ -90,7 +90,10 @@ class _CreateGroupViewState extends State<CreateGroupView> {
                   });
                 },
               ),
-              Text('Check-out Time:'.tr(), style: Styles.style16Medium()),
+              Text(
+                context.tr('Check-out Time:'),
+                style: Styles.style16Medium(),
+              ),
               TimePickerField(
                 initialTime: _checkOutTime,
                 onTimeSelected: (time) {

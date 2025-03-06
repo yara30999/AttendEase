@@ -25,7 +25,7 @@ class RegisterButton extends StatelessWidget {
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is RegisterSuccess) {
-          showToast(tr('register_successfully'), ColorsManager.softRed);
+          showToast(context.tr('register_successfully'), ColorsManager.softRed);
           Navigator.pushReplacementNamed(context, Routes.loginRoute);
         }
         if (state is RegisterError) {
@@ -40,7 +40,7 @@ class RegisterButton extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               spacing: 10,
               children: [
-                Text(tr("register_label")),
+                Text(context.tr("register_label")),
                 const CircularProgressIndicator(
                   color: ColorsManager.white,
                   strokeAlign: CircularProgressIndicator.strokeAlignInside,
@@ -61,7 +61,7 @@ class RegisterButton extends StatelessWidget {
               );
             }
           },
-          child: Text(tr("register_label")),
+          child: Text(context.tr("register_label")),
         );
       },
     );
