@@ -65,7 +65,7 @@ class TimeDetailsRow extends StatelessWidget {
         Expanded(
           flex: 3,
           child: TimeColumn(
-            label: context.tr('Check-in'),
+            label: context.tr('Check-in Time:'),
             time: checkIn.format(context),
             icon: Icons.login_outlined,
           ),
@@ -74,7 +74,7 @@ class TimeDetailsRow extends StatelessWidget {
         Expanded(
           flex: 3,
           child: TimeColumn(
-            label: context.tr('Check-out'),
+            label: context.tr('Check-out Time:'),
             time: checkOut.format(context),
             icon: Icons.logout_outlined,
           ),
@@ -83,8 +83,8 @@ class TimeDetailsRow extends StatelessWidget {
         Expanded(
           flex: 2,
           child: TimeColumn(
-            label: context.tr('Total'),
-            time: '$totalHours ${context.tr('hrs')}',
+            label: context.tr('total'),
+            time: '$totalHours ${context.tr('hours')}',
             icon: Icons.access_time,
           ),
         ),
