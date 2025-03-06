@@ -72,7 +72,7 @@ class PermissionDetails extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              type.name,
+              type.name, // Using the extension
               style: Styles.style16Medium().copyWith(
                 color: isDarkMode
                     ? ColorsManager.white
@@ -91,59 +91,8 @@ class PermissionDetails extends StatelessWidget {
             ),
           ],
         ),
-        PermissionIcon(type: type),
+        type.icon, // Using the extension
       ],
     );
-  }
-}
-
-class PermissionIcon extends StatelessWidget {
-  final PermissionType type;
-
-  const PermissionIcon({
-    Key? key,
-    required this.type,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: _getBackgroundColor(),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Icon(
-        _getIcon(),
-        color: Colors.white,
-        size: 24,
-      ),
-    );
-  }
-
-  Color _getBackgroundColor() {
-    switch (type) {
-      case PermissionType.sickLeave:
-        return const Color(0xFFFFB5B5);
-      case PermissionType.emergencyLeave:
-        return const Color(0xFFFFC107);
-      case PermissionType.vacationLeave:
-        return const Color(0xFF90CAF9);
-      case PermissionType.workFromHome:
-        return const Color(0xFF81C784);
-    }
-  }
-
-  IconData _getIcon() {
-    switch (type) {
-      case PermissionType.sickLeave:
-        return Icons.healing;
-      case PermissionType.emergencyLeave:
-        return Icons.warning_rounded;
-      case PermissionType.vacationLeave:
-        return Icons.beach_access;
-      case PermissionType.workFromHome:
-        return Icons.home_work;
-    }
   }
 }
