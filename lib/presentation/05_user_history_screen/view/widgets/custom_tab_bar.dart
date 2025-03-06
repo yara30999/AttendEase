@@ -16,7 +16,7 @@ class CustomTabBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 2, vertical: 6),
       decoration: BoxDecoration(
         color: isDarkMode
             ? ColorsManager.darkBrown
@@ -36,32 +36,101 @@ class CustomTabBar extends StatelessWidget {
         unselectedLabelColor: isDarkMode
             ? ColorsManager.sandYellow
             : ColorsManager.darkBrown,
-        labelStyle: Styles.style16Medium().copyWith(
+        labelStyle: Styles.style14Medium().copyWith(
           fontWeight: FontWeight.bold,
         ),
-        unselectedLabelStyle: Styles.style16Medium(),
-        padding: const EdgeInsets.all(3),
+        unselectedLabelStyle: Styles.style14Medium(),
+        padding: const EdgeInsets.all(2),
         tabs: [
-          _buildTab(Icons.history, context.tr('History')),
-          _buildTab(Icons.assignment_late_outlined, context.tr('Permissions')),
+          CustomTab(
+            icon: Icons.history,
+            label: context.tr('History'),
+          ),
+          CustomTab(
+            icon: Icons.assignment_late_outlined,
+            label: context.tr('Permissions'),
+          ),
         ],
       ),
     );
   }
+}
 
-  Widget _buildTab(IconData icon, String text) {
+class CustomTab extends StatelessWidget {
+  final IconData icon;
+  final String label;
+
+  const CustomTab({
+    Key? key,
+    required this.icon,
+    required this.label,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Tab(
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon, size: 20),
-            const SizedBox(width: 8),
-            Text(text),
-          ],
+        child: TabContent(
+          icon: icon,
+          label: label,
         ),
       ),
     );
+  }
+}
+
+class TabContent extends StatelessWidget {
+  final IconData icon;
+  final String label;
+
+  const TabContent({
+    Key? key,
+    required this.icon,
+    required this.label,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        TabIcon(icon: icon),
+        const SizedBox(width: 4),
+        TabLabel(label: label),
+      ],
+    );
+  }
+}
+
+class TabIcon extends StatelessWidget {
+  final IconData icon;
+
+  const TabIcon({
+    Key? key,
+    required this.icon,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Icon(
+      icon,
+      size: 18,
+    );
+  }
+}
+
+class TabLabel extends StatelessWidget {
+  final String label;
+
+  const TabLabel({
+    Key? key,
+    required this.label,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(label);
   }
 }
