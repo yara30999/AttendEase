@@ -100,6 +100,13 @@ ThemeData getlightTheme() {
         borderRadius: BorderRadius.all(Radius.circular(50)),
       ),
     ),
+    tabBarTheme: TabBarTheme(
+      labelColor: ColorsManager.white,
+      unselectedLabelColor: ColorsManager.darkBrown,
+      indicatorSize: TabBarIndicatorSize.tab,
+      dividerColor: Colors.transparent,
+      overlayColor: MaterialStateProperty.all(Colors.transparent),
+    ),
   );
 }
 
@@ -200,5 +207,14 @@ ThemeData getDarkTheme() {
         borderRadius: BorderRadius.all(Radius.circular(50)),
       ),
     ),
+
+    tabBarTheme: TabBarTheme(
+      labelColor: ColorsManager.darkBrown,
+      unselectedLabelColor: ColorsManager.sandYellow,
+      indicatorSize: TabBarIndicatorSize.tab,
+      dividerColor: Colors.transparent,
+      overlayColor: MaterialStateProperty.all(Colors.transparent),
+    ),
+
   );
 }

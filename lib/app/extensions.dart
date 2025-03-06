@@ -70,3 +70,84 @@ extension NonNullInteger on int? {
     }
   }
 }
+
+enum PermissionType {
+  sickLeave,
+  emergencyLeave,
+  vacationLeave,
+  workFromHome
+}
+
+extension PermissionTypeExtension on PermissionType {
+  String get name {
+    switch (this) {
+      case PermissionType.sickLeave:
+        return 'Sick Leave'.tr();
+      case PermissionType.emergencyLeave:
+        return 'Emergency Leave'.tr();
+      case PermissionType.vacationLeave:
+        return 'Vacation Leave'.tr();
+      case PermissionType.workFromHome:
+        return 'Work From Home'.tr();
+    }
+  }
+
+  Widget get icon {
+    switch (this) {
+      case PermissionType.sickLeave:
+        return Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: const Color(0xFFFFB5B5), // Light pink
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: const Icon(
+            Icons.healing,
+            color: Colors.white,
+            size: 24,
+          ),
+        );
+      case PermissionType.emergencyLeave:
+        return Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: const Color(0xFFFFC107), // Warning yellow
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: const Icon(
+            Icons.warning_rounded,
+            color: Colors.white,
+            size: 24,
+          ),
+        );
+      case PermissionType.vacationLeave:
+        return Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: const Color(0xFF90CAF9), // Light blue
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: const Icon(
+            Icons.beach_access,
+            color: Colors.white,
+            size: 24,
+          ),
+        );
+      case PermissionType.workFromHome:
+        return Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: const Color(0xFF81C784), // Light green
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: const Icon(
+            Icons.home_work,
+            color: Colors.white,
+            size: 24,
+          ),
+        );
+    }
+  }
+}
+
+
