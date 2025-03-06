@@ -18,4 +18,5 @@ class SvgAssets {
   static const String dropdownArrow = '$svgPath/dropdown_arrow.svg';
   static const String user = '$svgPath/user.svg';
   static const String admin = '$svgPath/admin.svg';
+  static const String group = '$svgPath/group.svg';
 }

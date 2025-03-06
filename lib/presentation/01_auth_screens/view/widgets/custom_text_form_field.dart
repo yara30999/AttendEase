@@ -64,24 +64,36 @@ class _CustomTextFieldState extends State<CustomTextField> {
           SvgAssets.name,
           fit: BoxFit.scaleDown,
           colorFilter: colorFilter,
+          height: 20,
         );
       case TextInputType.visiblePassword:
         return SvgPicture.asset(
           SvgAssets.password,
           fit: BoxFit.scaleDown,
           colorFilter: colorFilter,
+          height: 20,
         );
       case TextInputType.emailAddress:
         return SvgPicture.asset(
           SvgAssets.email,
           fit: BoxFit.scaleDown,
           colorFilter: colorFilter,
+          height: 20,
+        );
+      case TextInputType.text:
+        return SvgPicture.asset(
+          SvgAssets.group,
+          fit: BoxFit.scaleDown,
+          colorFilter: colorFilter,
+          height: 5,
+          width: 5,
         );
       default:
         return SvgPicture.asset(
           SvgAssets.name,
           fit: BoxFit.scaleDown,
           colorFilter: colorFilter,
+          height: 20,
         );
     }
   }

@@ -18,7 +18,6 @@ class DaySelector extends StatelessWidget {
       children: List.generate(7, (index) {
         final dayName = _getDayName(index);
         final isSelected = selectedDays.contains(index);
-
         return GestureDetector(
           onTap: () => onDaySelected(index),
           child: Container(
@@ -26,9 +25,10 @@ class DaySelector extends StatelessWidget {
             height: 40,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: isSelected
-                  ? Theme.of(context).primaryColor
-                  : Colors.transparent,
+              color:
+                  isSelected
+                      ? Theme.of(context).primaryColor
+                      : Colors.transparent,
               border: Border.all(
                 color: Theme.of(context).primaryColor,
                 width: 2,
@@ -38,9 +38,10 @@ class DaySelector extends StatelessWidget {
               child: Text(
                 dayName,
                 style: TextStyle(
-                  color: isSelected
-                      ? Colors.white
-                      : Theme.of(context).primaryColor,
+                  color:
+                      isSelected
+                          ? Colors.white
+                          : Theme.of(context).primaryColor,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -53,14 +54,22 @@ class DaySelector extends StatelessWidget {
 
   String _getDayName(int index) {
     switch (index) {
-      case 0: return 'Sun'.tr();
-      case 1: return 'Mon'.tr();
-      case 2: return 'Tue'.tr();
-      case 3: return 'Wed'.tr();
-      case 4: return 'Thu'.tr();
-      case 5: return 'Fri'.tr();
-      case 6: return 'Sat'.tr();
-      default: return '';
+      case 0:
+        return 'Sun'.tr();
+      case 1:
+        return 'Mon'.tr();
+      case 2:
+        return 'Tue'.tr();
+      case 3:
+        return 'Wed'.tr();
+      case 4:
+        return 'Thu'.tr();
+      case 5:
+        return 'Fri'.tr();
+      case 6:
+        return 'Sat'.tr();
+      default:
+        return '';
     }
   }
 }
