@@ -54,10 +54,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
   }
 
   Widget? _getPrefixIcon(ThemeMode themeMode) {
-    ColorFilter colorFilter =
-        themeMode == ThemeMode.dark
-            ? const ColorFilter.mode(ColorsManager.white, BlendMode.srcIn)
-            : const ColorFilter.mode(ColorsManager.grey, BlendMode.srcIn);
+    ColorFilter colorFilter = const ColorFilter.mode(
+      ColorsManager.grey,
+      BlendMode.srcIn,
+    );
     switch (widget.inputType) {
       case TextInputType.name:
         return SvgPicture.asset(
@@ -99,8 +99,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   }
 
   Widget? _getSuffixIcon(ThemeMode themeMode) {
-    Color? color =
-        themeMode == ThemeMode.light ? ColorsManager.grey : ColorsManager.white;
+    Color? color = ColorsManager.grey;
     switch (widget.inputType) {
       case TextInputType.visiblePassword:
         return IconButton(

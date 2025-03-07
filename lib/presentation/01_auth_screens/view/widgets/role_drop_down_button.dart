@@ -29,16 +29,10 @@ class _RoleDropdownState extends State<RoleDropdown> {
             SvgAssets.admin,
             fit: BoxFit.scaleDown,
             height: 20,
-            colorFilter:
-                context.watch<ThemeBloc>().state.themeMode == ThemeMode.dark
-                    ? const ColorFilter.mode(
-                      ColorsManager.white,
-                      BlendMode.srcIn,
-                    )
-                    : const ColorFilter.mode(
-                      ColorsManager.grey,
-                      BlendMode.srcIn,
-                    ),
+            colorFilter: const ColorFilter.mode(
+              ColorsManager.grey,
+              BlendMode.srcIn,
+            ),
           ),
           Text(context.tr('admin')),
         ],
@@ -53,16 +47,10 @@ class _RoleDropdownState extends State<RoleDropdown> {
             SvgAssets.user,
             height: 20,
             fit: BoxFit.scaleDown,
-            colorFilter:
-                context.watch<ThemeBloc>().state.themeMode == ThemeMode.dark
-                    ? const ColorFilter.mode(
-                      ColorsManager.white,
-                      BlendMode.srcIn,
-                    )
-                    : const ColorFilter.mode(
-                      ColorsManager.grey,
-                      BlendMode.srcIn,
-                    ),
+            colorFilter: const ColorFilter.mode(
+              ColorsManager.grey,
+              BlendMode.srcIn,
+            ),
           ),
           Text(context.tr('user')),
         ],
@@ -80,9 +68,9 @@ class _RoleDropdownState extends State<RoleDropdown> {
         border: Border.all(
           width: 2,
           color:
-              themeMode == ThemeMode.dark
-                  ? ColorsManager.lightOrange
-                  : ColorsManager.darkGreen,
+              themeMode == ThemeMode.light
+                  ? ColorsManager.emeraldGreen
+                  : ColorsManager.paleBlushRed,
         ),
         borderRadius: BorderRadius.circular(30),
       ),
@@ -106,16 +94,16 @@ class _RoleDropdownState extends State<RoleDropdown> {
         icon: SvgPicture.asset(
           SvgAssets.dropdownArrow,
           width: 16,
-          colorFilter:
-              themeMode == ThemeMode.dark
-                  ? const ColorFilter.mode(ColorsManager.white, BlendMode.srcIn)
-                  : const ColorFilter.mode(ColorsManager.grey, BlendMode.srcIn),
+          colorFilter: const ColorFilter.mode(
+            ColorsManager.grey,
+            BlendMode.srcIn,
+          ),
         ),
         style: Styles.style16Medium().copyWith(
           color:
-              themeMode == ThemeMode.dark
-                  ? ColorsManager.lightOrange
-                  : ColorsManager.darkGreen,
+              themeMode == ThemeMode.light
+                  ? ColorsManager.emeraldGreen
+                  : ColorsManager.paleBlushRed,
         ),
         isExpanded: true, // Make the dropdown take full width
       ),

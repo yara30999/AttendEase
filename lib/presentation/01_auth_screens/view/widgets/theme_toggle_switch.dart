@@ -10,11 +10,16 @@ class ThemeToggleSwitch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeMode themeMode = context.watch<ThemeBloc>().state.themeMode;
+    Color mainColor =
+        themeMode == ThemeMode.light
+            ? ColorsManager.emeraldGreen
+            : ColorsManager.mutedRed;
     return Directionality(
       textDirection: dui.TextDirection.ltr,
       child: AnimatedToggleSwitch<bool>.rolling(
         // if the current == true , so it will select the true item which is light theme
-        current: context.watch<ThemeBloc>().state.themeMode == ThemeMode.light,
+        current: themeMode == ThemeMode.light,
         // light theme => true , dark theme => false , as 0 & 1
         values: const [true, false],
         iconOpacity:
@@ -24,29 +29,20 @@ class ThemeToggleSwitch extends StatelessWidget {
         spacing: 10, // between each item in the switch
         borderWidth: 2.0,
         style: ToggleStyle(
-          borderColor: ColorsManager.lightOrange, // Custom border color
+          borderColor: mainColor, // Custom border color
           backgroundColor: Colors.transparent,
-          indicatorBorder: Border.all(
-            color: ColorsManager.lightOrange,
-            width: 2,
-          ),
-          indicatorColor: ColorsManager.lightOrange,
+          indicatorBorder: Border.all(color: mainColor, width: 2),
+          indicatorColor: mainColor,
         ),
         iconBuilder: (value, foreground) {
           return value
               ? Icon(
                 Icons.sunny,
-                color:
-                    foreground
-                        ? ColorsManager.white
-                        : ColorsManager.lightOrange,
+                color: foreground ? ColorsManager.white : mainColor,
               )
               : Icon(
                 Icons.nightlight_round,
-                color:
-                    foreground
-                        ? ColorsManager.white
-                        : ColorsManager.lightOrange,
+                color: foreground ? ColorsManager.white : mainColor,
               );
         },
         onChanged: (value) {

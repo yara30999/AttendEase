@@ -18,7 +18,7 @@ class ResetPasswordButton extends StatelessWidget {
         if (state is ForgotPasswordSuccess) {
           showToast(
             context.tr('reset_password_mail_sent'),
-            ColorsManager.mediumGreen,
+            Theme.of(context).primaryColor,
           );
           Navigator.pop(context);
         }

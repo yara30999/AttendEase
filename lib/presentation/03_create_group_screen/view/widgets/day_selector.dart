@@ -1,5 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../02_home_screens/view_model/theme_bloc/theme_bloc.dart';
+import '../../../resourses/colors_manager.dart';
 
 class DaySelector extends StatelessWidget {
   final Set<int> selectedDays;
@@ -10,6 +14,11 @@ class DaySelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeMode themeMode = context.watch<ThemeBloc>().state.themeMode;
+    Color mainColor =
+        themeMode == ThemeMode.light
+            ? ColorsManager.emeraldGreen
+            : ColorsManager.paleBlushRed;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: List.generate(7, (index) {
@@ -22,23 +31,14 @@ class DaySelector extends StatelessWidget {
             height: 40,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color:
-                  isSelected
-                      ? Theme.of(context).primaryColor
-                      : Colors.transparent,
-              border: Border.all(
-                color: Theme.of(context).primaryColor,
-                width: 2,
-              ),
+              color: isSelected ? mainColor : Colors.transparent,
+              border: Border.all(color: mainColor, width: 2),
             ),
             child: Center(
               child: Text(
                 dayName,
                 style: TextStyle(
-                  color:
-                      isSelected
-                          ? Colors.white
-                          : Theme.of(context).primaryColor,
+                  color: isSelected ? Colors.white : mainColor,
                   fontWeight: FontWeight.bold,
                 ),
               ),

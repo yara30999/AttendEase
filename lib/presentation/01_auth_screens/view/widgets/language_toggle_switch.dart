@@ -2,6 +2,8 @@ import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:country_flags/country_flags.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../02_home_screens/view_model/theme_bloc/theme_bloc.dart';
 import '../../../resourses/colors_manager.dart';
 import '../../../resourses/language_manager.dart';
 import 'dart:ui' as dui;
@@ -11,6 +13,11 @@ class LanguageToggleSwitch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeMode themeMode = context.watch<ThemeBloc>().state.themeMode;
+    Color mainColor =
+        themeMode == ThemeMode.light
+            ? ColorsManager.emeraldGreen
+            : ColorsManager.mutedRed;
     return Directionality(
       textDirection: dui.TextDirection.ltr,
       child: AnimatedToggleSwitch<bool>.rolling(
@@ -25,10 +32,10 @@ class LanguageToggleSwitch extends StatelessWidget {
         spacing: 10, // between each item in the switch
         borderWidth: 2.0,
         style: ToggleStyle(
-          borderColor: ColorsManager.lightOrange, // Custom border color
+          borderColor: mainColor, // Custom border color
           backgroundColor: Colors.transparent,
-          indicatorBorder: Border.all(color: ColorsManager.lightOrange, width: 2),
-          indicatorColor: ColorsManager.lightOrange,
+          indicatorBorder: Border.all(color: mainColor, width: 2),
+          indicatorColor: mainColor,
         ),
         iconBuilder: (value, foreground) {
           return value

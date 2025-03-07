@@ -8,12 +8,12 @@ ThemeData getlightTheme() {
     useMaterial3: true,
     brightness: Brightness.light,
     scaffoldBackgroundColor: ColorsManager.white,
-    primaryColor: ColorsManager.mediumBrown,
+    primaryColor: ColorsManager.emeraldGreen,
 
     //app bar theme
     appBarTheme: AppBarTheme(
       centerTitle: true,
-      backgroundColor: ColorsManager.oliveGreen,
+      backgroundColor: ColorsManager.emeraldGreen,
       titleSpacing: 0,
       elevation: 0,
       shadowColor: ColorsManager.black,
@@ -21,7 +21,7 @@ ThemeData getlightTheme() {
       toolbarTextStyle: Styles.style20Bold(),
       iconTheme: const IconThemeData(color: ColorsManager.white),
       systemOverlayStyle: const SystemUiOverlayStyle(
-        statusBarColor: ColorsManager.oliveGreen, // Status bar color
+        statusBarColor: ColorsManager.emeraldGreen, // Status bar color
         statusBarIconBrightness: Brightness.dark, // black icons
         statusBarBrightness: Brightness.light, // For iOS dark background
       ),
@@ -29,10 +29,10 @@ ThemeData getlightTheme() {
 
     // text selection theme
     textSelectionTheme: const TextSelectionThemeData(
-      cursorColor: ColorsManager.darkGreen,
+      cursorColor: ColorsManager.emeraldGreen,
       selectionColor: ColorsManager.grey,
       // Change the handle to blue for the text form field ;)
-      selectionHandleColor: ColorsManager.darkGreen,
+      selectionHandleColor: ColorsManager.emeraldGreen,
     ),
 
     // elevated button theme
@@ -42,9 +42,20 @@ ThemeData getlightTheme() {
         elevation: 0,
         iconColor: ColorsManager.white,
         foregroundColor: ColorsManager.white,
-        backgroundColor: ColorsManager.mediumGreen,
+        backgroundColor: ColorsManager.emeraldGreen,
         textStyle: Styles.style20Bold(),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+      ),
+    ),
+
+    // floating action button theme
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      iconSize: 24,
+      foregroundColor: ColorsManager.paleCream,
+      backgroundColor: ColorsManager.deepRed,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(35),
+        side: BorderSide(color: ColorsManager.deepRed, width: 4),
       ),
     ),
 
@@ -59,7 +70,7 @@ ThemeData getlightTheme() {
 
     //divider theme
     dividerTheme: const DividerThemeData(
-      color: ColorsManager.black,
+      color: ColorsManager.grey,
       thickness: 2,
     ),
 
@@ -70,23 +81,23 @@ ThemeData getlightTheme() {
       hintStyle: Styles.style16Medium(),
       errorStyle: Styles.style12Medium().copyWith(color: ColorsManager.red),
       labelStyle: Styles.style16Medium().copyWith(
-        color: ColorsManager.darkGreen,
+        color: ColorsManager.emeraldGreen,
       ),
-      suffixIconColor: ColorsManager.lightOrange,
-      prefixIconColor: ColorsManager.darkGreen,
+      suffixIconColor: ColorsManager.grey,
+      prefixIconColor: ColorsManager.emeraldGreen,
       //default border
       border: const OutlineInputBorder(
-        borderSide: BorderSide(color: ColorsManager.darkGreen, width: 2),
+        borderSide: BorderSide(color: ColorsManager.emeraldGreen, width: 2),
         borderRadius: BorderRadius.all(Radius.circular(50)),
       ),
       // enabled border style
       enabledBorder: const OutlineInputBorder(
-        borderSide: BorderSide(color: ColorsManager.darkGreen, width: 2),
+        borderSide: BorderSide(color: ColorsManager.emeraldGreen, width: 2),
         borderRadius: BorderRadius.all(Radius.circular(50)),
       ),
       // focused border style
       focusedBorder: const OutlineInputBorder(
-        borderSide: BorderSide(color: ColorsManager.darkGreen, width: 2),
+        borderSide: BorderSide(color: ColorsManager.emeraldGreen, width: 2),
         borderRadius: BorderRadius.all(Radius.circular(50)),
       ),
       // error border style
@@ -100,12 +111,35 @@ ThemeData getlightTheme() {
         borderRadius: BorderRadius.all(Radius.circular(50)),
       ),
     ),
+
+    // text button theme
+    textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(
+        foregroundColor: WidgetStatePropertyAll(ColorsManager.mutedRed),
+        textStyle: WidgetStateProperty.all<TextStyle>(
+          Styles.style16Medium().copyWith(
+            decoration: TextDecoration.underline,
+            fontStyle: FontStyle.italic,
+            color: ColorsManager.mutedRed,
+          ),
+        ),
+      ),
+    ),
+
+    // radio theme
+    radioTheme: RadioThemeData(
+      fillColor: WidgetStateProperty.resolveWith<Color>((states) {
+        return ColorsManager.grey;
+      }),
+    ),
+
+    //tab bar theme
     tabBarTheme: TabBarTheme(
       labelColor: ColorsManager.white,
-      unselectedLabelColor: ColorsManager.darkBrown,
+      unselectedLabelColor: ColorsManager.deepRed,
       indicatorSize: TabBarIndicatorSize.tab,
       dividerColor: Colors.transparent,
-      overlayColor: MaterialStateProperty.all(Colors.transparent),
+      overlayColor: WidgetStateProperty.all(Colors.transparent),
     ),
   );
 }
@@ -115,20 +149,20 @@ ThemeData getDarkTheme() {
     useMaterial3: true,
     brightness: Brightness.dark,
     scaffoldBackgroundColor: ColorsManager.black,
-    primaryColor: ColorsManager.mediumBrown,
+    primaryColor: ColorsManager.mutedRed,
 
     //app bar theme
     appBarTheme: AppBarTheme(
       centerTitle: true,
-      backgroundColor: ColorsManager.oliveGreen,
+      backgroundColor: ColorsManager.mutedRed,
       titleSpacing: 0,
       elevation: 0,
-      shadowColor: ColorsManager.goldenSand,
+      shadowColor: ColorsManager.paleBlushRed,
       titleTextStyle: Styles.style20Bold(),
       toolbarTextStyle: Styles.style20Bold(),
       iconTheme: const IconThemeData(color: ColorsManager.white),
       systemOverlayStyle: const SystemUiOverlayStyle(
-        statusBarColor: ColorsManager.oliveGreen, // Status bar color
+        statusBarColor: ColorsManager.mutedRed, // Status bar color
         statusBarIconBrightness: Brightness.dark, // black icons
         statusBarBrightness: Brightness.light, // For iOS dark background
       ),
@@ -136,10 +170,10 @@ ThemeData getDarkTheme() {
 
     // text selection theme
     textSelectionTheme: const TextSelectionThemeData(
-      cursorColor: ColorsManager.mediumBrown,
+      cursorColor: ColorsManager.mutedRed,
       selectionColor: ColorsManager.grey,
       // Change the handle to mediumBrown for the text form field ;)
-      selectionHandleColor: ColorsManager.mediumBrown,
+      selectionHandleColor: ColorsManager.mutedRed,
     ),
 
     // elevated button theme
@@ -149,9 +183,20 @@ ThemeData getDarkTheme() {
         elevation: 0,
         iconColor: ColorsManager.white,
         foregroundColor: ColorsManager.white,
-        backgroundColor: ColorsManager.mediumGreen,
+        backgroundColor: ColorsManager.mutedRed,
         textStyle: Styles.style20Bold(),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+      ),
+    ),
+
+    // floating action button theme
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      iconSize: 24,
+      foregroundColor: ColorsManager.black,
+      backgroundColor: ColorsManager.paleCream,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(35),
+        side: BorderSide(color: ColorsManager.paleCream, width: 4),
       ),
     ),
 
@@ -159,14 +204,14 @@ ThemeData getDarkTheme() {
     cardTheme: CardTheme(
       elevation: 4,
       clipBehavior: Clip.hardEdge,
-      color: ColorsManager.mediumBrown,
-      shadowColor: ColorsManager.goldenSand,
+      color: ColorsManager.darkTeal,
+      shadowColor: ColorsManager.emeraldGreen,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
     ),
 
     //divider theme
     dividerTheme: const DividerThemeData(
-      color: ColorsManager.white,
+      color: ColorsManager.paleBlushRed,
       thickness: 2,
     ),
 
@@ -177,23 +222,23 @@ ThemeData getDarkTheme() {
       hintStyle: Styles.style16Medium(),
       errorStyle: Styles.style12Medium().copyWith(color: ColorsManager.red),
       labelStyle: Styles.style16Medium().copyWith(
-        color: ColorsManager.lightOrange,
+        color: ColorsManager.paleBlushRed,
       ),
-      suffixIconColor: ColorsManager.white,
-      prefixIconColor: ColorsManager.lightOrange,
+      suffixIconColor: ColorsManager.grey,
+      prefixIconColor: ColorsManager.paleBlushRed,
       //default border
       border: const OutlineInputBorder(
-        borderSide: BorderSide(color: ColorsManager.lightOrange, width: 2),
+        borderSide: BorderSide(color: ColorsManager.paleBlushRed, width: 2),
         borderRadius: BorderRadius.all(Radius.circular(50)),
       ),
       // enabled border style
       enabledBorder: const OutlineInputBorder(
-        borderSide: BorderSide(color: ColorsManager.lightOrange, width: 2),
+        borderSide: BorderSide(color: ColorsManager.paleBlushRed, width: 2),
         borderRadius: BorderRadius.all(Radius.circular(50)),
       ),
       // focused border style
       focusedBorder: const OutlineInputBorder(
-        borderSide: BorderSide(color: ColorsManager.lightOrange, width: 2),
+        borderSide: BorderSide(color: ColorsManager.paleBlushRed, width: 2),
         borderRadius: BorderRadius.all(Radius.circular(50)),
       ),
       // error border style
@@ -208,13 +253,33 @@ ThemeData getDarkTheme() {
       ),
     ),
 
-    tabBarTheme: TabBarTheme(
-      labelColor: ColorsManager.darkBrown,
-      unselectedLabelColor: ColorsManager.sandYellow,
-      indicatorSize: TabBarIndicatorSize.tab,
-      dividerColor: Colors.transparent,
-      overlayColor: MaterialStateProperty.all(Colors.transparent),
+    // text button theme
+    textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(
+        foregroundColor: WidgetStatePropertyAll(ColorsManager.grey),
+        textStyle: WidgetStateProperty.all<TextStyle>(
+          Styles.style16Medium().copyWith(
+            decoration: TextDecoration.underline,
+            fontStyle: FontStyle.italic,
+            color: ColorsManager.grey,
+          ),
+        ),
+      ),
     ),
 
+    // radio theme
+    radioTheme: RadioThemeData(
+      fillColor: WidgetStateProperty.resolveWith<Color>((states) {
+        return ColorsManager.grey;
+      }),
+    ),
+
+    tabBarTheme: TabBarTheme(
+      labelColor: ColorsManager.deepRed,
+      unselectedLabelColor: ColorsManager.emeraldGreen,
+      indicatorSize: TabBarIndicatorSize.tab,
+      dividerColor: Colors.transparent,
+      overlayColor: WidgetStateProperty.all(Colors.transparent),
+    ),
   );
 }
