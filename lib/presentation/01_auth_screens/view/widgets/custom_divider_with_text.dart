@@ -18,7 +18,7 @@ class CustomDividerWithText extends StatelessWidget {
           child: Text(
             label,
             style: Styles.style16Medium().copyWith(
-              color: ColorsManager.mediumGreen,
+              color: ColorsManager.mutedRed,
             ),
           ),
         ),

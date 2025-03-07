@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../02_home_screens/view_model/theme_bloc/theme_bloc.dart';
+import '../../../resourses/colors_manager.dart';
 import '../../../resourses/styles_manager.dart';
 
 class TimePickerField extends StatelessWidget {
@@ -14,6 +16,11 @@ class TimePickerField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeMode themeMode = context.watch<ThemeBloc>().state.themeMode;
+    Color mainColor =
+        themeMode == ThemeMode.light
+            ? ColorsManager.emeraldGreen
+            : ColorsManager.paleBlushRed;
     return InkWell(
       onTap: () async {
         final TimeOfDay? picked = await showTimePicker(
@@ -27,20 +34,14 @@ class TimePickerField extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         decoration: BoxDecoration(
-          border: Border.all(color: Theme.of(context).primaryColor),
+          border: Border.all(color: mainColor),
           borderRadius: BorderRadius.circular(50),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              initialTime.format(context),
-              style: Styles.style16Medium(),
-            ),
-            Icon(
-              Icons.access_time,
-              color: Theme.of(context).primaryColor,
-            ),
+            Text(initialTime.format(context), style: Styles.style16Medium()),
+            Icon(Icons.access_time, color: mainColor),
           ],
         ),
       ),

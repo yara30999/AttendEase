@@ -27,7 +27,9 @@ class CustomDrawer extends StatelessWidget {
                     child: SafeArea(
                       child: Text(
                         AppConstants.AttendEase,
-                        style: Styles.style35Bold(),
+                        style: Styles.style35Bold().copyWith(
+                          color: ColorsManager.white,
+                        ),
                       ),
                     ),
                   ),
