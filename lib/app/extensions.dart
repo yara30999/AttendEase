@@ -71,12 +71,7 @@ extension NonNullInteger on int? {
   }
 }
 
-enum PermissionType {
-  sickLeave,
-  emergencyLeave,
-  vacationLeave,
-  workFromHome
-}
+enum PermissionType { sickLeave, emergencyLeave, vacationLeave, workFromHome }
 
 extension PermissionTypeExtension on PermissionType {
   String get name {
@@ -101,11 +96,7 @@ extension PermissionTypeExtension on PermissionType {
             color: const Color(0xFFFFB5B5), // Light pink
             borderRadius: BorderRadius.circular(8),
           ),
-          child: const Icon(
-            Icons.healing,
-            color: Colors.white,
-            size: 24,
-          ),
+          child: const Icon(Icons.healing, color: Colors.white, size: 24),
         );
       case PermissionType.emergencyLeave:
         return Container(
@@ -127,11 +118,7 @@ extension PermissionTypeExtension on PermissionType {
             color: const Color(0xFF90CAF9), // Light blue
             borderRadius: BorderRadius.circular(8),
           ),
-          child: const Icon(
-            Icons.beach_access,
-            color: Colors.white,
-            size: 24,
-          ),
+          child: const Icon(Icons.beach_access, color: Colors.white, size: 24),
         );
       case PermissionType.workFromHome:
         return Container(
@@ -140,14 +127,8 @@ extension PermissionTypeExtension on PermissionType {
             color: const Color(0xFF81C784), // Light green
             borderRadius: BorderRadius.circular(8),
           ),
-          child: const Icon(
-            Icons.home_work,
-            color: Colors.white,
-            size: 24,
-          ),
+          child: const Icon(Icons.home_work, color: Colors.white, size: 24),
         );
     }
   }
 }
-
-

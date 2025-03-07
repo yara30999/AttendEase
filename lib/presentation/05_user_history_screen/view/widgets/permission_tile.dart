@@ -19,14 +19,9 @@ class PermissionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
-
     return Card(
       elevation: 4,
-      color: isDarkMode ? ColorsManager.mediumBrown : ColorsManager.creamyBeige,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(12),
@@ -36,12 +31,7 @@ class PermissionTile extends StatelessWidget {
             children: [
               DateBox(date: date),
               const SizedBox(width: 16),
-              Expanded(
-                child: PermissionDetails(
-                  type: type,
-                  date: date,
-                ),
-              ),
+              Expanded(child: PermissionDetails(type: type, date: date)),
             ],
           ),
         ),
@@ -54,16 +44,14 @@ class PermissionDetails extends StatelessWidget {
   final PermissionType type;
   final DateTime date;
 
-  const PermissionDetails({
-    Key? key,
-    required this.type,
-    required this.date,
-  }) : super(key: key);
+  const PermissionDetails({Key? key, required this.type, required this.date})
+    : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
-
+    final Color primaryColor =
+        isDarkMode ? ColorsManager.darkTeal : ColorsManager.deepRed;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -74,9 +62,7 @@ class PermissionDetails extends StatelessWidget {
             Text(
               type.name, // Using the extension
               style: Styles.style16Medium().copyWith(
-                color: isDarkMode
-                    ? ColorsManager.white
-                    : ColorsManager.black,
+                color: primaryColor,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -84,9 +70,7 @@ class PermissionDetails extends StatelessWidget {
             Text(
               DateFormat('EEEE, MMMM d, y').format(date),
               style: Styles.style14Medium().copyWith(
-                color: isDarkMode
-                    ? ColorsManager.sandYellow.withOpacity(0.7)
-                    : ColorsManager.darkBrown.withOpacity(0.7),
+                color: ColorsManager.black,
               ),
             ),
           ],

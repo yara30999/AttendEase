@@ -136,8 +136,15 @@ ThemeData getlightTheme() {
     //tab bar theme
     tabBarTheme: TabBarTheme(
       labelColor: ColorsManager.white,
-      unselectedLabelColor: ColorsManager.deepRed,
+      labelStyle: Styles.style14Medium().copyWith(fontWeight: FontWeight.bold),
+      unselectedLabelColor: ColorsManager.black,
+      unselectedLabelStyle: Styles.style14Medium(),
       indicatorSize: TabBarIndicatorSize.tab,
+      indicatorColor: Colors.transparent,
+      indicator: BoxDecoration(
+        borderRadius: BorderRadius.circular(25),
+        color: ColorsManager.black,
+      ),
       dividerColor: Colors.transparent,
       overlayColor: WidgetStateProperty.all(Colors.transparent),
     ),
@@ -204,7 +211,7 @@ ThemeData getDarkTheme() {
     cardTheme: CardTheme(
       elevation: 4,
       clipBehavior: Clip.hardEdge,
-      color: ColorsManager.darkTeal,
+      color: ColorsManager.grey,
       shadowColor: ColorsManager.emeraldGreen,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
     ),
@@ -274,10 +281,18 @@ ThemeData getDarkTheme() {
       }),
     ),
 
+    //tab bar theme
     tabBarTheme: TabBarTheme(
-      labelColor: ColorsManager.deepRed,
-      unselectedLabelColor: ColorsManager.emeraldGreen,
+      labelColor: ColorsManager.white,
+      labelStyle: Styles.style14Medium().copyWith(fontWeight: FontWeight.bold),
+      unselectedLabelColor: ColorsManager.black,
+      unselectedLabelStyle: Styles.style14Medium(),
       indicatorSize: TabBarIndicatorSize.tab,
+      indicatorColor: Colors.transparent,
+      indicator: BoxDecoration(
+        borderRadius: BorderRadius.circular(25),
+        color: ColorsManager.black,
+      ),
       dividerColor: Colors.transparent,
       overlayColor: WidgetStateProperty.all(Colors.transparent),
     ),

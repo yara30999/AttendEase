@@ -95,9 +95,11 @@
   "work_from_home": "Work From Home",
   "Group Details": "Group Details",
   "Password Copied": "Password Copied",
-  "Confirm Delete":"Confirm Delete",
+  "Confirm Delete": "Confirm Delete",
   "Are you sure you want to remove this member?": "Are you sure you want to remove this member?",
   "Cancel": "Cancel",
   "Delete": "Delete",
-  "Location": "Location"
+  "Location": "Location",
+  "Check-in": "Check-in",
+  "Check-out": "Check-out"
 }

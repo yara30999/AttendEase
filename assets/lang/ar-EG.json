@@ -6,7 +6,7 @@
   "register_label": "إنشاء حساب",
   "logout_label": "تسجيل خروج",
   "resetPassword_label": "إعادة تعيين كلمة المرور",
-  "admin": "مسؤل",
+  "admin": "مسؤول",
   "user": "مستخدم",
   "emailLabel": "البريد الإلكتروني",
   "passwordLabel": "كلمة المرور",
@@ -103,5 +103,7 @@
   "Are you sure you want to remove this member?": "هل انت متأكد في حدف هذا العضو",
   "Cancel": "الغاء",
   "Delete": "حذف",
-  "Location": "الموقع"
+  "Location": "الموقع",
+  "Check-in": "وقت الدخول",
+  "Check-out": "وقت الخروج"
 }

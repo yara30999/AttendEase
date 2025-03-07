@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../02_home_screens/view/widgets/custom_app_bar.dart';
 import '../../02_home_screens/view/widgets/custom_drawer.dart';
-import '../../resourses/colors_manager.dart';
 import 'widgets/custom_tab_bar.dart';
 import 'widgets/history_tab_view.dart';
 import 'widgets/permissions_tab_view.dart';
@@ -32,30 +31,16 @@ class _UserHistoryViewState extends State<UserHistoryView>
   @override
   Widget build(BuildContext context) {
     final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
-
     return Scaffold(
       appBar: const CustomAppBar(),
       drawer: const CustomDrawer(),
       body: Column(
         children: [
-          CustomTabBar(
-            tabController: _tabController,
-            isDarkMode: isDarkMode,
-          ),
-          Divider(
-            color: isDarkMode
-                ? ColorsManager.sandYellow.withOpacity(0.3)
-                : ColorsManager.darkBrown.withOpacity(0.3),
-            thickness: 1,
-            height: 1,
-          ),
+          CustomTabBar(tabController: _tabController, isDarkMode: isDarkMode),
           Expanded(
             child: TabBarView(
               controller: _tabController,
-              children: const [
-                HistoryTabView(),
-                PermissionsTabView(),
-              ],
+              children: const [HistoryTabView(), PermissionsTabView()],
             ),
           ),
         ],
