@@ -21,7 +21,7 @@ ThemeData getlightTheme() {
       toolbarTextStyle: Styles.style20Bold(),
       iconTheme: const IconThemeData(color: ColorsManager.white),
       systemOverlayStyle: const SystemUiOverlayStyle(
-        statusBarColor: ColorsManager.emeraldGreen, // Status bar color
+        statusBarColor: Colors.transparent, // Status bar color
         statusBarIconBrightness: Brightness.dark, // black icons
         statusBarBrightness: Brightness.light, // For iOS dark background
       ),
@@ -169,7 +169,7 @@ ThemeData getDarkTheme() {
       toolbarTextStyle: Styles.style20Bold(),
       iconTheme: const IconThemeData(color: ColorsManager.white),
       systemOverlayStyle: const SystemUiOverlayStyle(
-        statusBarColor: ColorsManager.mutedRed, // Status bar color
+        statusBarColor: Colors.transparent, // Status bar color
         statusBarIconBrightness: Brightness.dark, // black icons
         statusBarBrightness: Brightness.light, // For iOS dark background
       ),
