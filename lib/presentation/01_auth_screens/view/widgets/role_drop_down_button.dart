@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import '../../../../app/extensions.dart';
-import '../../../02_home_screens/view_model/theme_bloc/theme_bloc.dart';
+import '../../../../app/functions.dart';
 import '../../../resourses/assets_manager.dart';
 import '../../../resourses/colors_manager.dart';
 import '../../../resourses/styles_manager.dart';
@@ -61,14 +61,13 @@ class _RoleDropdownState extends State<RoleDropdown> {
   @override
   Widget build(BuildContext context) {
     Role initialRole = context.read<AuthBloc>().memberRole;
-    ThemeMode themeMode = context.watch<ThemeBloc>().state.themeMode;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
       decoration: BoxDecoration(
         border: Border.all(
           width: 2,
           color:
-              themeMode == ThemeMode.light
+              isLightTheme(context)
                   ? ColorsManager.emeraldGreen
                   : ColorsManager.paleBlushRed,
         ),
@@ -101,7 +100,7 @@ class _RoleDropdownState extends State<RoleDropdown> {
         ),
         style: Styles.style16Medium().copyWith(
           color:
-              themeMode == ThemeMode.light
+              isLightTheme(context)
                   ? ColorsManager.emeraldGreen
                   : ColorsManager.paleBlushRed,
         ),

@@ -2,6 +2,7 @@ import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:ui' as dui;
+import '../../../../app/functions.dart';
 import '../../../02_home_screens/view_model/theme_bloc/theme_bloc.dart';
 import '../../../resourses/colors_manager.dart';
 
@@ -12,7 +13,7 @@ class ThemeToggleSwitch extends StatelessWidget {
   Widget build(BuildContext context) {
     ThemeMode themeMode = context.watch<ThemeBloc>().state.themeMode;
     Color mainColor =
-        themeMode == ThemeMode.light
+        isLightTheme(context)
             ? ColorsManager.emeraldGreen
             : ColorsManager.mutedRed;
     return Directionality(

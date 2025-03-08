@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../app/functions.dart';
 import '../../../resourses/colors_manager.dart';
 import '../../../resourses/styles_manager.dart';
 
@@ -11,9 +12,6 @@ class TimeColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    final Color primaryColor =
-        isDarkMode ? ColorsManager.darkTeal : ColorsManager.deepRed;
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -22,7 +20,12 @@ class TimeColumn extends StatelessWidget {
         Flexible(
           child: Text(
             label,
-            style: Styles.style12Medium().copyWith(color: primaryColor),
+            style: Styles.style12Medium().copyWith(
+              color:
+                  isLightTheme(context)
+                      ? ColorsManager.deepRed
+                      : ColorsManager.darkTeal,
+            ),
             overflow: TextOverflow.ellipsis,
           ),
         ),

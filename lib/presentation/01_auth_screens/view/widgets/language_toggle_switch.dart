@@ -2,8 +2,7 @@ import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:country_flags/country_flags.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../02_home_screens/view_model/theme_bloc/theme_bloc.dart';
+import '../../../../app/functions.dart';
 import '../../../resourses/colors_manager.dart';
 import '../../../resourses/language_manager.dart';
 import 'dart:ui' as dui;
@@ -13,9 +12,8 @@ class LanguageToggleSwitch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeMode themeMode = context.watch<ThemeBloc>().state.themeMode;
     Color mainColor =
-        themeMode == ThemeMode.light
+        isLightTheme(context)
             ? ColorsManager.emeraldGreen
             : ColorsManager.mutedRed;
     return Directionality(

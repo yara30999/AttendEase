@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../02_home_screens/view_model/theme_bloc/theme_bloc.dart';
+import '../../../../app/functions.dart';
 import '../../../resourses/colors_manager.dart';
 import '../../../resourses/styles_manager.dart';
 
@@ -16,9 +15,8 @@ class TimePickerField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeMode themeMode = context.watch<ThemeBloc>().state.themeMode;
     Color mainColor =
-        themeMode == ThemeMode.light
+        isLightTheme(context)
             ? ColorsManager.emeraldGreen
             : ColorsManager.paleBlushRed;
     return InkWell(

@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import '../../../../app/extensions.dart';
+import '../../../../app/functions.dart';
 import '../../../resourses/colors_manager.dart';
 import '../../../resourses/styles_manager.dart';
 
@@ -13,9 +14,6 @@ class PermissionDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    final Color primaryColor =
-        isDarkMode ? ColorsManager.darkTeal : ColorsManager.deepRed;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -26,7 +24,10 @@ class PermissionDetails extends StatelessWidget {
             Text(
               type.name, // Using the extension
               style: Styles.style16Medium().copyWith(
-                color: primaryColor,
+                color:
+                    isLightTheme(context)
+                        ? ColorsManager.deepRed
+                        : ColorsManager.darkTeal,
                 fontWeight: FontWeight.bold,
               ),
             ),
