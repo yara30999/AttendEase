@@ -10,7 +10,7 @@ class AuthenticationEntity {
   @HiveField(2)
   final String role;
   @HiveField(3)
-  final String? id;
+  final String id;
 
   const AuthenticationEntity({
     required this.id,
