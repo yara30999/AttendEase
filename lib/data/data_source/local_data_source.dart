@@ -20,6 +20,7 @@ class LocalDataSourceImpl implements LocalDataSource {
       userData = userBox.values.first;
     } catch (e) {
       userData = const AuthenticationEntity(
+        id: 'dummy',
         name: 'dummy',
         email: 'dummy',
         role: 'admin',

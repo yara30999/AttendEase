@@ -5,6 +5,7 @@ import '../responses/user_response.dart';
 extension UserResponseMapper on UserResponse? {
   AuthenticationEntity toDomain() {
     return AuthenticationEntity(
+      id: this!.id.orEmpty(),
       name: this!.name.orEmpty(),
       email: this!.email.orEmpty(),
       role: this!.role.orEmpty(),

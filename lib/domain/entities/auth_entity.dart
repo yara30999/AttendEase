@@ -9,8 +9,11 @@ class AuthenticationEntity {
   final String email;
   @HiveField(2)
   final String role;
+  @HiveField(3)
+  final String? id;
 
   const AuthenticationEntity({
+    required this.id,
     required this.name,
     required this.email,
     required this.role,
