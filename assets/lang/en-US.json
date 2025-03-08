@@ -82,7 +82,8 @@
   "Check-out Time:": "Check-out Time:",
   "Tap on the map to choose your work location:": "Tap on the map to choose your work location:",
   "Create Group": "Create Group",
-  "Please select working days": "Please select working days",
+  "Please_select_days": "Please select working days",
+  "Please_select_location": "Please select your work location on the map.",
   "History": "History",
   "Permissions": "Permissions",
   "Permission Types:": "Permission Types:",
@@ -101,5 +102,6 @@
   "Delete": "Delete",
   "Location": "Location",
   "Check-in": "Check-in",
-  "Check-out": "Check-out"
+  "Check-out": "Check-out",
+  "group_created_success": "Group created successfully!"
 }

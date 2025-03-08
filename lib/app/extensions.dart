@@ -71,6 +71,13 @@ extension NonNullInteger on int? {
   }
 }
 
+extension TimeOfDayExtensions on TimeOfDay {
+  DateTime toDateTime({DateTime? baseDate}) {
+    final now = baseDate ?? DateTime.now();
+    return DateTime(now.year, now.month, now.day, hour, minute);
+  }
+}
+
 enum PermissionType { sickLeave, emergencyLeave, vacationLeave, workFromHome }
 
 extension PermissionTypeExtension on PermissionType {

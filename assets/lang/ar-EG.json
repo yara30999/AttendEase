@@ -86,7 +86,8 @@
   "Check-out Time:": "وقت تسجيل الخروج:",
   "Tap on the map to choose your work location:": "اضغط على الخريطة لاختيار موقع عملك:",
   "Create Group": "إنشاء مجموعة",
-  "Please select working days": "الرجاء اختيار أيام العمل",
+  "Please_select_days": "الرجاء اختيار أيام العمل.",
+  "Please_select_location": "الرجاء تحديد مكان عملك على الخريطة.",
   "History": "السجل",
   "Permissions": "الأذونات",
   "Permission Types:": "أنواع الأذونات:",
@@ -105,5 +106,6 @@
   "Delete": "حذف",
   "Location": "الموقع",
   "Check-in": "وقت الدخول",
-  "Check-out": "وقت الخروج"
+  "Check-out": "وقت الخروج",
+  "group_created_success": "تم إنشاء المجموعة بنجاح!"
 }

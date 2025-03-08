@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import '../../view_model/bloc/create_group_bloc.dart';
 
 class LocationPicker extends StatefulWidget {
   const LocationPicker({Key? key}) : super(key: key);
@@ -25,21 +27,26 @@ class _LocationPickerState extends State<LocationPicker> {
         child: GoogleMap(
           initialCameraPosition: const CameraPosition(
             target: _defaultLocation,
-            zoom: 15,
+            zoom: 12,
           ),
           onTap: (LatLng location) {
+            //update the map state. :)
             setState(() {
               _selectedLocation = location;
             });
+            //then pass the location to the bloc.
+            context.read<CreateGroupBloc>().selectedLocation =
+                _selectedLocation;
           },
-          markers: _selectedLocation == null
-              ? {}
-              : {
-            Marker(
-              markerId: const MarkerId('selected_location'),
-              position: _selectedLocation!,
-            ),
-          },
+          markers:
+              _selectedLocation == null
+                  ? {}
+                  : {
+                    Marker(
+                      markerId: const MarkerId('selected_location'),
+                      position: _selectedLocation!,
+                    ),
+                  },
         ),
       ),
     );
