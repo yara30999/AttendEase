@@ -10,4 +10,7 @@ abstract class Repository {
   Future<Either<Failure, bool>> register(RegisterRequest registerRequest);
   Future<Either<Failure, bool>> forgotPassword(String email);
   Future<Either<Failure, bool>> logout();
+  Future<Either<Failure, bool>> createGroup(
+    CreateGroupRequest createGroupRequest,
+  );
 }

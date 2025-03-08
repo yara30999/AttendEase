@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../../app/functions.dart';
 import '../network/requests.dart';
+import '../responses/group_response.dart';
 import '../responses/user_response.dart';
 
 abstract class RemoteDataSource {
@@ -9,11 +11,13 @@ abstract class RemoteDataSource {
   Future<void> register(RegisterRequest registerRequest);
   Future<void> forgotPassword(String email);
   Future<void> logout();
+  Future<void> createGroup(CreateGroupRequest createGroupRequest);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
   final FirebaseAuth _firebaseAuth;
   CollectionReference users = FirebaseFirestore.instance.collection('users');
+  CollectionReference groups = FirebaseFirestore.instance.collection('groups');
 
   RemoteDataSourceImpl(this._firebaseAuth);
 
@@ -59,5 +63,20 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   @override
   Future<void> logout() async {
     await _firebaseAuth.signOut();
+  }
+
+  @override
+  Future<void> createGroup(CreateGroupRequest createGroupRequest) async {
+    //write doc
+    await groups.doc().set(
+      GroupResponse(
+        name: createGroupRequest.name,
+        password: generateRandomPassword(),
+        checkIn: createGroupRequest.checkIn,
+        checkOut: createGroupRequest.checkOut,
+        days: createGroupRequest.days,
+        location: createGroupRequest.location,
+      ).toFirestore(),
+    );
   }
 }

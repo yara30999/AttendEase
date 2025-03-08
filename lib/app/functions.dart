@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -17,6 +19,16 @@ void hiveAdapters() {
 
 bool isLightTheme(BuildContext context) {
   return context.read<ThemeBloc>().state.themeMode == ThemeMode.light;
+}
+
+String generateRandomPassword({int length = 8}) {
+  const String chars =
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#\$%^&*()-_=+';
+  Random random = Random();
+  return List.generate(
+    length,
+    (index) => chars[random.nextInt(chars.length)],
+  ).join();
 }
 
 void showToast(String message, Color color) {

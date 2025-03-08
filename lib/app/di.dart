@@ -7,6 +7,7 @@ import '../data/data_source/remote_data_source.dart';
 import '../data/network/network_info.dart';
 import '../data/repository/repository_impl.dart';
 import '../domain/repository/repository.dart';
+import '../domain/usecase/create_group_usecase.dart';
 import '../domain/usecase/forgot_password_usecase.dart';
 import '../domain/usecase/login_usecase.dart';
 import '../domain/usecase/logout_usecase.dart';
@@ -62,5 +63,11 @@ Future<void> initAppModule() async {
   // logout usecase
   if (!GetIt.I.isRegistered<LogoutUsecase>()) {
     instance.registerFactory<LogoutUsecase>(() => LogoutUsecase(instance()));
+  }
+  // create group usecase
+  if (!GetIt.I.isRegistered<CreateGroupUsecase>()) {
+    instance.registerFactory<CreateGroupUsecase>(
+      () => CreateGroupUsecase(instance()),
+    );
   }
 }
