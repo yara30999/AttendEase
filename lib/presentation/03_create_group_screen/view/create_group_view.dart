@@ -43,12 +43,12 @@ class _CreateGroupViewState extends State<CreateGroupView> {
               children: [
                 Center(
                   child: Text(
-                    context.tr('Create Work Zone'),
+                    context.tr('Create_Work_Zone'),
                     style: Styles.style24Bold(),
                   ),
                 ),
                 CustomTextField(
-                  label: context.tr('Group Name'),
+                  label: context.tr('GroupName'),
                   inputType: TextInputType.text,
                   onChanged: (value) {
                     setState(() {
@@ -57,7 +57,7 @@ class _CreateGroupViewState extends State<CreateGroupView> {
                   },
                 ),
                 Text(
-                  context.tr('Choose the working days:'),
+                  context.tr('Choose_the_working_days:'),
                   style: Styles.style16Medium(),
                 ),
                 DaySelector(
@@ -73,7 +73,7 @@ class _CreateGroupViewState extends State<CreateGroupView> {
                   },
                 ),
                 Text(
-                  context.tr('Check-in Time:'),
+                  context.tr('Check_in_Time:'),
                   style: Styles.style16Medium(),
                 ),
                 TimePickerField(
@@ -85,7 +85,7 @@ class _CreateGroupViewState extends State<CreateGroupView> {
                   },
                 ),
                 Text(
-                  context.tr('Check-out Time:'),
+                  context.tr('Check_out_Time:'),
                   style: Styles.style16Medium(),
                 ),
                 TimePickerField(
@@ -97,7 +97,7 @@ class _CreateGroupViewState extends State<CreateGroupView> {
                   },
                 ),
                 Text(
-                  context.tr('Tap on the map to choose your work location:'),
+                  context.tr('Tap_on_the_map'),
                   style: Styles.style16Medium(),
                 ),
                 const LocationPicker(),

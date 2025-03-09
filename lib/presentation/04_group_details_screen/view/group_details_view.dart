@@ -26,7 +26,7 @@ class GroupDetailsView extends StatelessWidget {
           children: [
             Center(
               child: Text(
-                context.tr('Group Details'),
+                context.tr('group_details'),
                 style: Styles.style24Bold(),
               ),
             ),
@@ -35,10 +35,10 @@ class GroupDetailsView extends StatelessWidget {
               'Marketing Team',
               style: Styles.style24Bold(),
             ),
-            Text(context.tr('Work Days:'), style: Styles.style16Medium()),
+            Text(context.tr('Work_Days:'), style: Styles.style16Medium()),
             DaySelector(selectedDays: _selectedDays),
-            TimeRow(label: context.tr('Check-in Time:'), time: '09:00 AM'),
-            TimeRow(label: context.tr('Check-out Time:'), time: '05:00 PM'),
+            TimeRow(label: context.tr('Check_in_Time:'), time: '09:00 AM'),
+            TimeRow(label: context.tr('Check_out_Time:'), time: '05:00 PM'),
             GroupPasswordRow(),
             // Location Map
             Text(context.tr('Location'), style: Styles.style20Bold()),

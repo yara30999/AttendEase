@@ -45,7 +45,7 @@ class CreateGroupButton extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               spacing: 10,
               children: [
-                Text(context.tr("Create Group")),
+                Text(context.tr("create_group")),
                 const CircularProgressIndicator(
                   color: ColorsManager.white,
                   strokeAlign: CircularProgressIndicator.strokeAlignInside,
@@ -67,7 +67,7 @@ class CreateGroupButton extends StatelessWidget {
               );
             }
           },
-          child: Text(context.tr("Create Group")),
+          child: Text(context.tr("create_group")),
         );
       },
     );
