@@ -26,7 +26,11 @@ class RegisterButton extends StatelessWidget {
       listener: (context, state) {
         if (state is RegisterSuccess) {
           showToast(context.tr('register_successfully'), ColorsManager.softRed);
-          Navigator.pushReplacementNamed(context, Routes.loginRoute);
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            Routes.loginRoute,
+            (route) => false, // to remove all previous routes
+          );
         }
         if (state is RegisterError) {
           showToast(state.errMessage, ColorsManager.softRed);

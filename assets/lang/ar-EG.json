@@ -65,10 +65,7 @@
   "usernameTooLong": "اسم المستخدم طويل جدًا",
   "usernameNotValid": "اسم المستخدم غير صالح",
   "emailNotValid": "البريد الإلكتروني غير منسق بشكل جيد",
-  "verify_otp": "تحقق من رمز OTP.",
-  "enter_otp_number": "أدخل رمز OTP",
-  "noSuggestedPlaces": "لا يوجد اماكن مقترحه حاليا.",
-  "noPopularPlaces": "لا يوجد اماكن شهيره حاليا.",
+  "register_successfully": "لقد قمت للتو بالتسجيل بنجاح. يمكنك الآن تسجيل الدخول.",
 
   "Mon": "إثنين",
   "Tue": "ثلاثاء",

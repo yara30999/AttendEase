@@ -65,6 +65,7 @@
   "usernameTooLong": "Username too long",
   "usernameNotValid": "Username not valid",
   "emailNotValid": "Email not formatted well",
+  "register_successfully": "You have just registered successfully. Now you can login.",
 
   "Sun": "Sun",
   "Mon": "Mon",
