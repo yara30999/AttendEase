@@ -12,6 +12,7 @@ abstract class RemoteDataSource {
   Future<void> forgotPassword(String email);
   Future<void> logout();
   Future<void> createGroup(CreateGroupRequest createGroupRequest);
+  Stream<List<GroupResponse>> getGroups();
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -78,5 +79,20 @@ class RemoteDataSourceImpl implements RemoteDataSource {
         location: createGroupRequest.location,
       ).toFirestore(),
     );
+  }
+
+  @override
+  Stream<List<GroupResponse>> getGroups() {
+    return groups
+        .snapshots() // Listen to the collection as a stream
+        .map((QuerySnapshot snapshot) {
+          return snapshot.docs
+              .map(
+                (doc) => GroupResponse.fromFirestore(
+                  doc as DocumentSnapshot<Map<String, dynamic>>,
+                ),
+              )
+              .toList();
+        });
   }
 }

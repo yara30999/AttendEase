@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import '../../app/app_prefs.dart';
 import '../../app/extensions.dart';
 import '../../domain/entities/auth_entity.dart';
+import '../../domain/entities/group_entity.dart';
 import '../../domain/repository/repository.dart';
 import '../data_source/local_data_source.dart';
 import '../data_source/remote_data_source.dart';
@@ -112,5 +113,15 @@ class RepositoryImpl implements Repository {
     } else {
       return Left(DataSource.noInternetConnection.getFailure());
     }
+  }
+
+  @override
+  Stream<List<GroupEntity>> getGroups() {
+    return _remoteDataSource.getGroups().map((groupResponses) {
+      // Map each groupResponse to groupEntity
+      return groupResponses
+          .map((groupResponse) => groupResponse.toDomain())
+          .toList();
+    });
   }
 }
