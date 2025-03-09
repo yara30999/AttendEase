@@ -4,6 +4,7 @@ import '../../app/extensions.dart';
 import '../../domain/entities/auth_entity.dart';
 import '../../domain/entities/group_entity.dart';
 import '../../domain/entities/history_entity.dart';
+import '../../domain/entities/permission_entity.dart';
 import '../../domain/repository/repository.dart';
 import '../data_source/local_data_source.dart';
 import '../data_source/remote_data_source.dart';
@@ -14,6 +15,7 @@ import '../network/network_info.dart';
 import '../network/requests.dart';
 import '../responses/group_response.dart';
 import '../responses/history_response.dart';
+import '../responses/permission_response.dart';
 import '../responses/user_response.dart';
 
 class RepositoryImpl implements Repository {
@@ -181,6 +183,31 @@ class RepositoryImpl implements Repository {
         final List<HistoryEntity> historyEntities =
             historyResponses.map((history) => history.toDomain()).toList();
         return Right(historyEntities);
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      return Left(DataSource.noInternetConnection.getFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<PermissionEntity>>> getUserPermissions(
+    String userId,
+  ) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final List<PermissionResponse> permissionResponses =
+            await _remoteDataSource.getUserPermissions(userId);
+        if (permissionResponses.isEmpty) {
+          return Right([]);
+        }
+        // else map responses to entities...
+        final List<PermissionEntity> permissionEntities =
+            permissionResponses
+                .map((permission) => permission.toDomain())
+                .toList();
+        return Right(permissionEntities);
       } catch (error) {
         return Left(ErrorHandler.handle(error).failure);
       }

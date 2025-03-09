@@ -60,6 +60,25 @@ extension NonNullString on String? {
       return this!;
     }
   }
+
+  PermissionType getPermissionType() {
+    if (this == null) {
+      return PermissionType.sickLeave;
+    } else {
+      switch (this) {
+        case AppConstants.sickLeave:
+          return PermissionType.sickLeave;
+        case AppConstants.emergencyLeave:
+          return PermissionType.emergencyLeave;
+        case AppConstants.vacationLeave:
+          return PermissionType.vacationLeave;
+        case AppConstants.workFromHome:
+          return PermissionType.workFromHome;
+        default:
+          return PermissionType.sickLeave;
+      }
+    }
+  }
 }
 
 extension NonNullInteger on int? {

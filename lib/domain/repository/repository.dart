@@ -4,6 +4,7 @@ import '../../data/network/requests.dart';
 import '../entities/auth_entity.dart';
 import '../entities/group_entity.dart';
 import '../entities/history_entity.dart';
+import '../entities/permission_entity.dart';
 
 abstract class Repository {
   Future<Either<Failure, AuthenticationEntity>> login(
@@ -21,4 +22,7 @@ abstract class Repository {
     String groupId,
   );
   Future<Either<Failure, List<HistoryEntity>>> getUserHistory(String userId);
+  Future<Either<Failure, List<PermissionEntity>>> getUserPermissions(
+    String userId,
+  );
 }

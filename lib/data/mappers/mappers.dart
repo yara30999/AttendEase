@@ -4,8 +4,10 @@ import '../../app/extensions.dart';
 import '../../domain/entities/auth_entity.dart';
 import '../../domain/entities/group_entity.dart';
 import '../../domain/entities/history_entity.dart';
+import '../../domain/entities/permission_entity.dart';
 import '../responses/group_response.dart';
 import '../responses/history_response.dart';
+import '../responses/permission_response.dart';
 import '../responses/user_response.dart';
 
 extension UserResponseMapper on UserResponse? {
@@ -41,6 +43,19 @@ extension HistoryResponseMapper on HistoryResponse? {
       groupId: this!.groupId.orEmpty(),
       checkIn: this!.checkIn ?? null,
       checkOut: this!.checkOut ?? null,
+    );
+  }
+}
+
+extension PermissionResponseMapper on PermissionResponse? {
+  PermissionEntity toDomain() {
+    return PermissionEntity(
+      id: this!.id.orEmpty(),
+      userId: this!.userId.orEmpty(),
+      groupId: this!.groupId.orEmpty(),
+      date: this!.date ?? DateTime.now(),
+      type: this!.type.getPermissionType(),
+      message: this!.message.orEmpty(),
     );
   }
 }

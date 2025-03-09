@@ -5,6 +5,7 @@ import '../../app/functions.dart';
 import '../network/requests.dart';
 import '../responses/group_response.dart';
 import '../responses/history_response.dart';
+import '../responses/permission_response.dart';
 import '../responses/user_response.dart';
 
 abstract class RemoteDataSource {
@@ -17,6 +18,7 @@ abstract class RemoteDataSource {
   Future<GroupResponse> getGroupInfo(String groupId);
   Future<List<UserResponse>> getGroupMembers(String groupId);
   Future<List<HistoryResponse>> getUserHistory(String userId);
+  Future<List<PermissionResponse>> getUserPermissions(String userId);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -25,6 +27,9 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   CollectionReference groups = FirebaseFirestore.instance.collection('groups');
   CollectionReference usersHistroy = FirebaseFirestore.instance.collection(
     'usersHistory',
+  );
+  CollectionReference usersPermission = FirebaseFirestore.instance.collection(
+    'usersPermission',
   );
 
   RemoteDataSourceImpl(this._firebaseAuth);
@@ -138,8 +143,8 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   @override
   Future<List<HistoryResponse>> getUserHistory(String userId) async {
     QuerySnapshot<Map<String, dynamic>> usersHistoryQuery =
-        await users
-                .where('userId', isEqualTo: userId) // Filter by groupId
+        await usersHistroy
+                .where('userId', isEqualTo: userId) // Filter by userId
                 .get()
             as QuerySnapshot<Map<String, dynamic>>;
     if (usersHistoryQuery.docs.isEmpty) {
@@ -155,5 +160,27 @@ class RemoteDataSourceImpl implements RemoteDataSource {
             )
             .toList();
     return usersHistoryData;
+  }
+
+  @override
+  Future<List<PermissionResponse>> getUserPermissions(String userId) async {
+    QuerySnapshot<Map<String, dynamic>> usersPermissionsQuery =
+        await usersPermission
+                .where('userId', isEqualTo: userId) // Filter by userId
+                .get()
+            as QuerySnapshot<Map<String, dynamic>>;
+    if (usersPermissionsQuery.docs.isEmpty) {
+      return []; // Return an empty list if no data exists
+    }
+    // map each doc to PermissionResponse , then return list.
+    List<PermissionResponse> usersPermissionData =
+        usersPermissionsQuery.docs
+            .map(
+              (doc) => PermissionResponse.fromFirestore(
+                doc as DocumentSnapshot<Map<String, dynamic>>,
+              ),
+            )
+            .toList();
+    return usersPermissionData;
   }
 }
