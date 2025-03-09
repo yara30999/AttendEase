@@ -10,6 +10,7 @@ import '../domain/repository/repository.dart';
 import '../domain/usecase/create_group_usecase.dart';
 import '../domain/usecase/forgot_password_usecase.dart';
 import '../domain/usecase/get_group_info_usecase.dart';
+import '../domain/usecase/get_group_members_usecase.dart';
 import '../domain/usecase/groups_stream_usecase.dart';
 import '../domain/usecase/login_usecase.dart';
 import '../domain/usecase/logout_usecase.dart';
@@ -82,6 +83,12 @@ Future<void> initAppModule() async {
   if (!GetIt.I.isRegistered<GetGroupInfoUsecase>()) {
     instance.registerFactory<GetGroupInfoUsecase>(
       () => GetGroupInfoUsecase(instance()),
+    );
+  }
+  // get group members usecase
+  if (!GetIt.I.isRegistered<GetGroupMembersUsecase>()) {
+    instance.registerFactory<GetGroupMembersUsecase>(
+      () => GetGroupMembersUsecase(instance()),
     );
   }
 }

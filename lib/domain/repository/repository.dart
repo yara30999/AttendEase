@@ -16,4 +16,7 @@ abstract class Repository {
   );
   Stream<List<GroupEntity>> getGroups();
   Future<Either<Failure, GroupEntity>> getGroupInfo(String groupId);
+  Future<Either<Failure, List<AuthenticationEntity>>> getGroupMembers(
+    String groupId,
+  );
 }

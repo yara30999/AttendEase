@@ -140,4 +140,24 @@ class RepositoryImpl implements Repository {
       return Left(DataSource.noInternetConnection.getFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, List<AuthenticationEntity>>> getGroupMembers(
+    String groupId,
+  ) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final List<UserResponse> userResponses = await _remoteDataSource
+            .getGroupMembers(groupId);
+        //map responses to entities...
+        final List<AuthenticationEntity> authEntities =
+            userResponses.map((user) => user.toDomain()).toList();
+        return Right(authEntities);
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      return Left(DataSource.noInternetConnection.getFailure());
+    }
+  }
 }
