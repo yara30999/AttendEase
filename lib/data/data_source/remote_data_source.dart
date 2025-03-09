@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../../app/functions.dart';
 import '../network/requests.dart';
 import '../responses/group_response.dart';
+import '../responses/history_response.dart';
 import '../responses/user_response.dart';
 
 abstract class RemoteDataSource {
@@ -15,12 +16,16 @@ abstract class RemoteDataSource {
   Stream<List<GroupResponse>> getGroups();
   Future<GroupResponse> getGroupInfo(String groupId);
   Future<List<UserResponse>> getGroupMembers(String groupId);
+  Future<List<HistoryResponse>> getUserHistory(String userId);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
   final FirebaseAuth _firebaseAuth;
   CollectionReference users = FirebaseFirestore.instance.collection('users');
   CollectionReference groups = FirebaseFirestore.instance.collection('groups');
+  CollectionReference usersHistroy = FirebaseFirestore.instance.collection(
+    'usersHistory',
+  );
 
   RemoteDataSourceImpl(this._firebaseAuth);
 
@@ -115,6 +120,9 @@ class RemoteDataSourceImpl implements RemoteDataSource {
                 .where('groupId', isEqualTo: groupId) // Filter by groupId
                 .get()
             as QuerySnapshot<Map<String, dynamic>>;
+    if (usersQuery.docs.isEmpty) {
+      return []; // Return an empty list if no data exists
+    }
     // map each doc to UserResponse , then return list.
     List<UserResponse> usersData =
         usersQuery.docs
@@ -125,5 +133,27 @@ class RemoteDataSourceImpl implements RemoteDataSource {
             )
             .toList();
     return usersData;
+  }
+
+  @override
+  Future<List<HistoryResponse>> getUserHistory(String userId) async {
+    QuerySnapshot<Map<String, dynamic>> usersHistoryQuery =
+        await users
+                .where('userId', isEqualTo: userId) // Filter by groupId
+                .get()
+            as QuerySnapshot<Map<String, dynamic>>;
+    if (usersHistoryQuery.docs.isEmpty) {
+      return []; // Return an empty list if no data exists
+    }
+    // map each doc to HistoryResponse , then return list.
+    List<HistoryResponse> usersHistoryData =
+        usersHistoryQuery.docs
+            .map(
+              (doc) => HistoryResponse.fromFirestore(
+                doc as DocumentSnapshot<Map<String, dynamic>>,
+              ),
+            )
+            .toList();
+    return usersHistoryData;
   }
 }

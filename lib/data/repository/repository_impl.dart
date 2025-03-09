@@ -3,6 +3,7 @@ import '../../app/app_prefs.dart';
 import '../../app/extensions.dart';
 import '../../domain/entities/auth_entity.dart';
 import '../../domain/entities/group_entity.dart';
+import '../../domain/entities/history_entity.dart';
 import '../../domain/repository/repository.dart';
 import '../data_source/local_data_source.dart';
 import '../data_source/remote_data_source.dart';
@@ -12,6 +13,7 @@ import '../network/failure.dart';
 import '../network/network_info.dart';
 import '../network/requests.dart';
 import '../responses/group_response.dart';
+import '../responses/history_response.dart';
 import '../responses/user_response.dart';
 
 class RepositoryImpl implements Repository {
@@ -149,10 +151,36 @@ class RepositoryImpl implements Repository {
       try {
         final List<UserResponse> userResponses = await _remoteDataSource
             .getGroupMembers(groupId);
-        //map responses to entities...
+        if (userResponses.isEmpty) {
+          return Right([]);
+        }
+        // else map responses to entities...
         final List<AuthenticationEntity> authEntities =
             userResponses.map((user) => user.toDomain()).toList();
         return Right(authEntities);
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      return Left(DataSource.noInternetConnection.getFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<HistoryEntity>>> getUserHistory(
+    String userId,
+  ) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final List<HistoryResponse> historyResponses = await _remoteDataSource
+            .getUserHistory(userId);
+        if (historyResponses.isEmpty) {
+          return Right([]);
+        }
+        // else map responses to entities...
+        final List<HistoryEntity> historyEntities =
+            historyResponses.map((history) => history.toDomain()).toList();
+        return Right(historyEntities);
       } catch (error) {
         return Left(ErrorHandler.handle(error).failure);
       }
