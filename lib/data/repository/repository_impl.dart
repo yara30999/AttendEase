@@ -11,6 +11,7 @@ import '../network/error_handler.dart';
 import '../network/failure.dart';
 import '../network/network_info.dart';
 import '../network/requests.dart';
+import '../responses/group_response.dart';
 import '../responses/user_response.dart';
 
 class RepositoryImpl implements Repository {
@@ -123,5 +124,20 @@ class RepositoryImpl implements Repository {
           .map((groupResponse) => groupResponse.toDomain())
           .toList();
     });
+  }
+
+  @override
+  Future<Either<Failure, GroupEntity>> getGroupInfo(String groupId) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final GroupResponse groupResponse = await _remoteDataSource
+            .getGroupInfo(groupId);
+        return Right(groupResponse.toDomain());
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      return Left(DataSource.noInternetConnection.getFailure());
+    }
   }
 }

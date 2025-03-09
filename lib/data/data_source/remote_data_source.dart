@@ -13,6 +13,7 @@ abstract class RemoteDataSource {
   Future<void> logout();
   Future<void> createGroup(CreateGroupRequest createGroupRequest);
   Stream<List<GroupResponse>> getGroups();
+  Future<GroupResponse> getGroupInfo(String groupId);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -94,5 +95,15 @@ class RemoteDataSourceImpl implements RemoteDataSource {
               )
               .toList();
         });
+  }
+
+  @override
+  Future<GroupResponse> getGroupInfo(String groupId) async {
+    //read doc
+    DocumentSnapshot<Map<String, dynamic>> groupDoc =
+        await groups.doc(groupId).get()
+            as DocumentSnapshot<Map<String, dynamic>>;
+    GroupResponse groupData = GroupResponse.fromFirestore(groupDoc);
+    return groupData;
   }
 }

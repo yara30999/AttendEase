@@ -9,6 +9,7 @@ import '../data/repository/repository_impl.dart';
 import '../domain/repository/repository.dart';
 import '../domain/usecase/create_group_usecase.dart';
 import '../domain/usecase/forgot_password_usecase.dart';
+import '../domain/usecase/get_group_info_usecase.dart';
 import '../domain/usecase/groups_stream_usecase.dart';
 import '../domain/usecase/login_usecase.dart';
 import '../domain/usecase/logout_usecase.dart';
@@ -75,6 +76,12 @@ Future<void> initAppModule() async {
   if (!GetIt.I.isRegistered<GroupsStreamUsecase>()) {
     instance.registerFactory<GroupsStreamUsecase>(
       () => GroupsStreamUsecase(instance()),
+    );
+  }
+  // get group info usecase
+  if (!GetIt.I.isRegistered<GetGroupInfoUsecase>()) {
+    instance.registerFactory<GetGroupInfoUsecase>(
+      () => GetGroupInfoUsecase(instance()),
     );
   }
 }
