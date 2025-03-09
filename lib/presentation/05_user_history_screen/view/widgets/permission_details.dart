@@ -22,7 +22,7 @@ class PermissionDetails extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              type.name, // Using the extension
+              type.string, // Using the extension
               style: Styles.style16Medium().copyWith(
                 color:
                     isLightTheme(context)

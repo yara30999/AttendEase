@@ -24,6 +24,7 @@ enum Role { admin, user }
 
 extension RoleExtension on Role {
   String get name {
+    //for firebase constants....
     switch (this) {
       case Role.admin:
         return AppConstants.admin;
@@ -82,6 +83,20 @@ enum PermissionType { sickLeave, emergencyLeave, vacationLeave, workFromHome }
 
 extension PermissionTypeExtension on PermissionType {
   String get name {
+    //for firebase constants....
+    switch (this) {
+      case PermissionType.sickLeave:
+        return AppConstants.sickLeave;
+      case PermissionType.emergencyLeave:
+        return AppConstants.emergencyLeave;
+      case PermissionType.vacationLeave:
+        return AppConstants.vacationLeave;
+      case PermissionType.workFromHome:
+        return AppConstants.workFromHome;
+    }
+  }
+
+  String get string {
     switch (this) {
       case PermissionType.sickLeave:
         return 'Sick Leave'.tr();
