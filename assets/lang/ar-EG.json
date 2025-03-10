@@ -105,5 +105,13 @@
   "Delete": "حذف",
   "Location": "الموقع",
   "Check-in": "وقت الدخول",
-  "Check-out": "وقت الخروج"
+  "Check-out": "وقت الخروج",
+  "Search" : "...بحث",
+  "YourGroup": ":مجموعاتك" ,
+  "GroupMembersNum":"عدد الاعضاء:",
+  "GroupPassword": "كلمة المرور:",
+  "DeleteMsg" : "هل انت متاكد من حذف هذه المجموعة؟",
+  "JoinGroup" : "انضم الي مجموعة واحدة فقط:",
+  "JoinGroupBtn" : "انضم" ,
+  "EnterGroupPass": "ادخل كلمة مرور المجموعة: " 
 }

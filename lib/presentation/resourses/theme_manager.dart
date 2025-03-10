@@ -148,6 +148,11 @@ ThemeData getlightTheme() {
       dividerColor: Colors.transparent,
       overlayColor: WidgetStateProperty.all(Colors.transparent),
     ),
+
+    //bottom sheet theme 
+    bottomSheetTheme: BottomSheetThemeData(
+      backgroundColor: ColorsManager.softBeige,
+    )
   );
 }
 
@@ -296,5 +301,10 @@ ThemeData getDarkTheme() {
       dividerColor: Colors.transparent,
       overlayColor: WidgetStateProperty.all(Colors.transparent),
     ),
+
+    //bottom sheet theme
+    bottomSheetTheme: BottomSheetThemeData(
+      backgroundColor: ColorsManager.black,
+    )
   );
 }

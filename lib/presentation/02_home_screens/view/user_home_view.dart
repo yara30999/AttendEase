@@ -1,24 +1,35 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '../../resourses/styles_manager.dart';
 import 'widgets/custom_app_bar.dart';
 import 'widgets/custom_drawer.dart';
-import 'widgets/logout_button_bloc_consumer.dart';
+import 'widgets/group_list.dart';
 
-class UserHomeView extends StatefulWidget {
+
+class UserHomeView extends StatelessWidget {
   const UserHomeView({super.key});
 
   @override
-  State<UserHomeView> createState() => _UserHomeViewState();
-}
-
-class _UserHomeViewState extends State<UserHomeView> {
-  @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       appBar: CustomAppBar(),
       drawer: CustomDrawer(),
-      body: Column(
-        children: [LogoutButtonBlocConsumer(), Text('user home user ')],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            children: [
+              const SearchBar(),
+              SizedBox(height: 10),
+              Align( 
+                child: Text(context.tr("JoinGroup"), style: Styles.style24Bold()),
+              ),
+              SizedBox(height: 10),
+              GroupListView(isAdmin: false,),
+            ],
+          ),
+        ),
       ),
     );
   }

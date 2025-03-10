@@ -101,5 +101,13 @@
   "Delete": "Delete",
   "Location": "Location",
   "Check-in": "Check-in",
-  "Check-out": "Check-out"
+  "Check-out": "Check-out",
+  "Search": "Search...",
+  "YourGroup": "Your Groups :" ,
+  "GroupMembersNum":"Total Members: ",
+  "GroupPassword": "Password: ",
+  "DeleteMsg" : "Are you sure you want to delete this group?",
+  "JoinGroup" : "Join only one group:",
+  "JoinGroupBtn" : "Join" ,
+  "EnterGroupPass": "Enter Group Password : " 
 }
