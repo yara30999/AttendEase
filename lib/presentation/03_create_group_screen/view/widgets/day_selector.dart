@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import '../../../../app/functions.dart';
 import '../../../resourses/colors_manager.dart';
 
 class DaySelector extends StatelessWidget {
@@ -13,7 +12,7 @@ class DaySelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color mainColor =
-        isLightTheme(context)
+        Theme.of(context).brightness == Brightness.light
             ? ColorsManager.emeraldGreen
             : ColorsManager.paleBlushRed;
     return Row(

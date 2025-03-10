@@ -67,7 +67,7 @@ class _RoleDropdownState extends State<RoleDropdown> {
         border: Border.all(
           width: 2,
           color:
-              isLightTheme(context)
+              Theme.of(context).brightness == Brightness.light
                   ? ColorsManager.emeraldGreen
                   : ColorsManager.paleBlushRed,
         ),

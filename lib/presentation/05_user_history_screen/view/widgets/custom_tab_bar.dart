@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import '../../../../app/functions.dart';
 import '../../../resourses/colors_manager.dart';
 
 class CustomTabBar extends StatelessWidget {
@@ -14,7 +13,7 @@ class CustomTabBar extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 2, vertical: 6),
       decoration: BoxDecoration(
         color:
-            isLightTheme(context)
+            Theme.of(context).brightness == Brightness.light
                 ? ColorsManager.creamyBeige
                 : ColorsManager.grey,
         borderRadius: BorderRadius.circular(25),

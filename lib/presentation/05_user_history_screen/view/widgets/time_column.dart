@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../../app/functions.dart';
 import '../../../resourses/colors_manager.dart';
 import '../../../resourses/styles_manager.dart';
 
@@ -22,7 +21,7 @@ class TimeColumn extends StatelessWidget {
             label,
             style: Styles.style12Medium().copyWith(
               color:
-                  isLightTheme(context)
+                  Theme.of(context).brightness == Brightness.light
                       ? ColorsManager.deepRed
                       : ColorsManager.darkTeal,
             ),

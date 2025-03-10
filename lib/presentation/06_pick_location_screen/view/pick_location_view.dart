@@ -86,7 +86,7 @@ class _PickLocationViewState extends State<PickLocationView> {
       ),
       bottomNavigationBar: Container(
         height: 60,
-        color: ColorsManager.darkTeal,
+        color: Theme.of(context).primaryColor,
         child: Center(
           child: Text(
             'tap_on_location_to_select'.tr(),
