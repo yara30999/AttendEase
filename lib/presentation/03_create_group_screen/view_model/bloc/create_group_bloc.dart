@@ -6,18 +6,24 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../../../app/extensions.dart';
+import '../../../../app/geolocation_service.dart';
 import '../../../../domain/usecase/create_group_usecase.dart';
 part 'create_group_event.dart';
 part 'create_group_state.dart';
 
 class CreateGroupBloc extends Bloc<CreateGroupEvent, CreateGroupState> {
   final CreateGroupUsecase _createGroupUsecase;
+  final IGeolocationService _geolocationService;
 
   String? _errMessage;
   LatLng? selectedLocation;
+  LatLng? currentUserLocation;
 
-  CreateGroupBloc(this._createGroupUsecase) : super(CreateGroupInitial()) {
+  CreateGroupBloc(this._createGroupUsecase, this._geolocationService)
+    : super(CreateGroupInitial()) {
     on<CreateGroupRequested>(onCreateGroupRequested);
+    on<CurrentUserLocationRequested>(onCurrentUserLocationRequested);
+    on<LocationPicked>(onLocationPicked);
   }
 
   FutureOr<void> onCreateGroupRequested(
@@ -54,5 +60,26 @@ class CreateGroupBloc extends Bloc<CreateGroupEvent, CreateGroupState> {
         emit(CreateGroupSuccess());
       },
     );
+  }
+
+  FutureOr<void> onCurrentUserLocationRequested(
+    CurrentUserLocationRequested event,
+    Emitter<CreateGroupState> emit,
+  ) async {
+    emit(CurrentUserLocationLoading());
+    try {
+      currentUserLocation = await _geolocationService.getCurrentUserLocation();
+      emit(CurrentUserLocationSuccess());
+    } catch (error) {
+      emit(CurrentUserLocationError(error.toString()));
+    }
+  }
+
+  FutureOr<void> onLocationPicked(
+    LocationPicked event,
+    Emitter<CreateGroupState> emit,
+  ) {
+    selectedLocation = event.location;
+    emit(LocationPickedSuccess(event.location));
   }
 }

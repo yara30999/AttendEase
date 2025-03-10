@@ -7,9 +7,9 @@ import '../../02_home_screens/view/widgets/custom_app_bar.dart';
 import '../../02_home_screens/view/widgets/custom_drawer.dart';
 import '../../resourses/styles_manager.dart';
 import '../view_model/bloc/create_group_bloc.dart';
+import 'widgets/choose_location_button.dart';
 import 'widgets/create_group_btn_bloc_consumer.dart';
 import 'widgets/day_selector.dart';
-import 'widgets/location_picker.dart';
 import 'widgets/time_picker_field.dart';
 
 class CreateGroupView extends StatefulWidget {
@@ -32,7 +32,7 @@ class _CreateGroupViewState extends State<CreateGroupView> {
       appBar: const CustomAppBar(),
       drawer: const CustomDrawer(),
       body: BlocProvider(
-        create: (context) => CreateGroupBloc(instance()),
+        create: (context) => CreateGroupBloc(instance(), instance()),
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16.0),
           child: Form(
@@ -100,7 +100,7 @@ class _CreateGroupViewState extends State<CreateGroupView> {
                   context.tr('Tap_on_the_map'),
                   style: Styles.style16Medium(),
                 ),
-                const LocationPicker(),
+                ChooseLocationButton(),
                 CreateGroupButton(
                   _formKey,
                   _groupName,

@@ -18,6 +18,7 @@ import '../domain/usecase/login_usecase.dart';
 import '../domain/usecase/logout_usecase.dart';
 import '../domain/usecase/register_usecase.dart';
 import 'app_prefs.dart';
+import 'geolocation_service.dart';
 import 'validation_service.dart';
 
 final instance = GetIt.instance;
@@ -32,6 +33,10 @@ Future<void> initAppModule() async {
   // validation service instance for all text form fields in the app
   instance.registerLazySingleton<IValidationService>(
     () => ValidationServiceImpl(),
+  );
+  // geolocation service instance for all geo usage in the app
+  instance.registerLazySingleton<IGeolocationService>(
+    () => GeolocationServiceImpl(),
   );
   // network info
   instance.registerLazySingleton<NetworkInfo>(

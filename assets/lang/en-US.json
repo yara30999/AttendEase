@@ -104,5 +104,14 @@
   "Location": "Location",
   "Check-in": "Check-in",
   "Check-out": "Check-out",
-  "group_created_success": "Group created successfully!"
+  "group_created_success": "Group created successfully!",
+
+  "location_services_disabled": "Location services are disabled.",
+  "location_permissions_denied": "Location permissions are denied",
+  "location_permissions_permanently_denied": "Location permissions are permanently denied, we cannot request permissions.",
+  "you_are_here": "You're here.",
+  "this_is_your_location": "This is your location.",
+  "picked_place": "Picked Place.",
+  "you_picked_this_location": "You picked this location.",
+  "tap_on_location_to_select": "Tap on Location To Select"
 }

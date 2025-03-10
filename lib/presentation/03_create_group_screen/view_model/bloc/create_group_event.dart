@@ -29,3 +29,13 @@ class CreateGroupRequested extends CreateGroupEvent {
     checkOutTime,
   ];
 }
+
+class CurrentUserLocationRequested extends CreateGroupEvent {}
+
+class LocationPicked extends CreateGroupEvent {
+  final LatLng location;
+
+  LocationPicked(this.location);
+  @override
+  List<Object> get props => [super.props, location];
+}
