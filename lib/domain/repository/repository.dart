@@ -25,4 +25,5 @@ abstract class Repository {
   Future<Either<Failure, List<PermissionEntity>>> getUserPermissions(
     String userId,
   );
+  Future<Either<Failure, bool>> deleteUserFromGroup(String userId);
 }

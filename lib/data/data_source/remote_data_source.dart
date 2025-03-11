@@ -19,10 +19,12 @@ abstract class RemoteDataSource {
   Future<List<UserResponse>> getGroupMembers(String groupId);
   Future<List<HistoryResponse>> getUserHistory(String userId);
   Future<List<PermissionResponse>> getUserPermissions(String userId);
+  Future<void> deleteUserFromGroup(String userId);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
   final FirebaseAuth _firebaseAuth;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   CollectionReference users = FirebaseFirestore.instance.collection('users');
   CollectionReference groups = FirebaseFirestore.instance.collection('groups');
   CollectionReference usersHistroy = FirebaseFirestore.instance.collection(
@@ -182,5 +184,36 @@ class RemoteDataSourceImpl implements RemoteDataSource {
             )
             .toList();
     return usersPermissionData;
+  }
+
+  @override
+  Future<void> deleteUserFromGroup(String userId) async {
+    WriteBatch batch = _firestore.batch();
+    //update user groupId to be empty (delete from group effect)
+    await users.doc(userId).update({'groupId': ''});
+    //then delete all the user's history data
+    QuerySnapshot<Map<String, dynamic>> usersHistoryQuery =
+        await usersHistroy
+                .where('userId', isEqualTo: userId) // Filter by userId
+                .get()
+            as QuerySnapshot<Map<String, dynamic>>;
+    if (usersHistoryQuery.docs.isNotEmpty) {
+      for (QueryDocumentSnapshot doc in usersHistoryQuery.docs) {
+        batch.delete(doc.reference);
+      }
+    }
+    //then delete all the user's permissions data
+    QuerySnapshot<Map<String, dynamic>> usersPermissionsQuery =
+        await usersPermission
+                .where('userId', isEqualTo: userId) // Filter by userId
+                .get()
+            as QuerySnapshot<Map<String, dynamic>>;
+    if (usersPermissionsQuery.docs.isNotEmpty) {
+      for (QueryDocumentSnapshot doc in usersPermissionsQuery.docs) {
+        batch.delete(doc.reference);
+      }
+    }
+    // Commit the batch operation
+    await batch.commit();
   }
 }
