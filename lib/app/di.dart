@@ -8,6 +8,7 @@ import '../data/network/network_info.dart';
 import '../data/repository/repository_impl.dart';
 import '../domain/repository/repository.dart';
 import '../domain/usecase/create_group_usecase.dart';
+import '../domain/usecase/delete_group_usecase.dart';
 import '../domain/usecase/delete_user_from_group_usecase.dart';
 import '../domain/usecase/forgot_password_usecase.dart';
 import '../domain/usecase/get_group_info_usecase.dart';
@@ -115,6 +116,12 @@ Future<void> initAppModule() async {
   if (!GetIt.I.isRegistered<DeleteUserFromGroupUsecase>()) {
     instance.registerFactory<DeleteUserFromGroupUsecase>(
       () => DeleteUserFromGroupUsecase(instance()),
+    );
+  }
+  // delete group usecase
+  if (!GetIt.I.isRegistered<DeleteGroupUsecase>()) {
+    instance.registerFactory<DeleteGroupUsecase>(
+      () => DeleteGroupUsecase(instance()),
     );
   }
 }

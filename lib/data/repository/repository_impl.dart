@@ -229,4 +229,18 @@ class RepositoryImpl implements Repository {
       return Left(DataSource.noInternetConnection.getFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> deleteGroup(String groupId) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        await _remoteDataSource.deleteGroup(groupId);
+        return Right(true);
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      return Left(DataSource.noInternetConnection.getFailure());
+    }
+  }
 }

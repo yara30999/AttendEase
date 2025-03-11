@@ -26,4 +26,5 @@ abstract class Repository {
     String userId,
   );
   Future<Either<Failure, bool>> deleteUserFromGroup(String userId);
+  Future<Either<Failure, bool>> deleteGroup(String groupId);
 }

@@ -20,6 +20,7 @@ abstract class RemoteDataSource {
   Future<List<HistoryResponse>> getUserHistory(String userId);
   Future<List<PermissionResponse>> getUserPermissions(String userId);
   Future<void> deleteUserFromGroup(String userId);
+  Future<void> deleteGroup(String groupId);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -189,31 +190,72 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   @override
   Future<void> deleteUserFromGroup(String userId) async {
     WriteBatch batch = _firestore.batch();
-    //update user groupId to be empty (delete from group effect)
-    await users.doc(userId).update({'groupId': ''});
-    //then delete all the user's history data
+    // 1 update user groupId to be empty (delete from group effect)
+    DocumentReference userRef = users.doc(userId);
+    batch.update(userRef, {'groupId': null});
+
+    // 2 then delete all the user's history data
     QuerySnapshot<Map<String, dynamic>> usersHistoryQuery =
         await usersHistroy
                 .where('userId', isEqualTo: userId) // Filter by userId
                 .get()
             as QuerySnapshot<Map<String, dynamic>>;
-    if (usersHistoryQuery.docs.isNotEmpty) {
-      for (QueryDocumentSnapshot doc in usersHistoryQuery.docs) {
-        batch.delete(doc.reference);
-      }
+    for (QueryDocumentSnapshot doc in usersHistoryQuery.docs) {
+      batch.delete(doc.reference);
     }
-    //then delete all the user's permissions data
+
+    // 3 then delete all the user's permissions data
     QuerySnapshot<Map<String, dynamic>> usersPermissionsQuery =
         await usersPermission
                 .where('userId', isEqualTo: userId) // Filter by userId
                 .get()
             as QuerySnapshot<Map<String, dynamic>>;
-    if (usersPermissionsQuery.docs.isNotEmpty) {
-      for (QueryDocumentSnapshot doc in usersPermissionsQuery.docs) {
-        batch.delete(doc.reference);
-      }
+    for (QueryDocumentSnapshot doc in usersPermissionsQuery.docs) {
+      batch.delete(doc.reference);
     }
-    // Commit the batch operation
+
+    // 4 Commit the batch operation
+    await batch.commit();
+  }
+
+  @override
+  Future<void> deleteGroup(String groupId) async {
+    WriteBatch batch = _firestore.batch();
+    // 1 delete group from groups collection
+    DocumentReference groupRef = groups.doc(groupId);
+    batch.delete(groupRef);
+
+    // 2 then delete all the user's history data associated with that group
+    QuerySnapshot<Map<String, dynamic>> usersHistoryQuery =
+        await usersHistroy
+                .where('groupId', isEqualTo: groupId) // Filter by groupId
+                .get()
+            as QuerySnapshot<Map<String, dynamic>>;
+    for (QueryDocumentSnapshot doc in usersHistoryQuery.docs) {
+      batch.delete(doc.reference);
+    }
+
+    // 3 then delete all the user's permissions data associated with that group
+    QuerySnapshot<Map<String, dynamic>> usersPermissionsQuery =
+        await usersPermission
+                .where('groupId', isEqualTo: groupId) // Filter by groupId
+                .get()
+            as QuerySnapshot<Map<String, dynamic>>;
+    for (QueryDocumentSnapshot doc in usersPermissionsQuery.docs) {
+      batch.delete(doc.reference);
+    }
+
+    // 4 then delete all the users associated with that group
+    QuerySnapshot<Map<String, dynamic>> usersQuery =
+        await users
+                .where('groupId', isEqualTo: groupId) // Filter by groupId
+                .get()
+            as QuerySnapshot<Map<String, dynamic>>;
+    for (QueryDocumentSnapshot doc in usersQuery.docs) {
+      batch.update(doc.reference, {'groupId': null});
+    }
+
+    // 5 Commit the batch operation
     await batch.commit();
   }
 }
