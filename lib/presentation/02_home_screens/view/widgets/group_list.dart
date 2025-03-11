@@ -13,7 +13,7 @@ class GroupListView extends StatelessWidget {
     return ListView.separated(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: 5, // Replace with actual members count
+      itemCount: 15, // Replace with actual members count
       separatorBuilder: (context, index) => const SizedBox(height: 8),
       itemBuilder: (context, index) {
         //TODO:check if admin or user to show the right group card
@@ -30,6 +30,7 @@ class GroupListView extends StatelessWidget {
           );
       }
       },
+      padding: EdgeInsets.only(bottom: 20),
     );
     
   }

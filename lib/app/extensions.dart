@@ -132,3 +132,29 @@ extension PermissionTypeExtension on PermissionType {
     }
   }
 }
+
+enum Status { checkIn, checkOut , havePermission }
+
+extension StatusExtension on Status {
+  String get name {
+    switch (this) {
+      case Status.checkIn:
+        return 'CheckIn'.tr(); 
+      case Status.checkOut:
+        return 'CheckOut'.tr();
+      case Status.havePermission:
+        return 'HavePermission'.tr();  
+    }
+  }
+
+  String get svg {
+    switch (this) {
+      case Status.checkIn:
+        return SvgAssets.checkIn;
+      case Status.checkOut:
+        return SvgAssets.checkOut;
+      case Status.havePermission:
+        return SvgAssets.havePermission;  
+    }
+  }
+}

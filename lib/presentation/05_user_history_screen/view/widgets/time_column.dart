@@ -13,7 +13,7 @@ class TimeColumn extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final Color primaryColor =
-        isDarkMode ? ColorsManager.darkTeal : ColorsManager.deepRed;
+        isDarkMode ?  ColorsManager.deepRed :  ColorsManager.darkTeal ;
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -23,7 +23,7 @@ class TimeColumn extends StatelessWidget {
           child: Text(
             label,
             style: Styles.style12Medium().copyWith(color: primaryColor),
-            overflow: TextOverflow.ellipsis,
+            overflow: TextOverflow.visible,
           ),
         ),
         const SizedBox(height: 4),

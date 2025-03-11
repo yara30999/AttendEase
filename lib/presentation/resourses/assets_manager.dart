@@ -19,4 +19,7 @@ class SvgAssets {
   static const String user = '$svgPath/user.svg';
   static const String admin = '$svgPath/admin.svg';
   static const String group = '$svgPath/group.svg';
+  static const String checkIn = '$svgPath/check_in.svg';
+  static const String checkOut = '$svgPath/check_out.svg';
+  static const String havePermission = '$svgPath/have_permission.svg';
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../app/functions.dart';
 import '../../../../resourses/colors_manager.dart';
 import '../../../../resourses/routes_manager.dart';
+import '../group_avatar.dart';
 import 'admin_group_card_details.dart';
 
 
@@ -24,7 +25,7 @@ class AdminGroupCard extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: Row(
             children: [
-               //TODO: avatar
+              GroupAvatar(),
               const SizedBox(width: 16),
               Expanded(child: AdminGroupCardDetails(groupName: groupName, memberNum: memberNum, password: groupPassword,)),
               IconButton(

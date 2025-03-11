@@ -113,5 +113,8 @@
   "DeleteMsg" : "هل انت متاكد من حذف هذه المجموعة؟",
   "JoinGroup" : "انضم الي مجموعة واحدة فقط:",
   "JoinGroupBtn" : "انضم" ,
-  "EnterGroupPass": "ادخل كلمة مرور المجموعة: " 
+  "EnterGroupPass": "ادخل كلمة مرور المجموعة: " ,
+  "CheckIn" : "تسجيل الدخول",
+  "CheckOut" : "تسجيل الخروج",
+  "HavePermission": "طلب أذن"
 }

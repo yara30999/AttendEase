@@ -109,5 +109,8 @@
   "DeleteMsg" : "Are you sure you want to delete this group?",
   "JoinGroup" : "Join only one group:",
   "JoinGroupBtn" : "Join" ,
-  "EnterGroupPass": "Enter Group Password : " 
+  "EnterGroupPass": "Enter Group Password : " ,
+  "CheckIn" : "Check-In",
+  "CheckOut" : "Check-Out",
+  "HavePermission": "Have Permission"
 }

@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../resourses/styles_manager.dart';
+import '../group_avatar.dart';
 import 'custom_bottom_sheet.dart';
 
 class UserGroupCard extends StatelessWidget {
@@ -27,7 +28,7 @@ class UserGroupCard extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: Row(
             children: [
-              //TODO: avatar
+              GroupAvatar(),
               const SizedBox(width: 16),
               Expanded(
                 child: Column(
