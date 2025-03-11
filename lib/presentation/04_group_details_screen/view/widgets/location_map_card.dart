@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class LocationMapCard extends StatelessWidget {
-  const LocationMapCard({Key? key}) : super(key: key);
+  final GeoPoint geoPoint;
+  const LocationMapCard(this.geoPoint, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +18,7 @@ class LocationMapCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           child: GoogleMap(
             initialCameraPosition: CameraPosition(
-              target: LatLng(30.033333, 31.233334),
-              // Replace with actual location
+              target: LatLng(geoPoint.latitude, geoPoint.latitude),
               zoom: 15,
             ),
             myLocationEnabled: true,
@@ -26,8 +27,7 @@ class LocationMapCard extends StatelessWidget {
             markers: {
               Marker(
                 markerId: MarkerId('workLocation'),
-                position: LatLng(30.033333, 31.233334),
-                // Replace with actual location
+                position: LatLng(geoPoint.latitude, geoPoint.latitude),
                 infoWindow: InfoWindow(title: 'Work Location'),
               ),
             },

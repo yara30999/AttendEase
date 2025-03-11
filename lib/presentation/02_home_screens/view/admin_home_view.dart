@@ -21,11 +21,14 @@ class AdminHomeView extends StatelessWidget {
             children: [
               const SearchBar(),
               SizedBox(height: 10),
-              Align( 
-                child: Text(context.tr("YourGroup"), style: Styles.style24Bold()),
+              Align(
+                child: Text(
+                  context.tr("YourGroup"),
+                  style: Styles.style24Bold(),
+                ),
               ),
               SizedBox(height: 10),
-              GroupListView(isAdmin: true,),
+              GroupListView(isAdmin: true),
             ],
           ),
         ),

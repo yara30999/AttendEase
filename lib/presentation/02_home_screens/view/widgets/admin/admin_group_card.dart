@@ -1,42 +1,78 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../../app/functions.dart';
+import '../../../../../domain/entities/group_entity.dart';
+import '../../../../04_group_details_screen/view/widgets/group_password_row.dart';
 import '../../../../resourses/colors_manager.dart';
 import '../../../../resourses/routes_manager.dart';
+import '../../../../resourses/styles_manager.dart';
 import '../group_avatar.dart';
-import 'admin_group_card_details.dart';
-
 
 class AdminGroupCard extends StatelessWidget {
-  final groupName ;
-  final memberNum ;
-  final groupPassword ;
-  const AdminGroupCard({super.key, required this.groupName, required this.memberNum, required this.groupPassword});
+  final GroupEntity groupEntity;
+
+  const AdminGroupCard({super.key, required this.groupEntity});
 
   @override
-  Widget build(BuildContext context) {  
-    return Card(
-      elevation: 4,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: InkWell(
-        onTap:() {Navigator.pushNamed(context, Routes.groupDetailsRoute); } ,
-        borderRadius: BorderRadius.circular(12),
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(
+          context,
+          Routes.groupDetailsRoute,
+          // Passing the groupEntity here
+          arguments: groupEntity,
+        );
+      },
+      child: Card(
+        elevation: 4,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Row(
             children: [
               GroupAvatar(),
               const SizedBox(width: 16),
-              Expanded(child: AdminGroupCardDetails(groupName: groupName, memberNum: memberNum, password: groupPassword,)),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(groupEntity.name, style: Styles.style18Medium()),
+                    Text.rich(
+                      TextSpan(
+                        children: [
+                          TextSpan(
+                            text: context.tr("GroupMembersNum"),
+                            style: Styles.style16Medium(),
+                          ),
+                          TextSpan(
+                            text:
+                                "5", //TODO i will give you a usecase for this... soon. by yara
+                            style: Styles.style16Medium(),
+                          ),
+                        ],
+                      ),
+                    ),
+                    FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: GroupPasswordRow(
+                        passwordTxt: groupEntity.password,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               IconButton(
-          icon: const Icon(Icons.delete, color: ColorsManager.deepRed),
-          onPressed: () {showDeleteGroupConfirmationDialog(context);}, 
-        ),
+                icon: const Icon(Icons.delete, color: ColorsManager.deepRed),
+                onPressed: () {
+                  //delete will be by group-id.
+                  showDeleteGroupConfirmationDialog(context);
+                },
+              ),
             ],
           ),
         ),
       ),
-
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import '../../app/di.dart';
 import '../../app/extensions.dart';
+import '../../domain/entities/group_entity.dart';
 import '../01_auth_screens/view/forgot_password_view.dart';
 import '../01_auth_screens/view/login_view.dart';
 import '../01_auth_screens/view/register_view.dart';
@@ -48,7 +49,8 @@ class RouteGenerator {
       case Routes.createGroupRoute:
         return MaterialPageRoute(builder: (_) => const CreateGroupView());
       case Routes.groupDetailsRoute:
-        return MaterialPageRoute(builder: (_) => const GroupDetailsView());
+        GroupEntity groupEntity = settings.arguments as GroupEntity;
+        return MaterialPageRoute(builder: (_) => GroupDetailsView(groupEntity));
       case Routes.userHistoryRoute:
         return MaterialPageRoute(builder: (_) => const UserHistoryView());
       case Routes.CheckInRoute:

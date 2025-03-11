@@ -1,29 +1,23 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-
+import '../../../../../app/functions.dart';
+import '../../../../../domain/entities/group_entity.dart';
 import '../../../../resourses/styles_manager.dart';
 import '../group_avatar.dart';
-import 'custom_bottom_sheet.dart';
 
 class UserGroupCard extends StatelessWidget {
-  final groupName;
-  final memberNum;
-  const UserGroupCard({
-    super.key,
-    required this.groupName,
-    required this.memberNum,
-  });
+  final GroupEntity groupEntity;
+  const UserGroupCard({super.key, required this.groupEntity});
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 4,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: InkWell(
-        onTap: () {
-          showBottomSheet(context: context, builder: (context) => CustomBottomSheet());
-        },
-        borderRadius: BorderRadius.circular(12),
+    return GestureDetector(
+      onTap: () {
+        showJoinGroupBottomSheet(context, groupEntity);
+      },
+      child: Card(
+        elevation: 4,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Row(
@@ -34,7 +28,7 @@ class UserGroupCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(groupName, style: Styles.style18Medium()),
+                    Text(groupEntity.name, style: Styles.style18Medium()),
                     Text.rich(
                       TextSpan(
                         children: [
@@ -43,7 +37,8 @@ class UserGroupCard extends StatelessWidget {
                             style: Styles.style16Medium(),
                           ),
                           TextSpan(
-                            text: "${memberNum}",
+                            //TODO i will give you a usecase for this... soon. by yara
+                            text: "6",
                             style: Styles.style16Medium(),
                           ),
                         ],

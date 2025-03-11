@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import '../../../app/extensions.dart';
+import '../../../domain/entities/group_entity.dart';
 import '../../02_home_screens/view/widgets/custom_app_bar.dart';
 import '../../02_home_screens/view/widgets/custom_drawer.dart';
 import '../../03_create_group_screen/view/widgets/day_selector.dart';
@@ -10,11 +12,10 @@ import 'widgets/members_list_view.dart';
 import 'widgets/time_row.dart';
 
 class GroupDetailsView extends StatelessWidget {
-  const GroupDetailsView({Key? key}) : super(key: key);
-
+  final GroupEntity groupEntity;
+  const GroupDetailsView(this.groupEntity, {Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final Set<int> _selectedDays = {0, 1, 5};
     return Scaffold(
       appBar: const CustomAppBar(),
       drawer: const CustomDrawer(),
@@ -30,20 +31,23 @@ class GroupDetailsView extends StatelessWidget {
                 style: Styles.style24Bold(),
               ),
             ),
-            Text(
-              // Replace with actual group name
-              'Marketing Team',
-              style: Styles.style24Bold(),
-            ),
+            Text(groupEntity.name, style: Styles.style24Bold()),
             Text(context.tr('Work_Days:'), style: Styles.style16Medium()),
-            DaySelector(selectedDays: _selectedDays),
-            TimeRow(label: context.tr('Check_in_Time:'), time: '09:00 AM'),
-            TimeRow(label: context.tr('Check_out_Time:'), time: '05:00 PM'),
-            GroupPasswordRow(),
+            DaySelector(selectedDays: groupEntity.days?.toSet() ?? {}),
+            TimeRow(
+              label: context.tr('Check_in_Time:'),
+              time: groupEntity.checkIn.toFormattedTime(),
+            ), //'05:00 PM'
+            TimeRow(
+              label: context.tr('Check_out_Time:'),
+              time: groupEntity.checkOut.toFormattedTime(),
+            ), //'05:00 PM'
+            GroupPasswordRow(passwordTxt: groupEntity.password),
             // Location Map
             Text(context.tr('Location'), style: Styles.style20Bold()),
-            const LocationMapCard(),
+            LocationMapCard(groupEntity.location),
             Text(context.tr('Members:'), style: Styles.style20Bold()),
+            //members list view will use group-id from ---> groupEntity.id
             MembersListView(),
           ],
         ),
