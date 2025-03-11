@@ -14,6 +14,7 @@ class CalenderList extends StatelessWidget {
   Widget build(BuildContext context) {
     DateTime today = DateTime.now();
     List<DateTime> weekDates = generateWeekDates();
+    bool isLight = (Theme.of(context).brightness ==  Brightness.light) ;
     return 
         Container(
           height: 70,
@@ -28,8 +29,8 @@ class CalenderList extends StatelessWidget {
               return Card(
                 elevation: 2,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                color: isToday ?  ( Theme.of(context).brightness == Brightness.light?  ColorsManager.emeraldGreen : ColorsManager.mutedRed  ) 
-                               :  ( Theme.of(context).brightness == Brightness.light ? ColorsManager.paleCream:  ColorsManager.grey  ) , // function not working 
+                color: isToday ?  ( isLight ?  ColorsManager.emeraldGreen : ColorsManager.mutedRed  ) 
+                               :  ( isLight ?ColorsManager.paleCream    :ColorsManager.grey  ) , // function not working 
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Center(

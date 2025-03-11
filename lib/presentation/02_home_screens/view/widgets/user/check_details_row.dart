@@ -16,9 +16,8 @@ class CheckDetails extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          //TimeDetailsRow(checkIn: TimeOfDay(hour: 8, minute: 10), checkOut: TimeOfDay(hour: 5, minute: 22), totalHours: 6) ,
-        CheckDetailsCard(label: context.tr('Check-in Time:'), time: chickinTime.format(context) ),
-        CheckDetailsCard(label: context.tr('Check-out Time:'), time: checkoutTime.format(context) ),
+        CheckDetailsCard(label: context.tr('Check_in_Time:'), time: chickinTime.format(context) ),
+        CheckDetailsCard(label: context.tr('Check_out_Time:'), time: checkoutTime.format(context) ),
         CheckDetailsCard(label: context.tr('total'), time: '$totalTime ${context.tr('hours') }' ),
       ],),
     );
