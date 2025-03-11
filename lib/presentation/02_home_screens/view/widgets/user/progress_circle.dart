@@ -9,9 +9,8 @@ class ProgressCircle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    Color primary = isDarkMode ? ColorsManager.grey : ColorsManager.paleCream;
-    Color secondery = isDarkMode ? ColorsManager.deepRed : ColorsManager.emeraldGreen;
+    Color primary   =  Theme.of(context).brightness == Brightness.light ?ColorsManager.paleCream    :ColorsManager.grey ;
+    Color secondery =  Theme.of(context).brightness == Brightness.light ?ColorsManager.emeraldGreen :ColorsManager.deepRed ;
     return  SizedBox(
                 width: 200,
                 height: 200,

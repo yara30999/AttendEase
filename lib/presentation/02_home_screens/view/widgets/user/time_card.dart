@@ -9,13 +9,12 @@ class TimeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Container(
       margin: EdgeInsets.all(10),
       height: 100,
       child: Card(
         elevation: 4,
-        color: isDarkMode ?  ColorsManager.grey: ColorsManager.paleCream,
+        color: Theme.of(context).brightness == Brightness.light ?  ColorsManager.paleCream : ColorsManager.grey ,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           child: 
           Padding(
@@ -25,8 +24,7 @@ class TimeCard extends StatelessWidget {
               children: [
                 Icon(Icons.watch_later,
                 size: 50, 
-                //color: isLightTheme(context) ? ColorsManager.emeraldGreen : ColorsManager.mutedRed,), //function not working
-                color: isDarkMode ?  ColorsManager.mutedRed : ColorsManager.emeraldGreen ,),
+                color: Theme.of(context).brightness == Brightness.light ? ColorsManager.emeraldGreen : ColorsManager.mutedRed,), //function not working
                 SizedBox(width: 10,),
                 Text( DateFormat('hh : mm a').format(DateTime.now()) , style: Styles.style24Bold(),),
               ],

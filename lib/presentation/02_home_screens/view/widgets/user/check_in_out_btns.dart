@@ -7,16 +7,14 @@ import '../../../../resourses/colors_manager.dart';
 import '../../../../resourses/styles_manager.dart';
 
 class CheckInOutBtns extends StatelessWidget {
-  final bool isCheckedIn = true;
+  final bool isCheckedIn = false;
   final bool isCheckedOut = false;
   const CheckInOutBtns({super.key});
 
   @override
   Widget build(BuildContext context) {
-       final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    Color primary = isDarkMode ? ColorsManager.grey : ColorsManager.paleCream;
-    Color secondery =
-        isDarkMode ? ColorsManager.deepRed : ColorsManager.emeraldGreen;
+    Color primary   =  Theme.of(context).brightness == Brightness.light ?ColorsManager.paleCream    :ColorsManager.grey ;
+    Color secondery =  Theme.of(context).brightness == Brightness.light ?ColorsManager.emeraldGreen :ColorsManager.deepRed ;
     return Container(
                 width: 180,
                 height: 180,

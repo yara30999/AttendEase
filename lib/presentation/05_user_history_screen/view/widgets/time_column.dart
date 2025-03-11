@@ -22,13 +22,13 @@ class TimeColumn extends StatelessWidget {
             style: Styles.style12Medium().copyWith(
               color:
                   Theme.of(context).brightness == Brightness.light
-                      ? ColorsManager.deepRed
-                      : ColorsManager.darkTeal,
+                      ? ColorsManager.darkTeal 
+                      : ColorsManager.deepRed,
             ),
-            overflow: TextOverflow.ellipsis,
+            overflow: TextOverflow.visible, // change ellipsis to visible doesn't affect history screen but needed in attendes screen  remove comment after read 
           ),
         ),
-        const SizedBox(height: 4),
+        const SizedBox(height: 4), 
         Text(
           time,
           style: Styles.style12Medium().copyWith(
