@@ -15,6 +15,7 @@ abstract class RemoteDataSource {
   Future<void> logout();
   Future<void> createGroup(CreateGroupRequest createGroupRequest);
   Stream<List<GroupResponse>> getGroups();
+  Stream<String?> getCurrentUserGroupId();
   Future<GroupResponse> getGroupInfo(String groupId);
   Future<List<UserResponse>> getGroupMembers(String groupId);
   Future<List<HistoryResponse>> getUserHistory(String userId);
@@ -109,6 +110,17 @@ class RemoteDataSourceImpl implements RemoteDataSource {
               )
               .toList();
         });
+  }
+
+  @override
+  Stream<String?> getCurrentUserGroupId() {
+    String currentUserId = _firebaseAuth.currentUser?.uid ?? "";
+    return users.doc(currentUserId).snapshots().map((
+      DocumentSnapshot snapshot,
+    ) {
+      final data = snapshot.data() as Map<String, dynamic>?;
+      return data?['groupId'] as String?;
+    });
   }
 
   @override

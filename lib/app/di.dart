@@ -8,6 +8,7 @@ import '../data/network/network_info.dart';
 import '../data/repository/repository_impl.dart';
 import '../domain/repository/repository.dart';
 import '../domain/usecase/create_group_usecase.dart';
+import '../domain/usecase/current_user_group_id_stream.dart';
 import '../domain/usecase/delete_group_usecase.dart';
 import '../domain/usecase/delete_user_from_group_usecase.dart';
 import '../domain/usecase/forgot_password_usecase.dart';
@@ -86,6 +87,12 @@ Future<void> initAppModule() async {
   if (!GetIt.I.isRegistered<GroupsStreamUsecase>()) {
     instance.registerFactory<GroupsStreamUsecase>(
       () => GroupsStreamUsecase(instance()),
+    );
+  }
+  // current user group-id stream usecase
+  if (!GetIt.I.isRegistered<CurrentUserGroupIdStream>()) {
+    instance.registerFactory<CurrentUserGroupIdStream>(
+      () => CurrentUserGroupIdStream(instance()),
     );
   }
   // get group info usecase

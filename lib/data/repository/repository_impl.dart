@@ -131,6 +131,11 @@ class RepositoryImpl implements Repository {
   }
 
   @override
+  Stream<String?> getCurrentUserGroupId() {
+    return _remoteDataSource.getCurrentUserGroupId();
+  }
+
+  @override
   Future<Either<Failure, GroupEntity>> getGroupInfo(String groupId) async {
     if (await _networkInfo.isConnected) {
       try {
