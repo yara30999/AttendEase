@@ -13,9 +13,6 @@ class PermissionDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    final Color primaryColor =
-        isDarkMode ? ColorsManager.darkTeal : ColorsManager.deepRed;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -24,9 +21,12 @@ class PermissionDetails extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              type.name, // Using the extension
+              type.string, // Using the extension
               style: Styles.style16Medium().copyWith(
-                color: primaryColor,
+                color:
+                    Theme.of(context).brightness == Brightness.light
+                        ? ColorsManager.deepRed
+                        : ColorsManager.darkTeal,
                 fontWeight: FontWeight.bold,
               ),
             ),

@@ -4,20 +4,18 @@ import '../../../resourses/colors_manager.dart';
 
 class CustomTabBar extends StatelessWidget {
   final TabController tabController;
-  final bool isDarkMode;
 
-  const CustomTabBar({
-    Key? key,
-    required this.tabController,
-    required this.isDarkMode,
-  }) : super(key: key);
+  const CustomTabBar({Key? key, required this.tabController}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 2, vertical: 6),
       decoration: BoxDecoration(
-        color: isDarkMode ? ColorsManager.grey : ColorsManager.creamyBeige,
+        color:
+            Theme.of(context).brightness == Brightness.light
+                ? ColorsManager.creamyBeige
+                : ColorsManager.grey,
         borderRadius: BorderRadius.circular(25),
       ),
       child: TabBar(

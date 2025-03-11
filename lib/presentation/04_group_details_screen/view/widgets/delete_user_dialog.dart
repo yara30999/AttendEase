@@ -9,8 +9,8 @@ class DeleteUserDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(context.tr('Confirm Delete')),
-      content: Text(context.tr('Are you sure you want to remove this member?')),
+      title: Text(context.tr('confirm_delete')),
+      content: Text(context.tr('remove_this_member?')),
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),

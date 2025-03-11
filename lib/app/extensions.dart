@@ -24,6 +24,7 @@ enum Role { admin, user }
 
 extension RoleExtension on Role {
   String get name {
+    //for firebase constants....
     switch (this) {
       case Role.admin:
         return AppConstants.admin;
@@ -59,6 +60,25 @@ extension NonNullString on String? {
       return this!;
     }
   }
+
+  PermissionType getPermissionType() {
+    if (this == null) {
+      return PermissionType.sickLeave;
+    } else {
+      switch (this) {
+        case AppConstants.sickLeave:
+          return PermissionType.sickLeave;
+        case AppConstants.emergencyLeave:
+          return PermissionType.emergencyLeave;
+        case AppConstants.vacationLeave:
+          return PermissionType.vacationLeave;
+        case AppConstants.workFromHome:
+          return PermissionType.workFromHome;
+        default:
+          return PermissionType.sickLeave;
+      }
+    }
+  }
 }
 
 extension NonNullInteger on int? {
@@ -71,10 +91,31 @@ extension NonNullInteger on int? {
   }
 }
 
+extension TimeOfDayExtensions on TimeOfDay {
+  DateTime toDateTime({DateTime? baseDate}) {
+    final now = baseDate ?? DateTime.now();
+    return DateTime(now.year, now.month, now.day, hour, minute);
+  }
+}
+
 enum PermissionType { sickLeave, emergencyLeave, vacationLeave, workFromHome }
 
 extension PermissionTypeExtension on PermissionType {
   String get name {
+    //for firebase constants....
+    switch (this) {
+      case PermissionType.sickLeave:
+        return AppConstants.sickLeave;
+      case PermissionType.emergencyLeave:
+        return AppConstants.emergencyLeave;
+      case PermissionType.vacationLeave:
+        return AppConstants.vacationLeave;
+      case PermissionType.workFromHome:
+        return AppConstants.workFromHome;
+    }
+  }
+
+  String get string {
     switch (this) {
       case PermissionType.sickLeave:
         return 'Sick Leave'.tr();

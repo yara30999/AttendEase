@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../resourses/colors_manager.dart';
 
-class VerticalDivider extends StatelessWidget {
-  const VerticalDivider({Key? key}) : super(key: key);
+class ColumnDivider extends StatelessWidget {
+  const ColumnDivider({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

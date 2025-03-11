@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'time_column.dart';
+import 'column_divider.dart';
 
 class TimeDetailsRow extends StatelessWidget {
   final TimeOfDay checkIn;
@@ -25,7 +26,7 @@ class TimeDetailsRow extends StatelessWidget {
             time: checkIn.format(context),
           ),
         ),
-        const VerticalDivider(),
+        const ColumnDivider(),
         Expanded(
           flex: 3,
           child: TimeColumn(
@@ -33,7 +34,7 @@ class TimeDetailsRow extends StatelessWidget {
             time: checkOut.format(context),
           ),
         ),
-        const VerticalDivider(),
+        const ColumnDivider(),
         Expanded(
           flex: 2,
           child: TimeColumn(

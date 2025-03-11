@@ -14,7 +14,11 @@ class LogoutButtonBlocConsumer extends StatelessWidget {
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is LogoutSuccess) {
-          Navigator.pushReplacementNamed(context, Routes.loginRoute);
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            Routes.loginRoute,
+            (route) => false, // to remove all previous routes
+          );
         } else if (state is LogoutError) {
           showToast(state.errMessage, ColorsManager.softRed);
         }

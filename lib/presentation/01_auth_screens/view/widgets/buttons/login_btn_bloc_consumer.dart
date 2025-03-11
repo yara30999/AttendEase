@@ -20,9 +20,17 @@ class LoginButton extends StatelessWidget {
       listener: (context, state) {
         if (state is LoginSuccess) {
           if (state.authObj.role == Role.admin.name) {
-            Navigator.of(context).pushReplacementNamed(Routes.adminHomeRoute);
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              Routes.adminHomeRoute,
+              (route) => false, // to remove all previous routes
+            );
           } else {
-            Navigator.of(context).pushReplacementNamed(Routes.userHomeRoute);
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              Routes.userHomeRoute,
+              (route) => false, // to remove all previous routes
+            );
           }
         }
         if (state is LoginError) {

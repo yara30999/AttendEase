@@ -24,7 +24,7 @@ class GroupPasswordRow extends StatelessWidget {
           child: const Icon(Icons.copy, size: 18),
           onTap: () {
             Clipboard.setData(const ClipboardData(text: 'XZ1235')).then((_) {
-              showToast(context.tr('Password Copied'), ColorsManager.black);
+              showToast(context.tr('password_copied'), ColorsManager.black);
             });
           },
         ),

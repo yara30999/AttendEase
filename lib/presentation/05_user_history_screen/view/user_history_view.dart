@@ -30,13 +30,12 @@ class _UserHistoryViewState extends State<UserHistoryView>
 
   @override
   Widget build(BuildContext context) {
-    final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       appBar: const CustomAppBar(),
       drawer: const CustomDrawer(),
       body: Column(
         children: [
-          CustomTabBar(tabController: _tabController, isDarkMode: isDarkMode),
+          CustomTabBar(tabController: _tabController),
           Expanded(
             child: TabBarView(
               controller: _tabController,
