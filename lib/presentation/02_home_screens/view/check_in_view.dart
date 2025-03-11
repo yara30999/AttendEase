@@ -1,6 +1,4 @@
-
 import 'package:flutter/material.dart';
-
 import 'widgets/custom_app_bar.dart';
 import 'widgets/custom_drawer.dart';
 import 'widgets/user/calender.dart';
@@ -16,11 +14,10 @@ class CheckInView extends StatefulWidget {
 }
 
 class _CheckInViewState extends State<CheckInView> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: const CustomAppBar(),
+      appBar: const CustomAppBar(),
       drawer: const CustomDrawer(),
       body: SingleChildScrollView(
         child: Padding(
@@ -28,17 +25,24 @@ class _CheckInViewState extends State<CheckInView> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-             Calender(), // date 
-             TimeCard(), // time 
-          
-              StatusButtons(workHours: 9 /* Replace the group work hours */,),// state menu 
-          
+              Calender(), // date
+              TimeCard(), // time
+              StatusButtons(
+                workHours: 9 /* Replace the group work hours */,
+              ), // state menu
               // time row
-             CheckDetails( //
-              chickinTime: TimeOfDay(hour: 9, minute: 0),  // replace with actual time 
-              checkoutTime: TimeOfDay(hour: 15, minute: 0), // replace with actual time 
-              totalTime: 9,)  //replace with actual time 
-             
+              CheckDetails(
+                //
+                chickinTime: TimeOfDay(
+                  hour: 9,
+                  minute: 0,
+                ), // replace with actual time
+                checkoutTime: TimeOfDay(
+                  hour: 15,
+                  minute: 0,
+                ), // replace with actual time
+                totalTime: 9,
+              ), //replace with actual time
               // permission options
             ],
           ),

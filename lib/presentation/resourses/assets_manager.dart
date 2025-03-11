@@ -22,4 +22,5 @@ class SvgAssets {
   static const String checkIn = '$svgPath/check_in.svg';
   static const String checkOut = '$svgPath/check_out.svg';
   static const String havePermission = '$svgPath/have_permission.svg';
+  static const String search = '$svgPath/search.svg';
 }
