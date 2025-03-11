@@ -4,8 +4,8 @@ import 'time_column.dart';
 import 'column_divider.dart';
 
 class TimeDetailsRow extends StatelessWidget {
-  final TimeOfDay checkIn;
-  final TimeOfDay checkOut;
+  final TimeOfDay? checkIn;
+  final TimeOfDay? checkOut;
   final int totalHours;
 
   const TimeDetailsRow({
@@ -23,7 +23,7 @@ class TimeDetailsRow extends StatelessWidget {
           flex: 3,
           child: TimeColumn(
             label: context.tr('Check-in'),
-            time: checkIn.format(context),
+            time: checkIn?.format(context) ?? "",
           ),
         ),
         const ColumnDivider(),
@@ -31,7 +31,7 @@ class TimeDetailsRow extends StatelessWidget {
           flex: 3,
           child: TimeColumn(
             label: context.tr('Check-out'),
-            time: checkOut.format(context),
+            time: checkOut?.format(context) ?? "",
           ),
         ),
         const ColumnDivider(),

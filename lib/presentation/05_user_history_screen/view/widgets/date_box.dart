@@ -4,7 +4,7 @@ import '../../../resourses/colors_manager.dart';
 import '../../../resourses/styles_manager.dart';
 
 class DateBox extends StatelessWidget {
-  final DateTime date;
+  final DateTime? date;
 
   const DateBox({Key? key, required this.date}) : super(key: key);
 
@@ -20,13 +20,13 @@ class DateBox extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            DateFormat('dd').format(date),
+            date != null ? DateFormat('dd').format(date!) : "",
             style: Styles.style24Bold().copyWith(
               color: Theme.of(context).primaryColor,
             ),
           ),
           Text(
-            DateFormat('EEE').format(date).toUpperCase(),
+            date != null ? DateFormat('dd').format(date!) : "",
             style: Styles.style14Medium().copyWith(
               color: Theme.of(context).primaryColor,
               fontWeight: FontWeight.bold,

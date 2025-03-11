@@ -1,9 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../02_home_screens/view/widgets/custom_app_bar.dart';
 import '../../02_home_screens/view/widgets/custom_drawer.dart';
 import '../../03_create_group_screen/view/widgets/day_selector.dart';
 import '../../resourses/styles_manager.dart';
+import '../view_model/group_details_bloc/group_details_bloc.dart';
 import 'widgets/group_password_row.dart';
 import 'widgets/location_map_card.dart';
 import 'widgets/members_list_view.dart';
@@ -14,7 +16,6 @@ class GroupDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Set<int> _selectedDays = {0, 1, 5};
     return Scaffold(
       appBar: const CustomAppBar(),
       drawer: const CustomDrawer(),
@@ -31,12 +32,11 @@ class GroupDetailsView extends StatelessWidget {
               ),
             ),
             Text(
-              // Replace with actual group name
-              'Marketing Team',
+              context.watch<GroupDetailsBloc>().groupInfo?.name ?? "",
               style: Styles.style24Bold(),
             ),
             Text(context.tr('Work_Days:'), style: Styles.style16Medium()),
-            DaySelector(selectedDays: _selectedDays),
+            DaySelector(selectedDays: getWorkDays(context)),
             TimeRow(label: context.tr('Check_in_Time:'), time: '09:00 AM'),
             TimeRow(label: context.tr('Check_out_Time:'), time: '05:00 PM'),
             GroupPasswordRow(),
@@ -50,4 +50,8 @@ class GroupDetailsView extends StatelessWidget {
       ),
     );
   }
+}
+
+Set<int> getWorkDays(BuildContext context) {
+  return context.watch<GroupDetailsBloc>().groupInfo?.days?.toSet() ?? Set<int>();
 }

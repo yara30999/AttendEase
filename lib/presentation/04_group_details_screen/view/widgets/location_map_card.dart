@@ -1,5 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import '../../view_model/group_details_bloc/group_details_bloc.dart';
 
 class LocationMapCard extends StatelessWidget {
   const LocationMapCard({Key? key}) : super(key: key);
@@ -16,8 +20,7 @@ class LocationMapCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           child: GoogleMap(
             initialCameraPosition: CameraPosition(
-              target: LatLng(30.033333, 31.233334),
-              // Replace with actual location
+              target: getLocation(context),
               zoom: 15,
             ),
             myLocationEnabled: true,
@@ -26,8 +29,7 @@ class LocationMapCard extends StatelessWidget {
             markers: {
               Marker(
                 markerId: MarkerId('workLocation'),
-                position: LatLng(30.033333, 31.233334),
-                // Replace with actual location
+                position: getLocation(context),
                 infoWindow: InfoWindow(title: 'Work Location'),
               ),
             },
@@ -36,4 +38,10 @@ class LocationMapCard extends StatelessWidget {
       ),
     );
   }
+}
+
+LatLng getLocation(BuildContext context) {
+    final _geoLocation = context.watch<GroupDetailsBloc>().groupInfo?.location ?? GeoPoint(0, 0);
+    final _latLngLocation = LatLng(_geoLocation.latitude, _geoLocation.longitude);
+    return _latLngLocation;
 }

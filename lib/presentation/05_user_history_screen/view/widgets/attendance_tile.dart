@@ -3,9 +3,9 @@ import 'date_box.dart';
 import 'time_datails_row.dart';
 
 class AttendanceTile extends StatelessWidget {
-  final DateTime date;
-  final TimeOfDay checkIn;
-  final TimeOfDay checkOut;
+  final DateTime? date;
+  final TimeOfDay? checkIn;
+  final TimeOfDay? checkOut;
   final int totalHours;
 
   const AttendanceTile({
