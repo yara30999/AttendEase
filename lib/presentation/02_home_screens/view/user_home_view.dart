@@ -20,26 +20,32 @@ class UserHomeView extends StatelessWidget {
       drawer: CustomDrawer(),
       body: BlocProvider(
         create: (context) => HomeCubit(instance()),
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
-              spacing: 10,
-              children: [
-                Align(
-                  alignment:
-                      LocalizationUtils.isCurrentLocalAr(context)
-                          ? Alignment.centerRight
-                          : Alignment.centerLeft,
-                  child: Text(
-                    context.tr("JoinGroup"),
-                    style: Styles.style24Bold(),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+          child: Column(
+            spacing: 20,
+            children: [
+              // Fixed Header (Title + Search Field)
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Align(
+                    alignment:
+                        LocalizationUtils.isCurrentLocalAr(context)
+                            ? Alignment.centerRight
+                            : Alignment.centerLeft,
+                    child: Text(
+                      context.tr("JoinGroup"),
+                      style: Styles.style24Bold(),
+                    ),
                   ),
-                ),
-                GroupSearchField(),
-                GroupBlocBuilder(isAdmin: false),
-              ],
-            ),
+                  const SizedBox(height: 10),
+                  GroupSearchField(),
+                ],
+              ),
+              // Scrollable Content
+              Expanded(child: GroupBlocBuilder(isAdmin: false)),
+            ],
           ),
         ),
       ),
