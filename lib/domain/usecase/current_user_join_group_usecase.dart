@@ -8,6 +8,7 @@ class CurrentUserJoinGroupUsecase implements BaseUseCase<String, bool> {
 
   CurrentUserJoinGroupUsecase(this._repository);
 
+  // input is the group id
   @override
   Future<Either<Failure, bool>> execute([String? input]) async {
     return await _repository.currentUserjoinGroup(input!);

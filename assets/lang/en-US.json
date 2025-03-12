@@ -131,5 +131,9 @@
   "failed_to_load_groups": "Failed to load groups list: {}",
   "no_groups": "No groups found.",
   "group_deleted_successfully": "Group deleted successfully!",
-  "something_went_wrong": "Something went wrong, try again later."
+  "something_went_wrong": "Something went wrong, try again later.",
+
+  "joined_group_successfully": "You have successfully joined the group!",
+  "incorrect_password": "Incorrect password. Please try again."
+
 }

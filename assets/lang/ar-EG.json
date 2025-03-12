@@ -131,5 +131,8 @@
   "failed_to_load_groups": "فشل تحميل قائمة المجموعات: {}",
   "no_groups": "لا يوجد مجموعات.",
   "group_deleted_successfully": "تم حذف المجموعة بنجاح !",
-  "something_went_wrong": "حدث خطأ ما، أعد المحاولة لاحقا."
+  "something_went_wrong": "حدث خطأ ما، أعد المحاولة لاحقا.",
+
+  "joined_group_successfully": "تم الانضمام الي المجموعة بنجاح",
+  "incorrect_password": "خطأ بكلمة مرور المجموعة اعد المحاولة !"
 }

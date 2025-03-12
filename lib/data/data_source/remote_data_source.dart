@@ -275,7 +275,21 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   @override
   Future<void> currentUserjoinGroup(String groupId) async {
     String currentUserId = _firebaseAuth.currentUser?.uid ?? "";
-    //update doc
-    await users.doc(currentUserId).update({'groupId': groupId});
+    if (currentUserId.isEmpty) {
+      throw Exception("User is not authenticated.");
+    }
+
+    // Check if the user document exists
+    final userDoc = await users.doc(currentUserId).get();
+    if (!userDoc.exists) {
+      // Create the user document if it doesn't exist
+      await users.doc(currentUserId).set({
+        'groupId': groupId,
+        // Add other default fields if needed
+      });
+    } else {
+      // Update the existing user document
+      await users.doc(currentUserId).update({'groupId': groupId});
+    }
   }
 }
