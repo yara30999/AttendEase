@@ -6,7 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../resourses/assets_manager.dart';
 import '../../../resourses/colors_manager.dart';
 import '../../../resourses/styles_manager.dart';
-import '../../view_model/cubit/home_cubit.dart';
+import '../../view_model/home_cubit/home_cubit.dart';
 
 class GroupSearchField extends StatefulWidget {
   const GroupSearchField({super.key});

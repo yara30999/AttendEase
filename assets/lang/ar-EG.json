@@ -124,8 +124,12 @@
   "this_is_your_location": "هذا هو موقعك.",
   "picked_place": "المكان المحدد.",
   "you_picked_this_location": "لقد اخترت هذا الموقع.",
+  "work_place": "مكان العمل.",
+  "this_is_your_work_location": "هذا هو موقع العمل.",
   "tap_on_location_to_select": "اضغط على الموقع لتحديده",
   "search_for_group": "إبحث عن مجموعة",
   "failed_to_load_groups": "فشل تحميل قائمة المجموعات: {}",
-  "no_groups": "لا يوجد مجموعات."
+  "no_groups": "لا يوجد مجموعات.",
+  "group_deleted_successfully": "تم حذف المجموعة بنجاح !",
+  "something_went_wrong": "حدث خطأ ما، أعد المحاولة لاحقا."
 }

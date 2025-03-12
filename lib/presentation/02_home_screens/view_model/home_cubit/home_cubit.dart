@@ -6,10 +6,10 @@ import '../../../../domain/usecase/groups_stream_usecase.dart';
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  final GroupsStreamUsecase groupsStreamUsecase;
+  final GroupsStreamUsecase _groupsStreamUsecase;
   String _searchQuery = '';
 
-  HomeCubit(this.groupsStreamUsecase) : super(HomeInitial()) {
+  HomeCubit(this._groupsStreamUsecase) : super(HomeInitial()) {
     _loadGroups();
   }
 
@@ -20,7 +20,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   void _loadGroups() {
     emit(HomeLoading());
-    groupsStreamUsecase.execute().listen(
+    _groupsStreamUsecase.execute().listen(
       (groups) {
         final filteredGroups =
             groups.where((group) {

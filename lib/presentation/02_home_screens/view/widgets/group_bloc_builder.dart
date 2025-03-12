@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../resourses/colors_manager.dart';
-import '../../view_model/cubit/home_cubit.dart';
+import '../../view_model/home_cubit/home_cubit.dart';
 import 'group_list_view.dart';
 import 'state_widgets/empty_state_widget.dart';
 import 'state_widgets/error_state_widget.dart';

@@ -2,15 +2,22 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../resourses/colors_manager.dart';
+import '../../../view_model/delete_group_cubit/delete_group_cubit.dart';
 
 class DeleteGroupDialog extends StatelessWidget {
-  const DeleteGroupDialog({super.key});
+  final DeleteGroupCubit deleteGroupCubit;
+  final String groupId;
+  const DeleteGroupDialog({
+    super.key,
+    required this.deleteGroupCubit,
+    required this.groupId,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return  AlertDialog(
+    return AlertDialog(
       title: Text(context.tr('Confirm Delete')),
-      content: Text(context.tr('DeleteMsg')), 
+      content: Text(context.tr('DeleteMsg')),
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
@@ -18,7 +25,7 @@ class DeleteGroupDialog extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
-            // TODO: Implement delete logic
+            deleteGroupCubit.deleteGroup(groupId);
             Navigator.pop(context);
           },
           child: Text(

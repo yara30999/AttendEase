@@ -1,11 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../app/functions.dart';
 import '../../../../../domain/entities/group_entity.dart';
 import '../../../../04_group_details_screen/view/widgets/group_password_row.dart';
 import '../../../../resourses/colors_manager.dart';
 import '../../../../resourses/routes_manager.dart';
 import '../../../../resourses/styles_manager.dart';
+import '../../../view_model/delete_group_cubit/delete_group_cubit.dart';
 import '../group_avatar.dart';
 
 class AdminGroupCard extends StatelessWidget {
@@ -66,7 +68,12 @@ class AdminGroupCard extends StatelessWidget {
                 icon: const Icon(Icons.delete, color: ColorsManager.deepRed),
                 onPressed: () {
                   //delete will be by group-id.
-                  showDeleteGroupConfirmationDialog(context);
+                  final deleteCubit = context.read<DeleteGroupCubit>();
+                  showDeleteGroupConfirmationDialog(
+                    context,
+                    groupEntity.id,
+                    deleteCubit,
+                  );
                 },
               ),
             ],

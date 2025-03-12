@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../app/di.dart';
 import '../../resourses/language_manager.dart';
 import '../../resourses/styles_manager.dart';
-import '../view_model/cubit/home_cubit.dart';
+import '../view_model/home_cubit/home_cubit.dart';
 import 'widgets/custom_app_bar.dart';
 import 'widgets/custom_drawer.dart';
 import 'widgets/group_bloc_builder.dart';
