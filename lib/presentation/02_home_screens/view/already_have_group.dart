@@ -15,8 +15,8 @@ class AlreadyHaveGroup extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Calender(), // date
             TimeCard(), // time
+            Calender(), // date
             StatusButtons(
               workHours: 9 /* Replace the group work hours */,
             ), // state menu
