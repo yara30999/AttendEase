@@ -1,41 +1,9 @@
-import 'dart:async';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import '../../../../resourses/colors_manager.dart';
-import '../../../../resourses/styles_manager.dart';
+import '../time/live_hour_time.dart';
 
-class TimeCard extends StatefulWidget {
+class TimeCard extends StatelessWidget {
   const TimeCard({super.key});
-
-  @override
-  TimeCardState createState() => TimeCardState();
-}
-
-class TimeCardState extends State<TimeCard> {
-  late Timer _timer;
-  late DateTime _currentTime;
-
-  @override
-  void initState() {
-    super.initState();
-    _currentTime = DateTime.now();
-    _startTimer();
-  }
-
-  void _startTimer() {
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      setState(() {
-        _currentTime = DateTime.now();
-      });
-    });
-  }
-
-  @override
-  void dispose() {
-    _timer.cancel();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,10 +31,7 @@ class TimeCardState extends State<TimeCard> {
                         : ColorsManager.mutedRed,
               ),
               SizedBox(width: 10),
-              Text(
-                DateFormat('hh : mm a').format(_currentTime.toLocal()),
-                style: Styles.style24Bold(),
-              ),
+              LiveHourTime(),
             ],
           ),
         ),
