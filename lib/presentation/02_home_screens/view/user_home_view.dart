@@ -1,53 +1,48 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../app/di.dart';
-import '../../resourses/language_manager.dart';
-import '../../resourses/styles_manager.dart';
-import '../view_model/home_cubit/home_cubit.dart';
+import '../../../domain/usecase/current_user_group_id_stream.dart';
+import '../../resourses/colors_manager.dart';
+import 'already_have_group.dart';
+import 'choose_group.dart';
 import 'widgets/custom_app_bar.dart';
 import 'widgets/custom_drawer.dart';
-import 'widgets/group_bloc_builder.dart';
-import 'widgets/group_search_field.dart';
+import 'widgets/state_widgets/error_state_widget.dart';
 
 class UserHomeView extends StatelessWidget {
   const UserHomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final CurrentUserGroupIdStream currentUserGroupIdStream = instance();
     return Scaffold(
       appBar: CustomAppBar(),
       drawer: CustomDrawer(),
-      body: BlocProvider(
-        create: (context) => HomeCubit(instance()),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-          child: Column(
-            spacing: 20,
-            children: [
-              // Fixed Header (Title + Search Field)
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Align(
-                    alignment:
-                        LocalizationUtils.isCurrentLocalAr(context)
-                            ? Alignment.centerRight
-                            : Alignment.centerLeft,
-                    child: Text(
-                      context.tr("JoinGroup"),
-                      style: Styles.style24Bold(),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  GroupSearchField(),
-                ],
+      body: StreamBuilder<String?>(
+        stream: currentUserGroupIdStream.execute(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: CircularProgressIndicator(
+                color: ColorsManager.grey,
+                strokeAlign: CircularProgressIndicator.strokeAlignInside,
               ),
-              // Scrollable Content
-              Expanded(child: GroupBlocBuilder(isAdmin: false)),
-            ],
-          ),
-        ),
+            );
+          }
+          if (snapshot.hasError) {
+            return ErrorStateWidget(
+              width: MediaQuery.sizeOf(context).width * 0.3,
+              errorText: context.tr('something_went_wrong'),
+            );
+          }
+          if (snapshot.hasData) {
+            debugPrint('User groupId: ${snapshot.data}');
+            return AlreadyHaveGroup();
+          } else {
+            debugPrint('No data available');
+            return ChooseGroup();
+          }
+        },
       ),
     );
   }

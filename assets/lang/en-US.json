@@ -111,7 +111,7 @@
   "DeleteMsg": "Are you sure you want to delete this group?",
   "JoinGroup": "Join only one group:",
   "JoinGroupBtn": "Join",
-  "EnterGroupPass": "Enter Group Password : ",
+  "EnterGroupPass": "Group Password",
   "CheckIn": "Check-In",
   "CheckOut": "Check-Out",
   "HavePermission": "Have Permission",
@@ -131,5 +131,7 @@
   "failed_to_load_groups": "Failed to load groups list: {}",
   "no_groups": "No groups found.",
   "group_deleted_successfully": "Group deleted successfully!",
-  "something_went_wrong": "Something went wrong, try again later."
+  "something_went_wrong": "Something went wrong, try again later.",
+  "group_joined_successfully": "Group joined successfully",
+  "Wrong_password": "The password you've just typed in is not correct."
 }

@@ -21,10 +21,7 @@ class ErrorStateWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Lottie.asset(JsonAssets.error, fit: BoxFit.contain, width: width),
-          Text(
-            errorText,
-            style: Styles.style20Bold(),
-          ),
+          Text(errorText, style: Styles.style20Bold()),
         ],
       ),
     );

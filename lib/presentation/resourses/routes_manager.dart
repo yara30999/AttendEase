@@ -7,7 +7,6 @@ import '../01_auth_screens/view/forgot_password_view.dart';
 import '../01_auth_screens/view/login_view.dart';
 import '../01_auth_screens/view/register_view.dart';
 import '../02_home_screens/view/admin_home_view.dart';
-import '../02_home_screens/view/check_in_view.dart';
 import '../02_home_screens/view/user_home_view.dart';
 import '../../app/app_prefs.dart';
 import '../03_create_group_screen/view/create_group_view.dart';
@@ -25,7 +24,6 @@ class Routes {
   static const String createGroupRoute = "/create_group_route";
   static const String groupDetailsRoute = "/group_details_route";
   static const String userHistoryRoute = "/user_history_route";
-  static const String CheckInRoute = "/check_in_route";
   static const String pickLocationRoute = "/pick_location_route";
 }
 
@@ -53,8 +51,6 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => GroupDetailsView(groupEntity));
       case Routes.userHistoryRoute:
         return MaterialPageRoute(builder: (_) => const UserHistoryView());
-      case Routes.CheckInRoute:
-        return MaterialPageRoute(builder: (_) => const CheckInView());
       case Routes.pickLocationRoute:
         CreateGroupBloc createGroupBloc = settings.arguments as CreateGroupBloc;
         return MaterialPageRoute(
