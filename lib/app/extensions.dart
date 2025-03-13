@@ -180,27 +180,27 @@ extension PermissionTypeExtension on PermissionType {
   }
 }
 
-enum Status { checkIn, checkOut, havePermission }
+enum CheckStatus { checkIn, checkOut, havePermission }
 
-extension StatusExtension on Status {
-  String get name {
+extension StatusExtension on CheckStatus {
+  String get string {
     switch (this) {
-      case Status.checkIn:
+      case CheckStatus.checkIn:
         return 'CheckIn'.tr();
-      case Status.checkOut:
+      case CheckStatus.checkOut:
         return 'CheckOut'.tr();
-      case Status.havePermission:
+      case CheckStatus.havePermission:
         return 'HavePermission'.tr();
     }
   }
 
   String get svg {
     switch (this) {
-      case Status.checkIn:
+      case CheckStatus.checkIn:
         return SvgAssets.checkIn;
-      case Status.checkOut:
+      case CheckStatus.checkOut:
         return SvgAssets.checkOut;
-      case Status.havePermission:
+      case CheckStatus.havePermission:
         return SvgAssets.havePermission;
     }
   }

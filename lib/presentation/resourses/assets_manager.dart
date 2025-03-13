@@ -23,4 +23,7 @@ class SvgAssets {
   static const String checkOut = '$svgPath/check_out.svg';
   static const String havePermission = '$svgPath/have_permission.svg';
   static const String search = '$svgPath/search.svg';
+  static const String checkInHour = '$svgPath/checkin.svg';
+  static const String checkOutHour = '$svgPath/checkout.svg';
+  static const String totalHour = '$svgPath/total.svg';
 }

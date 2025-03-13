@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'widgets/time/live_date_time.dart';
-import 'widgets/user/check_details_row.dart';
-import 'widgets/user/statues_buttons.dart';
+import 'widgets/user/group_check_details_row.dart';
+import 'widgets/user/permission_btn.dart';
+import 'widgets/user/check_in_out_button.dart';
 import 'widgets/user/time_card.dart';
 
 class AlreadyHaveGroup extends StatelessWidget {
@@ -14,25 +15,14 @@ class AlreadyHaveGroup extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          TimeCard(), // time
+          TimeCard(),
           LiveDateTime(),
-          StatusButtons(
-            workHours: 9 /* Replace the group work hours */,
-          ), // state menu
-          // time row
-          CheckDetails(
-            //
-            chickinTime: TimeOfDay(
-              hour: 9,
-              minute: 0,
-            ), // replace with actual time
-            checkoutTime: TimeOfDay(
-              hour: 15,
-              minute: 0,
-            ), // replace with actual time
-            totalTime: 9,
-          ), //replace with actual time
-          // permission options
+          CheckInOutButton(),
+          PermissionBtn(),
+          GroupCheckDetails(
+            checkInTime: DateTime.now(),
+            checkOutTime: DateTime.now(),
+          ),
         ],
       ),
     );
