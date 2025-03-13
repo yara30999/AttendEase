@@ -8,23 +8,20 @@ import '../../../resourses/styles_manager.dart';
 import '../../view_model/group_details_bloc/group_details_bloc.dart';
 
 class GroupPasswordRow extends StatelessWidget {
-  const GroupPasswordRow({super.key});
+  final String passwordTxt;
+  const GroupPasswordRow({super.key, required this.passwordTxt});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       spacing: 10,
       children: [
-        Text(context.tr('passwordLabel'), style: Styles.style16Medium()),
-        SizedBox(width: 8),
-        Text(
-          getPassword(context),
-          style: Styles.style16Medium(),
-        ),
-        GestureDetector(
+        Text(context.tr('GroupPassword'), style: Styles.style16Medium()),
+        Text(passwordTxt, style: Styles.style16Medium()),
+        InkWell(
           child: const Icon(Icons.copy, size: 18),
           onTap: () {
-            Clipboard.setData(const ClipboardData(text: 'XZ1235')).then((_) {
+            Clipboard.setData(ClipboardData(text: passwordTxt)).then((_) {
               showToast(context.tr('password_copied'), ColorsManager.black);
             });
           },
@@ -35,7 +32,7 @@ class GroupPasswordRow extends StatelessWidget {
 }
 
 String getPassword(BuildContext context) {
-    final _groupInfo = context.watch<GroupDetailsBloc>().groupInfo;
-    final _password = _groupInfo?.password ?? "";
-    return _password;
+  final _groupInfo = context.watch<GroupDetailsBloc>().groupInfo;
+  final _password = _groupInfo?.password ?? "";
+  return _password;
 }

@@ -98,6 +98,12 @@ extension TimeOfDayExtensions on TimeOfDay {
   }
 }
 
+extension DateTimeExtension on DateTime {
+  String toFormattedTime() {
+    return DateFormat('hh:mm a').format(this);
+  }
+}
+
 enum PermissionType { sickLeave, emergencyLeave, vacationLeave, workFromHome }
 
 extension PermissionTypeExtension on PermissionType {
@@ -170,6 +176,32 @@ extension PermissionTypeExtension on PermissionType {
           ),
           child: const Icon(Icons.home_work, color: Colors.white, size: 24),
         );
+    }
+  }
+}
+
+enum CheckStatus { checkIn, checkOut, havePermission }
+
+extension StatusExtension on CheckStatus {
+  String get string {
+    switch (this) {
+      case CheckStatus.checkIn:
+        return 'CheckIn'.tr();
+      case CheckStatus.checkOut:
+        return 'CheckOut'.tr();
+      case CheckStatus.havePermission:
+        return 'HavePermission'.tr();
+    }
+  }
+
+  String get svg {
+    switch (this) {
+      case CheckStatus.checkIn:
+        return SvgAssets.checkIn;
+      case CheckStatus.checkOut:
+        return SvgAssets.checkOut;
+      case CheckStatus.havePermission:
+        return SvgAssets.havePermission;
     }
   }
 }

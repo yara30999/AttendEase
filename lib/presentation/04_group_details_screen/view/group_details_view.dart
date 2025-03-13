@@ -1,19 +1,19 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../app/extensions.dart';
+import '../../../domain/entities/group_entity.dart';
 import '../../02_home_screens/view/widgets/custom_app_bar.dart';
 import '../../02_home_screens/view/widgets/custom_drawer.dart';
 import '../../03_create_group_screen/view/widgets/day_selector.dart';
 import '../../resourses/styles_manager.dart';
-import '../view_model/group_details_bloc/group_details_bloc.dart';
 import 'widgets/group_password_row.dart';
 import 'widgets/location_map_card.dart';
 import 'widgets/members_list_view.dart';
 import 'widgets/time_row.dart';
 
 class GroupDetailsView extends StatelessWidget {
-  const GroupDetailsView({Key? key}) : super(key: key);
-
+  final GroupEntity groupEntity;
+  const GroupDetailsView(this.groupEntity, {Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,27 +31,27 @@ class GroupDetailsView extends StatelessWidget {
                 style: Styles.style24Bold(),
               ),
             ),
-            Text(
-              context.watch<GroupDetailsBloc>().groupInfo?.name ?? "",
-              style: Styles.style24Bold(),
-            ),
+            Text(groupEntity.name, style: Styles.style24Bold()),
             Text(context.tr('Work_Days:'), style: Styles.style16Medium()),
-            DaySelector(selectedDays: getWorkDays(context)),
-            TimeRow(label: context.tr('Check_in_Time:'), time: '09:00 AM'),
-            TimeRow(label: context.tr('Check_out_Time:'), time: '05:00 PM'),
-            GroupPasswordRow(),
+            DaySelector(selectedDays: groupEntity.days?.toSet() ?? {}),
+            TimeRow(
+              label: context.tr('Check_in_Time:'),
+              time: groupEntity.checkIn.toFormattedTime(),
+            ), //'05:00 PM'
+            TimeRow(
+              label: context.tr('Check_out_Time:'),
+              time: groupEntity.checkOut.toFormattedTime(),
+            ), //'05:00 PM'
+            GroupPasswordRow(passwordTxt: groupEntity.password),
             // Location Map
             Text(context.tr('Location'), style: Styles.style20Bold()),
-            const LocationMapCard(),
+            LocationMapCard(groupEntity.location),
             Text(context.tr('Members:'), style: Styles.style20Bold()),
+            //members list view will use group-id from ---> groupEntity.id
             MembersListView(),
           ],
         ),
       ),
     );
   }
-}
-
-Set<int> getWorkDays(BuildContext context) {
-  return context.watch<GroupDetailsBloc>().groupInfo?.days?.toSet() ?? Set<int>();
 }

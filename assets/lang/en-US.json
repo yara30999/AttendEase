@@ -104,6 +104,17 @@
   "Location": "Location",
   "Check-in": "Check-in",
   "Check-out": "Check-out",
+  "Search": "Search...",
+  "YourGroup": "Your Groups :",
+  "GroupMembersNum": "Total Members: ",
+  "GroupPassword": "Password: ",
+  "DeleteMsg": "Are you sure you want to delete this group?",
+  "JoinGroup": "Join only one group:",
+  "JoinGroupBtn": "Join",
+  "EnterGroupPass": "Group Password",
+  "CheckIn": "Check-In",
+  "CheckOut": "Check-Out",
+  "HavePermission": "Have Permission",
   "group_created_success": "Group created successfully!",
 
   "location_services_disabled": "Location services are disabled.",
@@ -113,5 +124,14 @@
   "this_is_your_location": "This is your location.",
   "picked_place": "Picked Place.",
   "you_picked_this_location": "You picked this location.",
-  "tap_on_location_to_select": "Tap on Location To Select"
+  "work_place": "work place.",
+  "this_is_your_work_location": "this is your work place.",
+  "tap_on_location_to_select": "Tap on Location To Select",
+  "search_for_group": "Search for group",
+  "failed_to_load_groups": "Failed to load groups list: {}",
+  "no_groups": "No groups found.",
+  "group_deleted_successfully": "Group deleted successfully!",
+  "something_went_wrong": "Something went wrong, try again later.",
+  "group_joined_successfully": "Group joined successfully",
+  "Wrong_password": "The password you've just typed in is not correct."
 }

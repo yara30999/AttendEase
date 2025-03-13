@@ -5,6 +5,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive/hive.dart';
 import '../domain/entities/auth_entity.dart';
+import '../domain/entities/group_entity.dart';
+import '../presentation/02_home_screens/view/widgets/admin/delete_group_dialog.dart';
+import '../presentation/02_home_screens/view/widgets/user/join_group_bottom_sheet.dart';
+import '../presentation/02_home_screens/view_model/delete_group_cubit/delete_group_cubit.dart';
 import '../presentation/02_home_screens/view_model/theme_bloc/theme_bloc.dart';
 import '../presentation/04_group_details_screen/view/widgets/delete_user_dialog.dart';
 import '../presentation/resourses/constant_manager.dart';
@@ -49,5 +53,28 @@ Future<void> showDeleteUserConfirmationDialog(BuildContext context) async {
     builder: (BuildContext context) {
       return DeleteUserDialog();
     },
+  );
+}
+
+Future<void> showDeleteGroupConfirmationDialog(
+  BuildContext context,
+  String groupId,
+  DeleteGroupCubit deleteCubit,
+) async {
+  return showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return DeleteGroupDialog(groupId: groupId, deleteGroupCubit: deleteCubit);
+    },
+  );
+}
+
+PersistentBottomSheetController showJoinGroupBottomSheet(
+  BuildContext context,
+  GroupEntity groupEntity,
+) {
+  return showBottomSheet(
+    context: context,
+    builder: (context) => JoinGroupBottomSheet(groupEntity: groupEntity),
   );
 }

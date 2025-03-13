@@ -19,4 +19,11 @@ class SvgAssets {
   static const String user = '$svgPath/user.svg';
   static const String admin = '$svgPath/admin.svg';
   static const String group = '$svgPath/group.svg';
+  static const String checkIn = '$svgPath/check_in.svg';
+  static const String checkOut = '$svgPath/check_out.svg';
+  static const String havePermission = '$svgPath/have_permission.svg';
+  static const String search = '$svgPath/search.svg';
+  static const String checkInHour = '$svgPath/checkin.svg';
+  static const String checkOutHour = '$svgPath/checkout.svg';
+  static const String totalHour = '$svgPath/total.svg';
 }

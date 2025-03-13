@@ -23,8 +23,6 @@ class _LoginViewState extends State<LoginView> {
   String? _password;
   final _formKey = GlobalKey<FormState>();
 
-  void loginWithGoogle() {}
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

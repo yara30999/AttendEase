@@ -22,6 +22,7 @@ abstract class RemoteDataSource {
   Future<List<PermissionResponse>> getUserPermissions(String userId);
   Future<void> deleteUserFromGroup(String userId);
   Future<void> deleteGroup(String groupId);
+  Future<void> currentUserjoinGroup(String groupId);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -269,5 +270,12 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
     // 5 Commit the batch operation
     await batch.commit();
+  }
+
+  @override
+  Future<void> currentUserjoinGroup(String groupId) async {
+    String currentUserId = _firebaseAuth.currentUser?.uid ?? "";
+    //update doc
+    await users.doc(currentUserId).update({'groupId': groupId});
   }
 }
