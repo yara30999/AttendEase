@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../02_home_screens/view/widgets/state_widgets/empty_state_widget.dart';
 import '../../../02_home_screens/view/widgets/state_widgets/error_state_widget.dart';
 import '../../../resourses/colors_manager.dart';
-import '../../view_model/group_members_bloc/group_members_bloc.dart';
+import '../../view_model/group_members_cubit/group_members_cubit.dart';
 import 'members_list_view.dart';
 
 class GroupMembersBlocBuilder extends StatelessWidget {
@@ -12,7 +12,7 @@ class GroupMembersBlocBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GroupMembersBloc, GroupMembersState>(
+    return BlocBuilder<GroupMembersCubit, GroupMembersState>(
       builder: (context, state) {
         if (state is GroupMembersLoading) {
           return Center(

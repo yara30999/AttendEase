@@ -1,10 +1,16 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-
 import '../../../resourses/colors_manager.dart';
+import '../../view_model/delete_member_cubit/delete_member_from_group_cubit.dart';
 
 class DeleteUserDialog extends StatelessWidget {
-  const DeleteUserDialog({super.key});
+  final String userId;
+  final DeleteMemberFromGroupCubit deleteMemberCubit;
+  const DeleteUserDialog({
+    super.key,
+    required this.userId,
+    required this.deleteMemberCubit,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +24,7 @@ class DeleteUserDialog extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
-            // TODO: Implement delete logic
+            deleteMemberCubit.deleteMember(userId);
             Navigator.pop(context);
           },
           child: Text(

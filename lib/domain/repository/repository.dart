@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import '../../data/network/failure.dart';
 import '../../data/network/requests.dart';
+import '../../data/responses/user_response.dart';
 import '../entities/auth_entity.dart';
 import '../entities/group_entity.dart';
 import '../entities/history_entity.dart';
@@ -18,6 +19,7 @@ abstract class Repository {
   );
   Stream<List<GroupEntity>> getGroups();
   Stream<String?> getCurrentUserGroupId();
+  Stream<List<AuthenticationEntity>> getGroupMembersStream(String groupId);
   Future<Either<Failure, GroupEntity>> getGroupInfo(String groupId);
   Future<Either<Failure, List<AuthenticationEntity>>> getGroupMembers(
     String groupId,

@@ -16,6 +16,7 @@ abstract class RemoteDataSource {
   Future<void> createGroup(CreateGroupRequest createGroupRequest);
   Stream<List<GroupResponse>> getGroups();
   Stream<String?> getCurrentUserGroupId();
+  Stream<List<UserResponse>> getGroupMembersStream(String groupId);
   Future<GroupResponse> getGroupInfo(String groupId);
   Future<List<UserResponse>> getGroupMembers(String groupId);
   Future<List<HistoryResponse>> getUserHistory(String userId);
@@ -122,6 +123,22 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       final data = snapshot.data() as Map<String, dynamic>?;
       return data?['groupId'] as String?;
     });
+  }
+
+  @override
+  Stream<List<UserResponse>> getGroupMembersStream(String groupId) {
+    return users
+        .where('groupId', isEqualTo: groupId) // Filter by groupId
+        .snapshots() // Listen to the collection as a stream
+        .map((QuerySnapshot snapshot) {
+          return snapshot.docs
+              .map(
+                (doc) => UserResponse.fromFirestore(
+                  doc as DocumentSnapshot<Map<String, dynamic>>,
+                ),
+              )
+              .toList();
+        });
   }
 
   @override

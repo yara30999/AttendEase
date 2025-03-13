@@ -1,4 +1,4 @@
-part of 'group_members_bloc.dart';
+part of 'group_members_cubit.dart';
 
 sealed class GroupMembersState extends Equatable {
   const GroupMembersState();

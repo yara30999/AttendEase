@@ -11,6 +11,7 @@ import '../presentation/02_home_screens/view/widgets/user/join_group_bottom_shee
 import '../presentation/02_home_screens/view_model/delete_group_cubit/delete_group_cubit.dart';
 import '../presentation/02_home_screens/view_model/theme_bloc/theme_bloc.dart';
 import '../presentation/04_group_details_screen/view/widgets/delete_user_dialog.dart';
+import '../presentation/04_group_details_screen/view_model/delete_member_cubit/delete_member_from_group_cubit.dart';
 import '../presentation/resourses/constant_manager.dart';
 
 Future<void> hiveBoxes() async {
@@ -47,11 +48,18 @@ void showToast(String message, Color color) {
   );
 }
 
-Future<void> showDeleteUserConfirmationDialog(BuildContext context) async {
+Future<void> showDeleteUserConfirmationDialog(
+  BuildContext context,
+  String userId,
+  DeleteMemberFromGroupCubit deleteMemberCubit,
+) async {
   return showDialog(
     context: context,
     builder: (BuildContext context) {
-      return DeleteUserDialog();
+      return DeleteUserDialog(
+        userId: userId,
+        deleteMemberCubit: deleteMemberCubit,
+      );
     },
   );
 }

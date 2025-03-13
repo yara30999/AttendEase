@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../app/functions.dart';
 import '../../../../domain/entities/auth_entity.dart';
 import '../../../resourses/routes_manager.dart';
+import '../../view_model/delete_member_cubit/delete_member_from_group_cubit.dart';
 import 'member_tile.dart';
 
 class MembersListView extends StatelessWidget {
@@ -27,8 +29,14 @@ class MembersListView extends StatelessWidget {
             );
           },
           onDelete: () {
-            //TODO: delete user from group yara.
-            showDeleteUserConfirmationDialog(context);
+            //delete member by member-id.
+            final deleteMemberCubit =
+                context.read<DeleteMemberFromGroupCubit>();
+            showDeleteUserConfirmationDialog(
+              context,
+              members[index].id,
+              deleteMemberCubit,
+            );
           },
         );
       },

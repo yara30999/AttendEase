@@ -20,6 +20,7 @@ import '../domain/usecase/get_user_permissions_usecase.dart';
 import '../domain/usecase/groups_stream_usecase.dart';
 import '../domain/usecase/login_usecase.dart';
 import '../domain/usecase/logout_usecase.dart';
+import '../domain/usecase/group_members_stream_usecase.dart';
 import '../domain/usecase/register_usecase.dart';
 import 'app_prefs.dart';
 import 'geolocation_service.dart';
@@ -94,6 +95,12 @@ Future<void> initAppModule() async {
   if (!GetIt.I.isRegistered<CurrentUserGroupIdStream>()) {
     instance.registerFactory<CurrentUserGroupIdStream>(
       () => CurrentUserGroupIdStream(instance()),
+    );
+  }
+  // group members stream usecase
+  if (!GetIt.I.isRegistered<GroupMembersStreamUsecase>()) {
+    instance.registerFactory<GroupMembersStreamUsecase>(
+      () => GroupMembersStreamUsecase(instance()),
     );
   }
   // get group info usecase

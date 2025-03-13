@@ -136,6 +136,18 @@ class RepositoryImpl implements Repository {
   }
 
   @override
+  Stream<List<AuthenticationEntity>> getGroupMembersStream(String groupId) {
+    return _remoteDataSource.getGroupMembersStream(groupId).map((
+      membersResponses,
+    ) {
+      // Map each userResponse to AuthenticationEntity
+      return membersResponses
+          .map((memberResponse) => memberResponse.toDomain())
+          .toList();
+    });
+  }
+
+  @override
   Future<Either<Failure, GroupEntity>> getGroupInfo(String groupId) async {
     if (await _networkInfo.isConnected) {
       try {
