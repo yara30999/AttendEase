@@ -9,29 +9,26 @@ part 'user_history_state.dart';
 class UserHistoryBloc extends Bloc<UserHistoryEvent, UserHistoryState> {
   final GetUserHistoryUsecase _userHistoryUsecase;
 
-  String? _errMessage;
-  List<HistoryEntity>? userHistory;
+  String? _errorMessage;
 
   UserHistoryBloc(this._userHistoryUsecase) : super(UserHistoryInitial()) {
-    on<UserHistoryRequested>(onUserHistoryRequested);
+    on<UserHistoryEventRequested>(onUserHistoryRequested);
   }
 
   FutureOr<void> onUserHistoryRequested(
-    UserHistoryRequested event,
+    UserHistoryEventRequested event,
     Emitter<UserHistoryState> emit,
   ) async {
     emit(UserHistoryLoading());
-    var result = await _userHistoryUsecase.execute(
-      event.userId,
-    );
+    var result = await _userHistoryUsecase.execute(event.userId);
     result.fold(
       (failure) {
-        _errMessage =
+        _errorMessage =
             '${failure.message.toString()} ${failure.code.toString()}';
-        emit(UserHistoryError(_errMessage!));
+        emit(UserHistoryError(_errorMessage!));
       },
-      (userHistory) {
-        emit(UserHistorySuccess(userHistory));
+      (userHistoryList) {
+        emit(UserHistorySuccess(userHistoryList));
       },
     );
   }

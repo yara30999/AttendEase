@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../app/di.dart';
+import '../../../domain/entities/auth_entity.dart';
 import '../../02_home_screens/view/widgets/custom_app_bar.dart';
 import '../../02_home_screens/view/widgets/custom_drawer.dart';
+import '../view_model/history_bloc/user_history_bloc.dart';
+import '../view_model/permissions_bloc/user_permissions_bloc.dart';
+import 'widgets/bloc_builders/history_tap_view_bloc_builder.dart';
+import 'widgets/bloc_builders/permissions_tap_view_bloc_builder.dart';
 import 'widgets/custom_tab_bar.dart';
-import 'widgets/history_tab_view.dart';
-import 'widgets/permissions_tab_view.dart';
 
 class UserHistoryView extends StatefulWidget {
-  const UserHistoryView({Key? key}) : super(key: key);
+  final AuthenticationEntity user;
+  const UserHistoryView(this.user, {Key? key}) : super(key: key);
 
   @override
   State<UserHistoryView> createState() => _UserHistoryViewState();
@@ -33,16 +39,35 @@ class _UserHistoryViewState extends State<UserHistoryView>
     return Scaffold(
       appBar: const CustomAppBar(),
       drawer: const CustomDrawer(),
-      body: Column(
-        children: [
-          CustomTabBar(tabController: _tabController),
-          Expanded(
-            child: TabBarView(
-              controller: _tabController,
-              children: const [HistoryTabView(), PermissionsTabView()],
-            ),
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create:
+                (context) =>
+                    UserHistoryBloc(instance())
+                      ..add(UserHistoryEventRequested(widget.user.id)),
+          ),
+          BlocProvider(
+            create:
+                (context) =>
+                    UserPermissionsBloc(instance())
+                      ..add(UserPermissionsEventRequested(widget.user.id)),
           ),
         ],
+        child: Column(
+          children: [
+            CustomTabBar(tabController: _tabController),
+            Expanded(
+              child: TabBarView(
+                controller: _tabController,
+                children: const [
+                  HistoryTapViewBlocBuilder(),
+                  PermissionsTapViewBlocBuilder(),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

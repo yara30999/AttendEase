@@ -20,10 +20,14 @@ class MembersListView extends StatelessWidget {
           name: members[index].name,
           onTap: () {
             // Navigate to user history
-            // TODO: user history screen by member-id
-            Navigator.pushNamed(context, Routes.userHistoryRoute);
+            Navigator.pushNamed(
+              context,
+              Routes.userHistoryRoute,
+              arguments: members[index],
+            );
           },
           onDelete: () {
+            //TODO: delete user from group yara.
             showDeleteUserConfirmationDialog(context);
           },
         );

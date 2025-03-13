@@ -26,7 +26,7 @@ class DateBox extends StatelessWidget {
             ),
           ),
           Text(
-            date != null ? DateFormat('dd').format(date!) : "",
+            date != null ? DateFormat('MMM').format(date!) : "",
             style: Styles.style14Medium().copyWith(
               color: Theme.of(context).primaryColor,
               fontWeight: FontWeight.bold,

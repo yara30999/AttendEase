@@ -135,5 +135,9 @@
   "group_joined_successfully": "تم الإنضمام للمجموعة بنجاح!",
   "Wrong_password": "كلمة المرور التي قمت بكتابتها للتو غير صحيحة.",
   "no_members": "لا يوجد أعضاء.",
-  "failed_to_load_members": "فشل تحميل قائمة الأعضاء: {}"
+  "failed_to_load_members": "فشل تحميل قائمة الأعضاء: {}",
+  "failed_to_load_history_list": "فشل تحميل السجل: {}",
+  "failed_to_load_permissions_list": "فشل تحميل قائمة الأذونات {}",
+  "no_history": "لا يوجد سجل هنا.",
+  "no_permissions": "لا يوجد أذونات هنا."
 }

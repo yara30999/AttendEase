@@ -135,5 +135,9 @@
   "group_joined_successfully": "Group joined successfully",
   "Wrong_password": "The password you've just typed in is not correct.",
   "no_members": "No group members here.",
-  "failed_to_load_members": "Failed to load members list: {}"
+  "failed_to_load_members": "Failed to load members list: {}",
+  "failed_to_load_history_list": "Failed to load History list: {}",
+  "failed_to_load_permissions_list": "Failed to load Permissions list: {}",
+  "no_history": "No History here.",
+  "no_permissions": "No Permissions here."
 }

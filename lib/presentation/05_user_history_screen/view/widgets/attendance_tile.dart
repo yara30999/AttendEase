@@ -3,17 +3,13 @@ import 'date_box.dart';
 import 'time_datails_row.dart';
 
 class AttendanceTile extends StatelessWidget {
-  final DateTime? date;
-  final TimeOfDay? checkIn;
-  final TimeOfDay? checkOut;
-  final int totalHours;
+  final DateTime? checkIn;
+  final DateTime? checkOut;
 
   const AttendanceTile({
     Key? key,
-    required this.date,
     required this.checkIn,
     required this.checkOut,
-    required this.totalHours,
   }) : super(key: key);
 
   @override
@@ -25,14 +21,10 @@ class AttendanceTile extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         child: Row(
           children: [
-            DateBox(date: date),
+            DateBox(date: checkIn),
             const SizedBox(width: 12),
             Expanded(
-              child: TimeDetailsRow(
-                checkIn: checkIn,
-                checkOut: checkOut,
-                totalHours: totalHours,
-              ),
+              child: TimeDetailsRow(checkIn: checkIn, checkOut: checkOut),
             ),
           ],
         ),
