@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../app/functions.dart';
@@ -9,6 +8,7 @@ import '../../../../resourses/routes_manager.dart';
 import '../../../../resourses/styles_manager.dart';
 import '../../../view_model/delete_group_cubit/delete_group_cubit.dart';
 import '../group_avatar.dart';
+import '../total_group_members_stream_builder.dart';
 
 class AdminGroupCard extends StatelessWidget {
   final GroupEntity groupEntity;
@@ -40,21 +40,7 @@ class AdminGroupCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(groupEntity.name, style: Styles.style18Medium()),
-                    Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(
-                            text: context.tr("GroupMembersNum"),
-                            style: Styles.style16Medium(),
-                          ),
-                          TextSpan(
-                            text:
-                                "5", //TODO i will give you a usecase for this... soon. by yara
-                            style: Styles.style16Medium(),
-                          ),
-                        ],
-                      ),
-                    ),
+                    TotalGroupMembersStreamBuilder(groupEntity.id),
                     FittedBox(
                       fit: BoxFit.fitWidth,
                       child: GroupPasswordRow(

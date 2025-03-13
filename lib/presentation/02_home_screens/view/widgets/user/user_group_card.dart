@@ -1,9 +1,9 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import '../../../../../app/functions.dart';
 import '../../../../../domain/entities/group_entity.dart';
 import '../../../../resourses/styles_manager.dart';
 import '../group_avatar.dart';
+import '../total_group_members_stream_builder.dart';
 
 class UserGroupCard extends StatelessWidget {
   final GroupEntity groupEntity;
@@ -29,21 +29,7 @@ class UserGroupCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(groupEntity.name, style: Styles.style18Medium()),
-                    Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(
-                            text: context.tr("GroupMembersNum"),
-                            style: Styles.style16Medium(),
-                          ),
-                          TextSpan(
-                            //TODO i will give you a usecase for this... soon. by yara
-                            text: "6",
-                            style: Styles.style16Medium(),
-                          ),
-                        ],
-                      ),
-                    ),
+                    TotalGroupMembersStreamBuilder(groupEntity.id),
                   ],
                 ),
               ),
