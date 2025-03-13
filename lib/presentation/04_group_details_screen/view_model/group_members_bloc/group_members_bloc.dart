@@ -21,14 +21,12 @@ class GroupMembersBloc extends Bloc<GroupMembersEvent, GroupMembersState> {
     Emitter<GroupMembersState> emit,
   ) async {
     emit(GroupMembersLoading());
-    var result = await _groupMembersUsecase.execute(
-      event.groupId,
-    );
+    var result = await _groupMembersUsecase.execute(event.groupId);
     result.fold(
       (failure) {
         _errMessage =
             '${failure.message.toString()} ${failure.code.toString()}';
-        emit(GroupDetailsError(_errMessage!));
+        emit(GroupMembersError(_errMessage!));
       },
       (groupMembers) {
         emit(GroupMembersSuccess(groupMembers));

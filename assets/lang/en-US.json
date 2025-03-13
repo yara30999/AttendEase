@@ -133,5 +133,7 @@
   "group_deleted_successfully": "Group deleted successfully!",
   "something_went_wrong": "Something went wrong, try again later.",
   "group_joined_successfully": "Group joined successfully",
-  "Wrong_password": "The password you've just typed in is not correct."
+  "Wrong_password": "The password you've just typed in is not correct.",
+  "no_members": "No group members here.",
+  "failed_to_load_members": "Failed to load members list: {}"
 }

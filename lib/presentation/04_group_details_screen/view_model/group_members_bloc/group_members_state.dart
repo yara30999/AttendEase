@@ -21,11 +21,11 @@ final class GroupMembersSuccess extends GroupMembersState {
   List<Object> get props => [super.props, groupMembers];
 }
 
-final class GroupDetailsError extends GroupMembersState {
-  final String errMessage;
+final class GroupMembersError extends GroupMembersState {
+  final String message;
 
-  const GroupDetailsError(this.errMessage);
+  const GroupMembersError(this.message);
 
   @override
-  List<Object> get props => [super.props, errMessage];
+  List<Object> get props => [super.props, message];
 }

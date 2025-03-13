@@ -10,9 +10,6 @@ import 'app/my_app.dart';
 import 'firebase_options.dart';
 import 'presentation/01_auth_screens/view_model/auth_bloc/auth_bloc.dart';
 import 'presentation/02_home_screens/view_model/theme_bloc/theme_bloc.dart';
-import 'presentation/04_group_details_screen/view_model/group_details_bloc/group_details_bloc.dart';
-import 'presentation/04_group_details_screen/view_model/group_members_bloc/group_members_bloc.dart';
-import 'presentation/05_user_history_screen/view_model/user_history_bloc/user_history_bloc.dart';
 import 'presentation/resourses/language_manager.dart';
 import 'simple_observer.dart';
 
@@ -44,9 +41,6 @@ void main() async {
                 (_) => AuthBloc(instance(), instance(), instance(), instance()),
           ),
           BlocProvider(create: (_) => ThemeBloc(instance())..add(LoadTheme())),
-          BlocProvider(create: (_) => GroupDetailsBloc(instance())),
-          BlocProvider(create: (_) => GroupMembersBloc(instance())),
-          BlocProvider(create: (_) => UserHistoryBloc(instance())),
         ],
         child: const MyApp(),
       ),
