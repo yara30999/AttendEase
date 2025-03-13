@@ -18,7 +18,6 @@ class GroupCheckDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int differenceHours = checkOutTime.difference(checkInTime).inHours;
-    int differenceMinutes = checkOutTime.difference(checkInTime).inMinutes;
     Color primaryColor =
         Theme.of(context).brightness == Brightness.light
             ? ColorsManager.emeraldGreen
@@ -65,11 +64,7 @@ class GroupCheckDetails extends StatelessWidget {
               ),
               Text(context.tr('total'), style: Styles.style14Medium()),
               Text(
-                differenceHours.toString() +
-                    ':' +
-                    differenceMinutes.toString() +
-                    ' ' +
-                    context.tr('hours'),
+                '$differenceHours ${context.tr('hours')}',
                 style: Styles.style14Medium(),
               ),
             ],

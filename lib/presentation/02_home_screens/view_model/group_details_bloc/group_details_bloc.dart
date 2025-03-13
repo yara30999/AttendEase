@@ -10,7 +10,6 @@ class GroupDetailsBloc extends Bloc<GroupDetailsEvent, GroupDetailsState> {
   final GetGroupInfoUsecase _groupInfoUsecase;
 
   String? _errMessage;
-  GroupEntity? groupInfo;
 
   GroupDetailsBloc(this._groupInfoUsecase) : super(GroupDetailsInitial()) {
     on<GroupDetailsRequested>(onGroupDetailsRequested);
@@ -21,9 +20,7 @@ class GroupDetailsBloc extends Bloc<GroupDetailsEvent, GroupDetailsState> {
     Emitter<GroupDetailsState> emit,
   ) async {
     emit(GroupDetailsLoading());
-    var result = await _groupInfoUsecase.execute(
-      event.groupId,
-    );
+    var result = await _groupInfoUsecase.execute(event.groupId);
     result.fold(
       (failure) {
         _errMessage =

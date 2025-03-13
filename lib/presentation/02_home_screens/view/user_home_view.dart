@@ -37,7 +37,7 @@ class UserHomeView extends StatelessWidget {
           }
           if (snapshot.hasData) {
             debugPrint('User groupId: ${snapshot.data}');
-            return AlreadyHaveGroup();
+            return AlreadyHaveGroup(snapshot.data!);
           } else {
             debugPrint('No data available');
             return ChooseGroup();

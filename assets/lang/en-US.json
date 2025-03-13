@@ -140,5 +140,10 @@
   "failed_to_load_history_list": "Failed to load History list: {}",
   "failed_to_load_permissions_list": "Failed to load Permissions list: {}",
   "no_history": "No History here.",
-  "no_permissions": "No Permissions here."
+  "no_permissions": "No Permissions here.",
+  "today_is_off": "Today is off!",
+  "have_a_nice_day": "Have a nice day ❤",
+  "festival_wish": "May your life be as colorful and joyous\nas this beautiful festival!",
+  "go_to_home": "Go to Home",
+  "go_to_records": "Go to your Records"
 }

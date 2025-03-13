@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../app/di.dart';
@@ -35,7 +36,7 @@ class UserNavigationButtons extends StatelessWidget {
                     );
                   },
                   child: Text(
-                    'go to home',
+                    context.tr('go_to_home'),
                     style: Styles.style16Medium().copyWith(
                       color: Theme.of(context).primaryColor,
                     ),
@@ -51,7 +52,7 @@ class UserNavigationButtons extends StatelessWidget {
                     );
                   },
                   child: Text(
-                    'go to your records',
+                    context.tr('go_to_records'),
                     style: Styles.style16Medium().copyWith(
                       color: Theme.of(context).primaryColor,
                     ),

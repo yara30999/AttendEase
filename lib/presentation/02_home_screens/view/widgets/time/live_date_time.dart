@@ -4,7 +4,8 @@ import 'package:intl/intl.dart';
 import '../../../../resourses/styles_manager.dart';
 
 class LiveDateTime extends StatefulWidget {
-  const LiveDateTime({super.key});
+  final Color? textColor;
+  const LiveDateTime({super.key, this.textColor});
 
   @override
   State<LiveDateTime> createState() => _LiveDateTimeState();
@@ -39,7 +40,7 @@ class _LiveDateTimeState extends State<LiveDateTime> {
   Widget build(BuildContext context) {
     return Text(
       DateFormat('MMM dd, yyyy - EEEE').format(_currentDate.toLocal()),
-      style: Styles.style24Bold(),
+      style: Styles.style24Bold().copyWith(color: widget.textColor),
     );
   }
 }

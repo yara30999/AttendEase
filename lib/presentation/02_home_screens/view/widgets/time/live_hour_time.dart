@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import '../../../../resourses/styles_manager.dart';
 
 class LiveHourTime extends StatefulWidget {
-  const LiveHourTime({super.key});
+  final Color? textColor;
+  const LiveHourTime({super.key, this.textColor});
 
   @override
   State<LiveHourTime> createState() => _LiveHourTimeState();
@@ -39,7 +40,7 @@ class _LiveHourTimeState extends State<LiveHourTime> {
   Widget build(BuildContext context) {
     return Text(
       DateFormat('hh : mm a').format(_currentTime.toLocal()),
-      style: Styles.style24Bold(),
+      style: Styles.style24Bold().copyWith(color: widget.textColor),
     );
   }
 }

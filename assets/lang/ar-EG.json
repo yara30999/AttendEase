@@ -140,5 +140,10 @@
   "failed_to_load_history_list": "فشل تحميل السجل: {}",
   "failed_to_load_permissions_list": "فشل تحميل قائمة الأذونات {}",
   "no_history": "لا يوجد سجل هنا.",
-  "no_permissions": "لا يوجد أذونات هنا."
+  "no_permissions": "لا يوجد أذونات هنا.",
+  "today_is_off": "اليوم عطلة!",
+  "have_a_nice_day": "أتمنى لك يوماً سعيداً ❤",
+  "festival_wish": "أتمنى أن تكون حياتك مليئة بالألوان والفرح\nمثل هذا المهرجان الجميل!",
+  "go_to_home": "اذهب إلى الرئيسية",
+  "go_to_records": "اذهب إلى سجلاتك"
 }
