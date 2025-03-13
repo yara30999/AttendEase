@@ -67,7 +67,7 @@ class AdminHomeView extends StatelessWidget {
                   ],
                 ),
                 // Scrollable Content
-                Expanded(child: GroupBlocBuilder(isAdmin: true)),
+                Expanded(child: GroupBlocBuilder()),
               ],
             ),
           ),

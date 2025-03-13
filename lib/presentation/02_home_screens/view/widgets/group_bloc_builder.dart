@@ -8,8 +8,7 @@ import 'state_widgets/empty_state_widget.dart';
 import 'state_widgets/error_state_widget.dart';
 
 class GroupBlocBuilder extends StatelessWidget {
-  final bool isAdmin;
-  const GroupBlocBuilder({super.key, required this.isAdmin});
+  const GroupBlocBuilder({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +33,7 @@ class GroupBlocBuilder extends StatelessWidget {
           if (state.groups.isEmpty) {
             return EmptyStateWidget(label: context.tr('no_groups'));
           } else {
-            return GroupListView(isAdmin: isAdmin, groups: state.groups);
+            return GroupListView(groups: state.groups);
           }
         } else {
           return const SizedBox.shrink();

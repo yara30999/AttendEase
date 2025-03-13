@@ -39,7 +39,7 @@ class ChooseGroup extends StatelessWidget {
               ],
             ),
             // Scrollable Content
-            Expanded(child: GroupBlocBuilder(isAdmin: false)),
+            Expanded(child: GroupBlocBuilder()),
           ],
         ),
       ),

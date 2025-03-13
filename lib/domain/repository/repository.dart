@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import '../../data/network/failure.dart';
 import '../../data/network/requests.dart';
-import '../../data/responses/user_response.dart';
 import '../entities/auth_entity.dart';
 import '../entities/group_entity.dart';
 import '../entities/history_entity.dart';

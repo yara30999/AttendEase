@@ -5,6 +5,8 @@ import '../../../resourses/styles_manager.dart';
 import 'language_button.dart';
 import 'logout_button_bloc_consumer.dart';
 import 'theme_button.dart';
+import 'user/user_navigation_buttons.dart';
+import 'user_info.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -37,14 +39,17 @@ class CustomDrawer extends StatelessWidget {
               ),
             ),
             const SliverToBoxAdapter(child: SizedBox(height: 10)),
+            const SliverToBoxAdapter(child: UserInfo()),
+            const SliverToBoxAdapter(child: SizedBox(height: 10)),
             const SliverToBoxAdapter(child: ThemeButton()),
             const SliverToBoxAdapter(child: Divider(color: ColorsManager.grey)),
             const SliverToBoxAdapter(child: LanguageButton()),
-            const SliverFillRemaining(
+            SliverFillRemaining(
               hasScrollBody: false,
               child: Column(
                 children: [
                   Expanded(child: SizedBox(height: 10)),
+                  UserNavigationButtons(),
                   Divider(color: ColorsManager.grey),
                   SizedBox(height: 5),
                   LogoutButtonBlocConsumer(),
