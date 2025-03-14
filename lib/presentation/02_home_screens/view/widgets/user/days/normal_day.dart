@@ -21,7 +21,7 @@ class NormalDay extends StatelessWidget {
           Text(currentUserGroupEntity.name, style: Styles.style24Bold()),
           TimeCard(),
           LiveDateTime(),
-          CheckInOutButton(),
+          CheckInOutButton(currentUserGroupEntity),
           PermissionBtn(),
           GroupCheckDetails(
             checkInTime: currentUserGroupEntity.checkIn,

@@ -36,10 +36,33 @@ String generateRandomPassword({int length = 8}) {
   ).join();
 }
 
-void showToast(String message, Color color) {
+bool isWithinCheckInTime(GroupEntity groupEntity) {
+  DateTime now = DateTime.now();
+  TimeOfDay currentTime = TimeOfDay(hour: now.hour, minute: now.minute);
+
+  TimeOfDay checkInTime = TimeOfDay(
+    hour: groupEntity.checkIn.hour,
+    minute: groupEntity.checkIn.minute,
+  );
+  TimeOfDay checkOutTime = TimeOfDay(
+    hour: groupEntity.checkOut.hour,
+    minute: groupEntity.checkOut.minute,
+  );
+  bool isAfterCheckIn =
+      currentTime.hour > checkInTime.hour ||
+      (currentTime.hour == checkInTime.hour &&
+          currentTime.minute >= checkInTime.minute);
+  bool isBeforeCheckOut =
+      currentTime.hour < checkOutTime.hour ||
+      (currentTime.hour == checkOutTime.hour &&
+          currentTime.minute <= checkOutTime.minute);
+  return isAfterCheckIn && isBeforeCheckOut;
+}
+
+void showToast(String message, Color color, [Toast? toast]) {
   Fluttertoast.showToast(
     msg: message,
-    toastLength: Toast.LENGTH_SHORT,
+    toastLength: toast ?? Toast.LENGTH_SHORT,
     gravity: ToastGravity.TOP,
     timeInSecForIosWeb: 20,
     backgroundColor: color,
