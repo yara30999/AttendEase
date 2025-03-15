@@ -26,6 +26,7 @@ abstract class RemoteDataSource {
   Future<void> currentUserjoinGroup(String groupId);
   Future<void> currentUserCheckIn(CheckInRequest checkInRequest);
   Future<void> currentUserCheckOut(CheckOutRequest checkOutRequest);
+  Future<void> currentUserTakePermission(PermissionRequest permissionRequest);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -337,5 +338,22 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       //if it is not the same doc with the same id's
       throw Exception();
     }
+  }
+
+  @override
+  Future<void> currentUserTakePermission(
+    PermissionRequest permissionRequest,
+  ) async {
+    String currentUserId = _firebaseAuth.currentUser?.uid ?? "";
+    //write doc
+    await usersPermission.doc().set(
+      PermissionResponse(
+        userId: currentUserId,
+        groupId: permissionRequest.groupId,
+        date: permissionRequest.time,
+        type: permissionRequest.typeString,
+        message: permissionRequest.message,
+      ).toFirestore(),
+    );
   }
 }

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import '../../../../app/extensions.dart';
+import '../../../../domain/entities/permission_entity.dart';
 import 'date_box.dart';
 import 'permission_details.dart';
 
 class PermissionTile extends StatelessWidget {
-  final DateTime date;
-  final PermissionType type;
+  final PermissionEntity pemissionData;
 
-  const PermissionTile({Key? key, required this.date, required this.type})
+  const PermissionTile({Key? key, required this.pemissionData})
     : super(key: key);
 
   @override
@@ -19,9 +18,9 @@ class PermissionTile extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Row(
           children: [
-            DateBox(date: date),
+            DateBox(date: pemissionData.date),
             const SizedBox(width: 16),
-            Expanded(child: PermissionDetails(type: type, date: date)),
+            Expanded(child: PermissionDetails(pemissionData: pemissionData)),
           ],
         ),
       ),

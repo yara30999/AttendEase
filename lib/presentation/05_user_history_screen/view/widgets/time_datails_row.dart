@@ -1,30 +1,29 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import '../../../../app/extensions.dart';
+import '../../../../domain/entities/history_entity.dart';
 import 'time_column.dart';
 import 'column_divider.dart';
 
 class TimeDetailsRow extends StatelessWidget {
-  final DateTime? checkIn;
-  final DateTime? checkOut;
+  final HistoryEntity historyData;
 
-  const TimeDetailsRow({
-    Key? key,
-    required this.checkIn,
-    required this.checkOut,
-  }) : super(key: key);
+  const TimeDetailsRow({Key? key, required this.historyData}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     int differenceHours =
-        checkOut?.difference(checkIn ?? DateTime.now()).inHours ?? 0;
+        historyData.checkOut
+            ?.difference(historyData.checkIn ?? DateTime.now())
+            .inHours ??
+        0;
     return Row(
       children: [
         Expanded(
           flex: 3,
           child: TimeColumn(
             label: context.tr('Check-in'),
-            time: checkIn?.toFormattedTime() ?? "",
+            time: historyData.checkIn?.toFormattedTime() ?? "",
           ),
         ),
         const ColumnDivider(),
@@ -32,7 +31,7 @@ class TimeDetailsRow extends StatelessWidget {
           flex: 3,
           child: TimeColumn(
             label: context.tr('Check-out'),
-            time: checkOut?.toFormattedTime() ?? "",
+            time: historyData.checkOut?.toFormattedTime() ?? "",
           ),
         ),
         const ColumnDivider(),

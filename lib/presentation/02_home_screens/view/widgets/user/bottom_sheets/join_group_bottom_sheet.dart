@@ -1,14 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../app/di.dart';
-import '../../../../../app/functions.dart';
-import '../../../../../domain/entities/group_entity.dart';
-import '../../../../01_auth_screens/view/widgets/custom_text_form_field.dart';
-import '../../../../resourses/colors_manager.dart';
-import '../../../../resourses/language_manager.dart';
-import '../../../../resourses/styles_manager.dart';
-import '../../../view_model/join_group_cubit/join_group_cubit.dart';
+import '../../../../../../app/di.dart';
+import '../../../../../../app/functions.dart';
+import '../../../../../../domain/entities/group_entity.dart';
+import '../../../../../01_auth_screens/view/widgets/custom_text_form_field.dart';
+import '../../../../../resourses/colors_manager.dart';
+import '../../../../../resourses/language_manager.dart';
+import '../../../../../resourses/styles_manager.dart';
+import '../../../../view_model/join_group_cubit/join_group_cubit.dart';
 
 class JoinGroupBottomSheet extends StatefulWidget {
   final GroupEntity groupEntity;

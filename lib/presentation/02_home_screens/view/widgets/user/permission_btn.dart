@@ -1,19 +1,24 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import '../../../../../app/functions.dart';
+import '../../../../../domain/entities/group_entity.dart';
 import '../../../../resourses/assets_manager.dart';
 import '../../../../resourses/colors_manager.dart';
 import '../../../../resourses/styles_manager.dart';
 
 class PermissionBtn extends StatelessWidget {
-  const PermissionBtn({super.key});
+  final GroupEntity groupEntity;
+  const PermissionBtn(this.groupEntity, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          showTakePermissionBottomSheet(context, groupEntity);
+        },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

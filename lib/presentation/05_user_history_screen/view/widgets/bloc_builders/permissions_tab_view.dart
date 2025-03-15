@@ -13,10 +13,7 @@ class PermissionsTabView extends StatelessWidget {
       itemCount: permissionsList.length,
       separatorBuilder: (context, index) => const SizedBox(height: 8),
       itemBuilder: (context, index) {
-        return PermissionTile(
-          date: permissionsList[index].date,
-          type: permissionsList[index].type,
-        );
+        return PermissionTile(pemissionData: permissionsList[index]);
       },
     );
   }

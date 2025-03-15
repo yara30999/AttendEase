@@ -36,4 +36,7 @@ abstract class Repository {
   Future<Either<Failure, bool>> currentUserCheckOut(
     CheckOutRequest checkOutRequest,
   );
+  Future<Either<Failure, bool>> currentUserTakePermission(
+    PermissionRequest permissionRequest,
+  );
 }

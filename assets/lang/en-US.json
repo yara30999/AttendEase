@@ -151,5 +151,8 @@
   "check_in_successfully": "You've just checked in successfully!",
   "check_out_successfully": "You've just checked out successfully!",
   "wait_check_in_processing": "Wait a minute, we are still processing your check-in time.",
-  "wait_check_out_processing": "Wait a minute, we are still processing your check-out time."
+  "wait_check_out_processing": "Wait a minute, we are still processing your check-out time.",
+  "take_permission_successfully": "Your permission has been taken successfully.",
+  "more_details": "Want to provide more Details?",
+  "choose_permission_type:": "Choose your permission type:"
 }

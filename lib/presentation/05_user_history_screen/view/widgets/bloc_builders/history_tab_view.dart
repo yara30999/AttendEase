@@ -13,10 +13,7 @@ class HistoryTabView extends StatelessWidget {
       itemCount: historyList.length,
       separatorBuilder: (context, index) => const SizedBox(height: 12),
       itemBuilder: (context, index) {
-        return AttendanceTile(
-          checkIn: historyList[index].checkIn,
-          checkOut: historyList[index].checkOut,
-        );
+        return AttendanceTile(historyData: historyList[index]);
       },
     );
   }

@@ -12,6 +12,7 @@ import '../domain/usecase/check_out_current_user_usecase.dart';
 import '../domain/usecase/create_group_usecase.dart';
 import '../domain/usecase/current_user_group_id_stream.dart';
 import '../domain/usecase/current_user_join_group_usecase.dart';
+import '../domain/usecase/current_user_take_permission_usecase.dart';
 import '../domain/usecase/delete_group_usecase.dart';
 import '../domain/usecase/delete_user_from_group_usecase.dart';
 import '../domain/usecase/forgot_password_usecase.dart';
@@ -157,6 +158,12 @@ Future<void> initAppModule() async {
   if (!GetIt.I.isRegistered<CheckOutCurrentUser>()) {
     instance.registerFactory<CheckOutCurrentUser>(
       () => CheckOutCurrentUser(instance()),
+    );
+  }
+  // current user take permission usecase
+  if (!GetIt.I.isRegistered<CurrentUserTakePermissionUsecase>()) {
+    instance.registerFactory<CurrentUserTakePermissionUsecase>(
+      () => CurrentUserTakePermissionUsecase(instance()),
     );
   }
 }

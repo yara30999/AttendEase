@@ -47,3 +47,12 @@ class CheckOutRequest {
 
   CheckOutRequest(this.docId, this.groupId, this.checkOut);
 }
+
+class PermissionRequest {
+  final String groupId;
+  final DateTime time;
+  final String typeString;
+  final String? message;
+
+  PermissionRequest(this.groupId, this.time, this.typeString, this.message);
+}
