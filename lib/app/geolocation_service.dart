@@ -4,6 +4,11 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 abstract class IGeolocationService {
   Future<LatLng?> getCurrentUserLocation();
+  bool isUserLocationNearToWorkLocation(
+    LatLng userLocation,
+    LatLng groupLocation, [
+    double meters = 500.0,
+  ]);
 }
 
 class GeolocationServiceImpl implements IGeolocationService {
@@ -40,5 +45,23 @@ class GeolocationServiceImpl implements IGeolocationService {
     Position position = await Geolocator.getCurrentPosition();
     LatLng currentUserLocation = LatLng(position.latitude, position.longitude);
     return currentUserLocation;
+  }
+
+  @override
+  bool isUserLocationNearToWorkLocation(
+    LatLng userLocation,
+    LatLng groupLocation, [
+    double meters = 500.0,
+  ]) {
+    // Calculate distance between user and group location in meters
+    double distance = Geolocator.distanceBetween(
+      userLocation.latitude,
+      userLocation.longitude,
+      groupLocation.latitude,
+      groupLocation.longitude,
+    );
+    // Check if within 500 meters
+    bool isNear = distance <= meters;
+    return isNear;
   }
 }

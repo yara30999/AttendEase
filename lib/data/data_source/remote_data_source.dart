@@ -24,6 +24,8 @@ abstract class RemoteDataSource {
   Future<void> deleteUserFromGroup(String userId);
   Future<void> deleteGroup(String groupId);
   Future<void> currentUserjoinGroup(String groupId);
+  Future<void> currentUserCheckIn(CheckInRequest checkInRequest);
+  Future<void> currentUserCheckOut(CheckOutRequest checkOutRequest);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -294,5 +296,46 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     String currentUserId = _firebaseAuth.currentUser?.uid ?? "";
     //update doc
     await users.doc(currentUserId).update({'groupId': groupId});
+  }
+
+  @override
+  Future<void> currentUserCheckIn(CheckInRequest checkInRequest) async {
+    String currentUserId = _firebaseAuth.currentUser?.uid ?? "";
+    //write doc
+    await usersHistroy
+        .doc(checkInRequest.docId)
+        .set(
+          HistoryResponse(
+            id: checkInRequest.docId,
+            userId: currentUserId,
+            groupId: checkInRequest.groupId,
+            checkIn: checkInRequest.checkIn,
+            checkOut: null,
+          ).toFirestore(),
+        );
+  }
+
+  @override
+  Future<void> currentUserCheckOut(CheckOutRequest checkOutRequest) async {
+    String currentUserId = _firebaseAuth.currentUser?.uid ?? "";
+
+    //read the date of the old doc
+    DocumentSnapshot<Map<String, dynamic>> historyDoc =
+        await usersHistroy.doc(checkOutRequest.docId).get()
+            as DocumentSnapshot<Map<String, dynamic>>;
+    HistoryResponse OldData = HistoryResponse.fromFirestore(historyDoc);
+
+    //update the checkOut of the same doc
+    if (OldData.userId == currentUserId &&
+        OldData.groupId == checkOutRequest.groupId) {
+      //update doc
+      await usersHistroy
+          .doc(checkOutRequest.docId) //the same doc
+          //only update checkOut
+          .update({'check-out': checkOutRequest.checkOut});
+    } else {
+      //if it is not the same doc with the same id's
+      throw Exception();
+    }
   }
 }

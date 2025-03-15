@@ -21,8 +21,8 @@ class CheckInOutColumn extends StatelessWidget {
           children: [
             SvgPicture.asset(
               checkStatus.svg,
-              fit: BoxFit.scaleDown,
-              height: 50,
+              height: 60,
+              width: 60,
               colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
             ),
             Text(

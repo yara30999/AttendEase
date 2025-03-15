@@ -274,4 +274,36 @@ class RepositoryImpl implements Repository {
       return Left(DataSource.noInternetConnection.getFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> currentUserCheckIn(
+    CheckInRequest checkInRequest,
+  ) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        await _remoteDataSource.currentUserCheckIn(checkInRequest);
+        return Right(true);
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      return Left(DataSource.noInternetConnection.getFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> currentUserCheckOut(
+    CheckOutRequest checkOutRequest,
+  ) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        await _remoteDataSource.currentUserCheckOut(checkOutRequest);
+        return Right(true);
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      return Left(DataSource.noInternetConnection.getFailure());
+    }
+  }
 }

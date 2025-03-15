@@ -1,10 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../app/extensions.dart';
 import '../../../../../app/functions.dart';
 import '../../../../../domain/entities/group_entity.dart';
 import '../../../../resourses/colors_manager.dart';
+import '../../../view_model/check_in_out_bloc/check_in_out_bloc.dart';
 import 'check_in_out_container.dart';
 import 'progress_circle.dart';
 
@@ -18,27 +19,6 @@ class CheckInOutButton extends StatefulWidget {
 
 class _CheckInOutButtonState extends State<CheckInOutButton> {
   bool _isElevated = false; //not pressed at the first ;)
-
-  void _onTap() async {
-    setState(() {
-      _isElevated = !_isElevated;
-    });
-    bool isAvailable = isWithinCheckInTime(widget.groupEntity);
-    if (isAvailable) {
-      print('yara this available time here ......');
-      // TODO: Handle Check-in / Check-out logic
-    } else {
-      showToast(
-        context.tr('outside_the_working_hours'),
-        ColorsManager.softRed,
-        Toast.LENGTH_LONG,
-      );
-    }
-    await Future.delayed(const Duration(milliseconds: 250));
-    if (mounted) {
-      setState(() => _isElevated = !_isElevated);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -107,34 +87,112 @@ class _CheckInOutButtonState extends State<CheckInOutButton> {
               ),
             ];
 
-    return GestureDetector(
-      onTap: _onTap,
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            AnimatedContainer(
-              duration: const Duration(milliseconds: 200),
-              width: 180,
-              height: 180,
-              decoration: BoxDecoration(
-                color: _isElevated ? primary.withAlpha(200) : primary,
-                shape: BoxShape.circle,
-                boxShadow:
-                    Theme.of(context).brightness == Brightness.light
-                        ? lightShadows
-                        : darkShadows,
+    return BlocConsumer<CheckInOutBloc, CheckInOutState>(
+      listener: (context, state) {
+        if (state is CheckInOutSuccess) {
+          if (state.checkStatus == CheckStatus.checkOut) {
+            showToast(context.tr('check_in_successfully'), ColorsManager.grey);
+          } else {
+            showToast(context.tr('check_out_successfully'), ColorsManager.grey);
+          }
+        }
+        if (state is CheckInOutError) {
+          showToast(state.errMessage, ColorsManager.softRed);
+        }
+      },
+      builder: (context, state) {
+        if (state is CheckInOutLoading) {
+          return GestureDetector(
+            onTap: () {
+              if (state.checkStatus == CheckStatus.checkIn) {
+                showToast(
+                  context.tr('wait_check_in_processing'),
+                  ColorsManager.grey,
+                );
+              } else {
+                showToast(
+                  context.tr('wait_check_out_processing'),
+                  ColorsManager.grey,
+                );
+              }
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  AnimatedContainer(
+                    duration: const Duration(milliseconds: 200),
+                    width: 180,
+                    height: 180,
+                    decoration: BoxDecoration(
+                      color: _isElevated ? primary.withAlpha(200) : primary,
+                      shape: BoxShape.circle,
+                      boxShadow:
+                          Theme.of(context).brightness == Brightness.light
+                              ? lightShadows
+                              : darkShadows,
+                    ),
+                    child: CheckInOutColumn(checkStatus: state.checkStatus),
+                  ),
+                  ProgressCircle(
+                    groupEntity: widget.groupEntity,
+                    userCheckInTime: state.checkInTime,
+                  ),
+                ],
               ),
-              child: CheckInOutColumn(checkStatus: CheckStatus.checkIn),
             ),
-            ProgressCircle(
-              groupCheckOutTime: DateTime.now(),
-              userCheckInTime: DateTime.now(),
+          );
+        }
+        return GestureDetector(
+          onTap: () async {
+            setState(() {
+              _isElevated = !_isElevated;
+            });
+            if (context.read<CheckInOutBloc>().isTryingToCheckIn) {
+              //check-in process triggering
+              context.read<CheckInOutBloc>().add(
+                CheckInRequested(groupEntity: widget.groupEntity),
+              );
+            } else {
+              //check-out process triggering
+              context.read<CheckInOutBloc>().add(
+                CheckOutRequested(groupEntity: widget.groupEntity),
+              );
+            }
+            await Future.delayed(const Duration(milliseconds: 250));
+            if (mounted) {
+              setState(() => _isElevated = !_isElevated);
+            }
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 200),
+                  width: 180,
+                  height: 180,
+                  decoration: BoxDecoration(
+                    color: _isElevated ? primary.withAlpha(200) : primary,
+                    shape: BoxShape.circle,
+                    boxShadow:
+                        Theme.of(context).brightness == Brightness.light
+                            ? lightShadows
+                            : darkShadows,
+                  ),
+                  child: CheckInOutColumn(checkStatus: state.checkStatus),
+                ),
+                ProgressCircle(
+                  groupEntity: widget.groupEntity,
+                  userCheckInTime: state.checkInTime,
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

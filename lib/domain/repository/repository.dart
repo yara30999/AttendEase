@@ -30,4 +30,10 @@ abstract class Repository {
   Future<Either<Failure, bool>> deleteUserFromGroup(String userId);
   Future<Either<Failure, bool>> deleteGroup(String groupId);
   Future<Either<Failure, bool>> currentUserjoinGroup(String groupId);
+  Future<Either<Failure, bool>> currentUserCheckIn(
+    CheckInRequest checkInRequest,
+  );
+  Future<Either<Failure, bool>> currentUserCheckOut(
+    CheckOutRequest checkOutRequest,
+  );
 }

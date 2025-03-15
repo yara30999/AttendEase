@@ -36,6 +36,16 @@ String generateRandomPassword({int length = 8}) {
   ).join();
 }
 
+String generateRandomFirebaseDocId({int length = 20}) {
+  const String chars =
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  Random random = Random();
+  return List.generate(
+    length,
+    (index) => chars[random.nextInt(chars.length)],
+  ).join();
+}
+
 bool isWithinCheckInTime(GroupEntity groupEntity) {
   DateTime now = DateTime.now();
   TimeOfDay currentTime = TimeOfDay(hour: now.hour, minute: now.minute);

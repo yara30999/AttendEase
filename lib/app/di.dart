@@ -7,6 +7,8 @@ import '../data/data_source/remote_data_source.dart';
 import '../data/network/network_info.dart';
 import '../data/repository/repository_impl.dart';
 import '../domain/repository/repository.dart';
+import '../domain/usecase/check_in_current_user_usecase.dart';
+import '../domain/usecase/check_out_current_user_usecase.dart';
 import '../domain/usecase/create_group_usecase.dart';
 import '../domain/usecase/current_user_group_id_stream.dart';
 import '../domain/usecase/current_user_join_group_usecase.dart';
@@ -143,6 +145,18 @@ Future<void> initAppModule() async {
   if (!GetIt.I.isRegistered<CurrentUserJoinGroupUsecase>()) {
     instance.registerFactory<CurrentUserJoinGroupUsecase>(
       () => CurrentUserJoinGroupUsecase(instance()),
+    );
+  }
+  // check-in current user usecase
+  if (!GetIt.I.isRegistered<CheckInCurrentUser>()) {
+    instance.registerFactory<CheckInCurrentUser>(
+      () => CheckInCurrentUser(instance()),
+    );
+  }
+  // check-out current user usecase
+  if (!GetIt.I.isRegistered<CheckOutCurrentUser>()) {
+    instance.registerFactory<CheckOutCurrentUser>(
+      () => CheckOutCurrentUser(instance()),
     );
   }
 }

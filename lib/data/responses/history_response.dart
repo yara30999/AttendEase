@@ -33,7 +33,7 @@ class HistoryResponse {
       if (userId != null) "userId": userId,
       if (groupId != null) "groupId": groupId,
       "check-in":
-          checkOut != null
+          checkIn != null
               ? Timestamp.fromDate(checkIn!)
               : null, // Always included, even if null
       "check-out":

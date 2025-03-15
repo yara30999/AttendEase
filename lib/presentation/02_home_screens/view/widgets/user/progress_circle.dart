@@ -1,16 +1,15 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import '../../../../../app/app_prefs.dart';
-import '../../../../../app/di.dart';
+import '../../../../../domain/entities/group_entity.dart';
 import '../../../../resourses/colors_manager.dart';
 
 class ProgressCircle extends StatefulWidget {
   final DateTime? userCheckInTime;
-  final DateTime groupCheckOutTime;
+  final GroupEntity groupEntity;
 
   const ProgressCircle({
     super.key,
-    required this.groupCheckOutTime,
+    required this.groupEntity,
     this.userCheckInTime,
   });
 
@@ -21,12 +20,10 @@ class ProgressCircle extends StatefulWidget {
 class _ProgressCircleState extends State<ProgressCircle> {
   Timer? _timer;
   double progress = 0.0;
-  final AppPreferences _appPreferences = instance();
 
   @override
   void initState() {
     super.initState();
-    _loadProgress();
     _calculateProgress();
     _startTimer();
   }
@@ -35,19 +32,8 @@ class _ProgressCircleState extends State<ProgressCircle> {
   void didUpdateWidget(covariant ProgressCircle oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.userCheckInTime != widget.userCheckInTime) {
-      _appPreferences.setUserCheckInTime(widget.userCheckInTime);
       _calculateProgress();
       _startTimer();
-    }
-  }
-
-  /// Loads stored check-in time when the app starts
-  Future<void> _loadProgress() async {
-    DateTime? storedCheckInTime = await _appPreferences.getUserCheckInTime();
-    if (storedCheckInTime != null) {
-      setState(() {
-        _calculateProgress(storedCheckInTime);
-      });
     }
   }
 
@@ -60,8 +46,8 @@ class _ProgressCircleState extends State<ProgressCircle> {
     }
   }
 
-  void _calculateProgress([DateTime? storedCheckInTime]) async {
-    DateTime? checkInTime = storedCheckInTime ?? widget.userCheckInTime;
+  void _calculateProgress() async {
+    DateTime? checkInTime = widget.userCheckInTime;
     if (checkInTime == null) {
       setState(() {
         progress = 0.0;
@@ -69,20 +55,33 @@ class _ProgressCircleState extends State<ProgressCircle> {
       return;
     }
     DateTime now = DateTime.now();
-    // If current time is past checkout, reset progress and clear check-in time
-    if (now.isAfter(widget.groupCheckOutTime)) {
+    // Normalize `now`, `checkInTime`, and `checkOut` to ignore the date & and care only about hours...
+    DateTime todayCheckIn = DateTime(
+      now.year,
+      now.month,
+      now.day,
+      checkInTime.hour,
+      checkInTime.minute,
+    );
+    DateTime todayCheckOut = DateTime(
+      now.year,
+      now.month,
+      now.day,
+      widget.groupEntity.checkOut.hour,
+      widget.groupEntity.checkOut.minute,
+    );
+    // If now is after checkOut, set progress to 1.0
+    if (now.isAfter(todayCheckOut)) {
       setState(() {
-        progress = 0.0;
+        progress = 1.0;
       });
       _timer?.cancel();
-      // clear check-in time from shared-prefs
-      await _appPreferences.setUserCheckInTime(null);
-      // then if the user did not check-out , also save check-out time to the firebase
-      // i still thinking how to do it (yara)
       return;
     }
-    Duration totalDuration = widget.groupCheckOutTime.difference(checkInTime);
-    Duration elapsed = now.difference(checkInTime);
+    // Calculate elapsed and total durations
+    Duration totalDuration = todayCheckOut.difference(todayCheckIn);
+    Duration elapsed = now.difference(todayCheckIn);
+    // Compute progress
     double newProgress = elapsed.inSeconds / totalDuration.inSeconds;
     newProgress = newProgress.clamp(0.0, 1.0);
     setState(() {

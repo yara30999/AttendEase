@@ -31,3 +31,19 @@ class CreateGroupRequest {
     this.location,
   );
 }
+
+class CheckInRequest {
+  final String docId;
+  final String groupId;
+  final DateTime checkIn;
+
+  CheckInRequest(this.docId, this.groupId, this.checkIn);
+}
+
+class CheckOutRequest {
+  final String docId;
+  final String groupId;
+  final DateTime checkOut;
+
+  CheckOutRequest(this.docId, this.groupId, this.checkOut);
+}

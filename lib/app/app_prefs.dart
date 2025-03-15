@@ -5,7 +5,6 @@ import 'extensions.dart';
 const String prefsKeyIsUserLoggedIn = "PREFS_KEY_IS_USER_LOGGED_IN";
 const String prefsKeyTheme = "PREFS_KEY_THEME";
 const String prefsKeyIsUserRole = "PREFS_KEY_IS_USER_ROLE";
-const String prefsKeyUserCheckInTime = "PREFS_KEY_USER_CHECK_IN_TIME";
 
 abstract class AppPreferences {
   Future<String> getAppThemeName();
@@ -15,8 +14,6 @@ abstract class AppPreferences {
   bool isUserLoggedIn();
   Future<void> setUserRole(Role role);
   String getUserRole();
-  Future<void> setUserCheckInTime(DateTime? checkInTime);
-  Future<DateTime?> getUserCheckInTime();
   Future<void> removePrefs();
 }
 
@@ -81,27 +78,6 @@ class AppPreferencesImpl implements AppPreferences {
   @override
   String getUserRole() {
     return _sharedPreferences.getString(prefsKeyIsUserRole) ?? Role.admin.name;
-  }
-
-  // ############################################################# user check-in time
-  @override
-  Future<void> setUserCheckInTime(DateTime? checkInTime) async {
-    if (checkInTime != null) {
-      await _sharedPreferences.setString(
-        prefsKeyUserCheckInTime,
-        checkInTime.toIso8601String(),
-      );
-    } else {
-      await _sharedPreferences.remove(prefsKeyUserCheckInTime);
-    }
-  }
-
-  @override
-  Future<DateTime?> getUserCheckInTime() async {
-    String? savedCheckIn = _sharedPreferences.getString(
-      prefsKeyUserCheckInTime,
-    );
-    return savedCheckIn != null ? DateTime.parse(savedCheckIn) : null;
   }
 
   // ############################################################# remove all prefs
