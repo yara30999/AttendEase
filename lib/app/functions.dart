@@ -48,25 +48,22 @@ String generateRandomFirebaseDocId({int length = 20}) {
 
 bool isWithinCheckInTime(GroupEntity groupEntity) {
   DateTime now = DateTime.now();
-  TimeOfDay currentTime = TimeOfDay(hour: now.hour, minute: now.minute);
-
-  TimeOfDay checkInTime = TimeOfDay(
-    hour: groupEntity.checkIn.hour,
-    minute: groupEntity.checkIn.minute,
+  // Normalize `now`, `checkInTime`, and `checkOut` to ignore the date & and care only about hours...
+  DateTime todayCheckIn = DateTime(
+    now.year,
+    now.month,
+    now.day,
+    groupEntity.checkIn.hour,
+    groupEntity.checkIn.minute,
   );
-  TimeOfDay checkOutTime = TimeOfDay(
-    hour: groupEntity.checkOut.hour,
-    minute: groupEntity.checkOut.minute,
+  DateTime todayCheckOut = DateTime(
+    now.year,
+    now.month,
+    now.day,
+    groupEntity.checkOut.hour,
+    groupEntity.checkOut.minute,
   );
-  bool isAfterCheckIn =
-      currentTime.hour > checkInTime.hour ||
-      (currentTime.hour == checkInTime.hour &&
-          currentTime.minute >= checkInTime.minute);
-  bool isBeforeCheckOut =
-      currentTime.hour < checkOutTime.hour ||
-      (currentTime.hour == checkOutTime.hour &&
-          currentTime.minute <= checkOutTime.minute);
-  return isAfterCheckIn && isBeforeCheckOut;
+  return now.isBefore(todayCheckOut) && now.isAfter(todayCheckIn);
 }
 
 void showToast(String message, Color color, [Toast? toast]) {
