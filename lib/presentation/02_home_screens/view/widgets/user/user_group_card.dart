@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../app/functions.dart';
 import '../../../../../domain/entities/group_entity.dart';
 import '../../../../resourses/styles_manager.dart';
+import '../../../view_model/join_group_cubit/join_group_cubit.dart';
 import '../group_avatar.dart';
 import '../total_group_members_stream_builder.dart';
 
@@ -13,7 +15,8 @@ class UserGroupCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        showJoinGroupBottomSheet(context, groupEntity);
+        final joinGroupCubit = context.read<JoinGroupCubit>();
+        showJoinGroupBottomSheet(context, groupEntity, joinGroupCubit);
       },
       child: Card(
         elevation: 4,

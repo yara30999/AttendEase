@@ -10,6 +10,8 @@ import '../presentation/02_home_screens/view/widgets/admin/delete_group_dialog.d
 import '../presentation/02_home_screens/view/widgets/user/bottom_sheets/join_group_bottom_sheet.dart';
 import '../presentation/02_home_screens/view/widgets/user/bottom_sheets/take_permission_bottom_sheet.dart';
 import '../presentation/02_home_screens/view_model/delete_group_cubit/delete_group_cubit.dart';
+import '../presentation/02_home_screens/view_model/join_group_cubit/join_group_cubit.dart';
+import '../presentation/02_home_screens/view_model/permission_cubit/permission_cubit.dart';
 import '../presentation/02_home_screens/view_model/theme_bloc/theme_bloc.dart';
 import '../presentation/04_group_details_screen/view/widgets/delete_user_dialog.dart';
 import '../presentation/04_group_details_screen/view_model/delete_member_cubit/delete_member_from_group_cubit.dart';
@@ -111,19 +113,29 @@ Future<void> showDeleteGroupConfirmationDialog(
 PersistentBottomSheetController showJoinGroupBottomSheet(
   BuildContext context,
   GroupEntity groupEntity,
+  JoinGroupCubit joinGroupCubit,
 ) {
   return showBottomSheet(
     context: context,
-    builder: (context) => JoinGroupBottomSheet(groupEntity: groupEntity),
+    builder:
+        (context) => JoinGroupBottomSheet(
+          groupEntity: groupEntity,
+          joinGroupCubit: joinGroupCubit,
+        ),
   );
 }
 
 PersistentBottomSheetController showTakePermissionBottomSheet(
   BuildContext context,
   GroupEntity groupEntity,
+  PermissionCubit permissionCubit,
 ) {
   return showBottomSheet(
     context: context,
-    builder: (context) => TakePermissionBottomSheet(groupEntity: groupEntity),
+    builder:
+        (context) => TakePermissionBottomSheet(
+          groupEntity: groupEntity,
+          permissionCubit: permissionCubit,
+        ),
   );
 }

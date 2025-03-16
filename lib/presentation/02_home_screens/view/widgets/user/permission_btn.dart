@@ -1,11 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../../../app/functions.dart';
 import '../../../../../domain/entities/group_entity.dart';
 import '../../../../resourses/assets_manager.dart';
 import '../../../../resourses/colors_manager.dart';
 import '../../../../resourses/styles_manager.dart';
+import '../../../view_model/permission_cubit/permission_cubit.dart';
 
 class PermissionBtn extends StatelessWidget {
   final GroupEntity groupEntity;
@@ -17,7 +19,8 @@ class PermissionBtn extends StatelessWidget {
       padding: const EdgeInsets.all(10.0),
       child: ElevatedButton(
         onPressed: () {
-          showTakePermissionBottomSheet(context, groupEntity);
+          final permissionCubit = context.read<PermissionCubit>();
+          showTakePermissionBottomSheet(context, groupEntity, permissionCubit);
         },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

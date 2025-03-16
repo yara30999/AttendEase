@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:provider/provider.dart';
 import '../../../../../app/extensions.dart';
 import '../../../../../app/functions.dart';
 import '../../../../resourses/assets_manager.dart';
@@ -10,7 +8,8 @@ import '../../../../resourses/styles_manager.dart';
 import '../../../view_model/permission_cubit/permission_cubit.dart';
 
 class PermissionDropDownButton extends StatefulWidget {
-  const PermissionDropDownButton({super.key});
+  final PermissionCubit permissionCubit;
+  const PermissionDropDownButton(this.permissionCubit, {super.key});
 
   @override
   State<PermissionDropDownButton> createState() =>
@@ -64,8 +63,7 @@ class _PermissionDropDownButtonState extends State<PermissionDropDownButton> {
 
   @override
   Widget build(BuildContext context) {
-    PermissionType initialPermission =
-        context.read<PermissionCubit>().initPermission;
+    PermissionType initialPermission = widget.permissionCubit.initPermission;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
       decoration: BoxDecoration(
@@ -84,7 +82,7 @@ class _PermissionDropDownButtonState extends State<PermissionDropDownButton> {
         items: permissionOptions,
         onChanged: (PermissionType? newSelected) {
           if (newSelected != null) {
-            context.read<PermissionCubit>().initPermission = newSelected;
+            widget.permissionCubit.initPermission = newSelected;
             setState(() {
               initialPermission = newSelected;
             });
