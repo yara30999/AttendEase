@@ -7,6 +7,7 @@ import '../../../../app/extensions.dart';
 import '../../../../app/functions.dart';
 import '../../../../app/geolocation_service.dart';
 import '../../../../domain/entities/group_entity.dart';
+import '../../../../domain/usecase/can_user_have_action_today_usecase.dart';
 import '../../../../domain/usecase/check_in_current_user_usecase.dart';
 import '../../../../domain/usecase/check_out_current_user_usecase.dart';
 
@@ -16,6 +17,7 @@ part 'check_in_out_state.dart';
 class CheckInOutBloc extends HydratedBloc<CheckInOutEvent, CheckInOutState> {
   final CheckInCurrentUser _checkInCurrentUser;
   final CheckOutCurrentUser _checkOutCurrentUser;
+  final CanUserHaveActionTodayUsecase _canUserHaveActionTodayUsecase;
   final IGeolocationService _geolocationService;
   LatLng? _currentUserLocation;
   LatLng? _groupLocation;
@@ -31,6 +33,7 @@ class CheckInOutBloc extends HydratedBloc<CheckInOutEvent, CheckInOutState> {
   CheckInOutBloc(
     this._checkInCurrentUser,
     this._checkOutCurrentUser,
+    this._canUserHaveActionTodayUsecase,
     this._geolocationService,
   ) : super(CheckInOutInitial(CheckStatus.checkIn, null)) {
     on<CheckInRequested>(onCheckInRequested);
@@ -42,85 +45,82 @@ class CheckInOutBloc extends HydratedBloc<CheckInOutEvent, CheckInOutState> {
     Emitter<CheckInOutState> emit,
   ) async {
     emit(CheckInOutLoading(_currentCheckInStatus, _currentCheckInTime));
-    bool isTimeAvailable = isWithinCheckInTime(event.groupEntity);
-    if (!isTimeAvailable) {
-      // if outside the working hours...
-      _errMessage = tr('outside_the_working_hours');
-      emit(
-        CheckInOutError(
-          _currentCheckInStatus,
-          _currentCheckInTime,
-          _errMessage!,
-        ),
-      );
-      return null; //break the function here.
-    } else {
-      //get current user location first
-      try {
-        _currentUserLocation =
-            await _geolocationService.getCurrentUserLocation();
-        _groupLocation = LatLng(
-          event.groupEntity.location.latitude,
-          event.groupEntity.location.longitude,
-        );
-      } catch (error) {
-        //this error from getCurrentUserLocation()
-        emit(
-          CheckInOutError(
-            _currentCheckInStatus,
-            _currentCheckInTime,
-            error.toString(),
-          ),
-        );
-        return null; //break the function here.
-      }
-      bool isInsideTheRegion = _geolocationService
-          .isUserLocationNearToWorkLocation(
-            _currentUserLocation!,
-            _groupLocation!,
-          );
-      if (!isInsideTheRegion) {
-        // if outside the working location...
-        _errMessage = tr('outside_the_working_location');
-        emit(
-          CheckInOutError(
-            _currentCheckInStatus,
-            _currentCheckInTime,
-            _errMessage!,
-          ),
-        );
-        return null; //break the function here.
-      } else {
-        //trigged only when the time and locatin are valid.
-        _historyDocId = generateRandomFirebaseDocId();
-        _currentCheckInTime = DateTime.now();
-        var result = await _checkInCurrentUser.execute(
-          CheckInUsecaseInput(
-            _historyDocId!,
-            event.groupEntity.id,
-            _currentCheckInTime!,
-          ),
-        );
-        result.fold(
-          (failure) {
-            _errMessage =
-                '${failure.message.toString()} ${failure.code.toString()}';
-            emit(
-              CheckInOutError(
-                _currentCheckInStatus,
-                _currentCheckInTime,
-                _errMessage!,
-              ),
-            );
-          },
-          (isSuccess) {
-            // switch _currentCheckInStatus to checkOut for next button click.
-            _currentCheckInStatus = CheckStatus.checkOut;
-            emit(CheckInOutSuccess(_currentCheckInStatus, _currentCheckInTime));
-          },
-        );
-      }
+    if (!_isWithinCheckInTime(event.groupEntity)) {
+      _emitError(emit, tr('outside_the_working_hours'));
+      return;
     }
+    if (!await _getUserAndGroupLocation(event.groupEntity, emit)) {
+      return;
+    }
+    if (!_isUserInsideWorkRegion()) {
+      _emitError(emit, tr('outside_the_working_location'));
+      return;
+    }
+    if (!await _validateUserCheckInAndPermissions(event.groupEntity.id, emit)) {
+      return;
+    }
+    await _performUserCheckIn(event.groupEntity.id, emit);
+  }
+
+  bool _isWithinCheckInTime(GroupEntity groupEntity) {
+    return isWithinCheckInTime(groupEntity);
+  }
+
+  Future<bool> _getUserAndGroupLocation(
+    GroupEntity groupEntity,
+    Emitter<CheckInOutState> emit,
+  ) async {
+    try {
+      _currentUserLocation = await _geolocationService.getCurrentUserLocation();
+      _groupLocation = LatLng(
+        groupEntity.location.latitude,
+        groupEntity.location.longitude,
+      );
+      return true;
+    } catch (error) {
+      _emitError(emit, error.toString());
+      return false;
+    }
+  }
+
+  bool _isUserInsideWorkRegion() {
+    return _geolocationService.isUserLocationNearToWorkLocation(
+      _currentUserLocation!,
+      _groupLocation!,
+    );
+  }
+
+  Future<bool> _validateUserCheckInAndPermissions(
+    String groupId,
+    Emitter<CheckInOutState> emit,
+  ) async {
+    var result = await _canUserHaveActionTodayUsecase.execute(groupId);
+    return result.fold((failure) {
+      _emitError(emit, '${failure.message} ${failure.code}');
+      return false;
+    }, (canUserCheckInForToday) => true);
+  }
+
+  Future<void> _performUserCheckIn(
+    String groupId,
+    Emitter<CheckInOutState> emit,
+  ) async {
+    _historyDocId = generateRandomFirebaseDocId();
+    _currentCheckInTime = DateTime.now();
+
+    var result = await _checkInCurrentUser.execute(
+      CheckInUsecaseInput(_historyDocId!, groupId, _currentCheckInTime!),
+    );
+
+    result.fold((failure) => _emitError(emit, failure.message), (isSuccess) {
+      _currentCheckInStatus = CheckStatus.checkOut;
+      emit(CheckInOutSuccess(_currentCheckInStatus, _currentCheckInTime));
+    });
+  }
+
+  void _emitError(Emitter<CheckInOutState> emit, String message) {
+    _errMessage = message;
+    emit(CheckInOutError(_currentCheckInStatus, _currentCheckInTime, message));
   }
 
   FutureOr<void> onCheckOutRequested(

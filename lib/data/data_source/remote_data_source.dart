@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../app/functions.dart';
 import '../network/requests.dart';
@@ -27,6 +28,7 @@ abstract class RemoteDataSource {
   Future<void> currentUserCheckIn(CheckInRequest checkInRequest);
   Future<void> currentUserCheckOut(CheckOutRequest checkOutRequest);
   Future<void> currentUserTakePermission(PermissionRequest permissionRequest);
+  Future<bool> canUserCheckInOrHavePermissionToday(String groupId);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -355,5 +357,54 @@ class RemoteDataSourceImpl implements RemoteDataSource {
         message: permissionRequest.message,
       ).toFirestore(),
     );
+  }
+
+  @override
+  Future<bool> canUserCheckInOrHavePermissionToday(String groupId) async {
+    String currentUserId = _firebaseAuth.currentUser?.uid ?? "";
+
+    // Get the start and end of today
+    DateTime now = DateTime.now();
+    DateTime startOfDay = DateTime(now.year, now.month, now.day);
+    DateTime endOfDay = startOfDay
+        .add(Duration(days: 1))
+        .subtract(Duration(seconds: 1));
+    //get the permission that have been taken today
+    QuerySnapshot<Map<String, dynamic>> usersPermissionsQuery =
+        await usersPermission
+                .where('userId', isEqualTo: currentUserId)
+                .where('groupId', isEqualTo: groupId)
+                .where(
+                  'date',
+                  isGreaterThanOrEqualTo: Timestamp.fromDate(startOfDay),
+                )
+                .where(
+                  'date',
+                  isLessThanOrEqualTo: Timestamp.fromDate(endOfDay),
+                )
+                .get()
+            as QuerySnapshot<Map<String, dynamic>>;
+    //get the history that have been checked in today
+    QuerySnapshot<Map<String, dynamic>> usersHistoryQuery =
+        await usersHistroy
+                .where('userId', isEqualTo: currentUserId)
+                .where('groupId', isEqualTo: groupId)
+                .where(
+                  'check-in',
+                  isGreaterThanOrEqualTo: Timestamp.fromDate(startOfDay),
+                )
+                .where(
+                  'check-in',
+                  isLessThanOrEqualTo: Timestamp.fromDate(endOfDay),
+                )
+                .get()
+            as QuerySnapshot<Map<String, dynamic>>;
+    if (usersHistoryQuery.docs.isNotEmpty) {
+      return Future.error('You_have_check_in_today'.tr());
+    }
+    if (usersPermissionsQuery.docs.isNotEmpty) {
+      return Future.error('You_have_Taken_permission_today'.tr());
+    }
+    return true;
   }
 }

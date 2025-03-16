@@ -7,6 +7,7 @@ import '../data/data_source/remote_data_source.dart';
 import '../data/network/network_info.dart';
 import '../data/repository/repository_impl.dart';
 import '../domain/repository/repository.dart';
+import '../domain/usecase/can_user_have_action_today_usecase.dart';
 import '../domain/usecase/check_in_current_user_usecase.dart';
 import '../domain/usecase/check_out_current_user_usecase.dart';
 import '../domain/usecase/create_group_usecase.dart';
@@ -164,6 +165,12 @@ Future<void> initAppModule() async {
   if (!GetIt.I.isRegistered<CurrentUserTakePermissionUsecase>()) {
     instance.registerFactory<CurrentUserTakePermissionUsecase>(
       () => CurrentUserTakePermissionUsecase(instance()),
+    );
+  }
+  // is the current user can take permission or check-in for today usecase
+  if (!GetIt.I.isRegistered<CanUserHaveActionTodayUsecase>()) {
+    instance.registerFactory<CanUserHaveActionTodayUsecase>(
+      () => CanUserHaveActionTodayUsecase(instance()),
     );
   }
 }

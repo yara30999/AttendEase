@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import '../../../../../app/extensions.dart';
 import '../../../../../app/functions.dart';
 import '../../../../../domain/entities/group_entity.dart';
@@ -91,13 +92,21 @@ class _CheckInOutButtonState extends State<CheckInOutButton> {
       listener: (context, state) {
         if (state is CheckInOutSuccess) {
           if (state.checkStatus == CheckStatus.checkOut) {
-            showToast(context.tr('check_in_successfully'), ColorsManager.grey);
+            showToast(
+              context.tr('check_in_successfully'),
+              ColorsManager.grey,
+              Toast.LENGTH_LONG,
+            );
           } else {
-            showToast(context.tr('check_out_successfully'), ColorsManager.grey);
+            showToast(
+              context.tr('check_out_successfully'),
+              ColorsManager.grey,
+              Toast.LENGTH_LONG,
+            );
           }
         }
         if (state is CheckInOutError) {
-          showToast(state.errMessage, ColorsManager.softRed);
+          showToast(state.errMessage, ColorsManager.softRed, Toast.LENGTH_LONG);
         }
       },
       builder: (context, state) {

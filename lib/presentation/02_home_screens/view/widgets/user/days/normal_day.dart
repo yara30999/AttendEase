@@ -17,7 +17,9 @@ class NormalDay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CheckInOutBloc(instance(), instance(), instance()),
+      create:
+          (context) =>
+              CheckInOutBloc(instance(), instance(), instance(), instance()),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),
         child: Column(

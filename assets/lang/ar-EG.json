@@ -154,5 +154,7 @@
   "wait_check_out_processing": "انتظر دقيقة واحدة، لا نزال نقوم بمعالجة وقت المغادرة الخاص بك.",
   "take_permission_successfully": "لقد تم الحصول على الإذن الخاص بك بنجاح.",
   "more_details": "هل تريد تقديم المزيد من التفاصيل؟",
-  "choose_permission_type:": "اختر نوع الإذن الخاص بك:"
+  "choose_permission_type:": "اختر نوع الإذن الخاص بك:",
+  "You_have_check_in_today": "لقد قمت بالفعل بتسجيل الدخول لهذا اليوم، راجع سجلاتك.",
+  "You_have_Taken_permission_today": "لقد أخذت إذن بالفعل لهذا اليوم."
 }

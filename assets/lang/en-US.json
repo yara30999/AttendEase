@@ -154,5 +154,7 @@
   "wait_check_out_processing": "Wait a minute, we are still processing your check-out time.",
   "take_permission_successfully": "Your permission has been taken successfully.",
   "more_details": "Want to provide more Details?",
-  "choose_permission_type:": "Choose your permission type:"
+  "choose_permission_type:": "Choose your permission type:",
+  "You_have_check_in_today": "You already have checked in for today, See your records ",
+  "You_have_Taken_permission_today": "You have already taken permission for today."
 }

@@ -39,4 +39,7 @@ abstract class Repository {
   Future<Either<Failure, bool>> currentUserTakePermission(
     PermissionRequest permissionRequest,
   );
+  Future<Either<Failure, bool>> canUserCheckInOrHavePermissionToday(
+    String groupId,
+  );
 }

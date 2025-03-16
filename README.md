@@ -43,7 +43,7 @@ This application is developed as a graduation project for [Mobile Development By
 - Integration with Google Map API service (Location, Navigation, Pick from the map).
 - Integration with GeoLocation service (get current user location, check-in based on the distance between group-location & user-location).
 - Keeps the user session logged in. No need to log in every time the app is opened.
-- **_User based features:_**
+- **_Admin based features:_**
   - Create groups | Delete groups | Delete users from group.
   - Monitor each user Records & Permissions.
   - Access to each group Password.

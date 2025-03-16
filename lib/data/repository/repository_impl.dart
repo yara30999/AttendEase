@@ -322,4 +322,21 @@ class RepositoryImpl implements Repository {
       return Left(DataSource.noInternetConnection.getFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> canUserCheckInOrHavePermissionToday(
+    String groupId,
+  ) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final bool canHaveAction = await _remoteDataSource
+            .canUserCheckInOrHavePermissionToday(groupId);
+        return Right(canHaveAction);
+      } catch (error) {
+        return Left(Failure(400, error.toString()));
+      }
+    } else {
+      return Left(DataSource.noInternetConnection.getFailure());
+    }
+  }
 }

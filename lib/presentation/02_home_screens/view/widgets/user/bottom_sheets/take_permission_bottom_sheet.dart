@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import '../../../../../../app/di.dart';
 import '../../../../../../app/functions.dart';
 import '../../../../../../domain/entities/group_entity.dart';
@@ -24,7 +25,7 @@ class _TakePermissionBottomSheetState extends State<TakePermissionBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => PermissionCubit(instance()),
+      create: (context) => PermissionCubit(instance(), instance()),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
@@ -70,9 +71,12 @@ class _TakePermissionBottomSheetState extends State<TakePermissionBottomSheet> {
                   }
                   if (state is PermissionError) {
                     showToast(
-                      context.tr('something_went_wrong'),
+                      state.message,
                       ColorsManager.softRed,
+                      Toast.LENGTH_LONG,
                     );
+                    //close the bottom sheet.
+                    Navigator.pop(context);
                   }
                 },
                 builder: (context, state) {
