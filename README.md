@@ -69,6 +69,10 @@ This application is developed as a graduation project for [Mobile Development By
 
 [Click here to download the AttendEase apk.](https://drive.google.com/file/d/1T0n3A07V3FTT7Fw7OB6ikqNYVQJ8wK8r/view?usp=drive_link)
 
+## 🎥 App demo:
+
+[Click here to watch AttendEase demo.](https://drive.google.com/file/d/1-WslniDr_FSy4SkJKmM_v58mkQtqrg21/view?usp=sharing)
+
 ## 💬 Feedback and Suggestions:
 
 For any feedback or suggestions, feel free to contact me via email:  
