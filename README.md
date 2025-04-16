@@ -75,7 +75,7 @@ This application is developed as a graduation project for [Mobile Development By
 
 ## 🎬 Presentation:
 
-[Click here to download AttendEase presentation.](https://docs.google.com/presentation/d/1GcVfofhhdVGscVCmZYxCHCxOduV6v0v_/edit?usp=drive_link&ouid=106783070272712070304&rtpof=true&sd=true)
+[Click here to download AttendEase presentation.](https://docs.google.com/presentation/d/1GcVfofhhdVGscVCmZYxCHCxOduV6v0v_/edit?usp=sharing&ouid=106783070272712070304&rtpof=true&sd=true)
 
 ## 💬 Feedback and Suggestions:
 
