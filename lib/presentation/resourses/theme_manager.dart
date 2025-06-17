@@ -60,7 +60,7 @@ ThemeData getlightTheme() {
     ),
 
     // card theme
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       elevation: 4,
       clipBehavior: Clip.hardEdge,
       color: ColorsManager.creamyBeige,
@@ -134,7 +134,7 @@ ThemeData getlightTheme() {
     ),
 
     //tab bar theme
-    tabBarTheme: TabBarTheme(
+    tabBarTheme: TabBarThemeData(
       labelColor: ColorsManager.white,
       labelStyle: Styles.style14Medium().copyWith(fontWeight: FontWeight.bold),
       unselectedLabelColor: ColorsManager.black,
@@ -149,10 +149,10 @@ ThemeData getlightTheme() {
       overlayColor: WidgetStateProperty.all(Colors.transparent),
     ),
 
-    //bottom sheet theme 
+    //bottom sheet theme
     bottomSheetTheme: BottomSheetThemeData(
       backgroundColor: ColorsManager.softBeige,
-    )
+    ),
   );
 }
 
@@ -213,7 +213,7 @@ ThemeData getDarkTheme() {
     ),
 
     // card theme
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       elevation: 4,
       clipBehavior: Clip.hardEdge,
       color: ColorsManager.grey,
@@ -287,7 +287,7 @@ ThemeData getDarkTheme() {
     ),
 
     //tab bar theme
-    tabBarTheme: TabBarTheme(
+    tabBarTheme: TabBarThemeData(
       labelColor: ColorsManager.white,
       labelStyle: Styles.style14Medium().copyWith(fontWeight: FontWeight.bold),
       unselectedLabelColor: ColorsManager.black,
@@ -305,6 +305,6 @@ ThemeData getDarkTheme() {
     //bottom sheet theme
     bottomSheetTheme: BottomSheetThemeData(
       backgroundColor: ColorsManager.black,
-    )
+    ),
   );
 }

@@ -19,7 +19,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+8
 
 environment:
-  sdk: ^3.7.0
+  sdk: ^3.8.1
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -34,19 +34,19 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
-  flutter_native_splash: ^2.4.5
-  firebase_core: ^3.12.1
-  firebase_auth: ^5.5.1
-  cloud_firestore: ^5.6.5
+  flutter_native_splash: ^2.4.6
+  firebase_core: ^3.14.0
+  firebase_auth: ^5.6.0
+  cloud_firestore: ^5.6.9
   fluttertoast: ^8.2.12
   easy_localization: ^3.0.7+1
-  country_flags: ^3.2.0
-  animated_toggle_switch: ^0.8.4
+  country_flags: ^3.3.0
+  animated_toggle_switch: ^0.8.5
   lottie: ^3.3.1
-  flutter_svg: ^2.0.17
-  shared_preferences: ^2.5.2
+  flutter_svg: ^2.2.0
+  shared_preferences: ^2.5.3
   hydrated_bloc: ^10.0.0
-  flutter_bloc: ^9.1.0
+  flutter_bloc: ^9.1.1
   bloc: ^9.0.0
   meta: ^1.16.0
   equatable: ^2.0.7
@@ -57,8 +57,8 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   google_maps_flutter:
-  geolocator: ^13.0.2
-  intl: ^0.19.0
+  geolocator: ^14.0.1
+  intl: ^0.20.2
   path_provider: ^2.1.5
 
 dev_dependencies:
