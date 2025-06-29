@@ -44,6 +44,13 @@ class _LocationMapCardState extends State<LocationMapCard> {
   }
 
   @override
+  void dispose() {
+    _mapController?.dispose();
+    _markers.clear();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 4,

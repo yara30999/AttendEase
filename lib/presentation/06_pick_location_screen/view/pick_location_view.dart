@@ -26,6 +26,13 @@ class _PickLocationViewState extends State<PickLocationView> {
     _addCurrentUserLocationAndMarker();
   }
 
+  @override
+  void dispose() {
+    _markers.clear();
+    _controller.future.then((controller) => controller.dispose());
+    super.dispose();
+  }
+
   void _onMapCreated(GoogleMapController controller) {
     _controller.complete(controller);
   }
