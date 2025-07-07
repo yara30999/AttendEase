@@ -3,8 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class GroupResponse {
   final String? id;
   final String? name;
-  final String? hashedPassword;
-  final String? salt;
+  final String? password;
   final DateTime? checkIn;
   final DateTime? checkOut;
   final List<int>? days;
@@ -13,8 +12,7 @@ class GroupResponse {
   GroupResponse({
     this.id,
     this.name,
-    this.hashedPassword,
-    this.salt,
+    this.password,
     this.checkIn,
     this.checkOut,
     this.days,
@@ -28,8 +26,7 @@ class GroupResponse {
     return GroupResponse(
       id: snapshot.id,
       name: data?['name'],
-      hashedPassword: data?['password'],
-      salt: data?['salt'],
+      password: data?['password'],
       checkIn: (data?['check-in'] as Timestamp?)?.toDate(),
       checkOut: (data?['check-out'] as Timestamp?)?.toDate(),
       days: (data?['days'] as List<dynamic>?)?.map((e) => e as int).toList(),
@@ -40,8 +37,7 @@ class GroupResponse {
   Map<String, dynamic> toFirestore() {
     return {
       if (name != null) "name": name,
-      "password": hashedPassword,
-      "salt": salt,
+      "password": password,
       "check-in": Timestamp.fromDate(checkIn!),
       "check-out": Timestamp.fromDate(checkOut!),
       "days": days,

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../../app/encryption_helper.dart';
 import '../../app/functions.dart';
 import '../network/requests.dart';
 import '../responses/group_response.dart';
@@ -93,13 +94,15 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   Future<void> createGroup(CreateGroupRequest createGroupRequest) async {
     //write doc
     String plainPassword = generateRandomPassword();
-    String salt = generateSalt();
-    String hashedPassword = hashPassword(plainPassword, salt);
+    // String salt = generateSalt();
+    // String hashedPassword = hashPassword(plainPassword, salt);
+    String encryptedPassword = EncryptionHelper.encryptPassword(plainPassword);
     await groups.doc().set(
       GroupResponse(
         name: createGroupRequest.name,
-        hashedPassword: hashedPassword,
-        salt: salt,
+        // hashedPassword: hashedPassword,
+        // salt: salt,
+        password: encryptedPassword,
         checkIn: createGroupRequest.checkIn,
         checkOut: createGroupRequest.checkOut,
         days: createGroupRequest.days,

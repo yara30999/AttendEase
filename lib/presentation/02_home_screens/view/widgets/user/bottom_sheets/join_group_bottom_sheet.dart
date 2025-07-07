@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../../app/encryption_helper.dart';
 import '../../../../../../app/functions.dart';
 import '../../../../../../domain/entities/group_entity.dart';
 import '../../../../../01_auth_screens/view/widgets/custom_text_form_field.dart';
@@ -88,10 +89,16 @@ class _JoinGroupBottomSheetState extends State<JoinGroupBottomSheet> {
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         //ckeck if the entered password is equal to the actual group password after hashing it.
-                        final salt = widget.groupEntity.salt;
-                        final storedHash = widget.groupEntity.password;
-                        final enteredHash = hashPassword(_password!, salt);
-                        if (enteredHash == storedHash) {
+                        // final salt = widget.groupEntity.salt;
+                        // final storedHash = widget.groupEntity.password;
+                        // final enteredHash = hashPassword(_password!, salt);
+                        // we used encrypted password instead of hashed password
+                        // because i need to show the password in the Admin UI.
+                        final decryptedPassword =
+                            EncryptionHelper.decryptPassword(
+                              widget.groupEntity.password,
+                            );
+                        if (_password == decryptedPassword) {
                           //this joining group will be using group-id
                           widget.joinGroupCubit.joinGroup(
                             widget.groupEntity.id,

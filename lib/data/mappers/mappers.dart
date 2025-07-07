@@ -29,8 +29,7 @@ extension GroupResponseMapper on GroupResponse? {
       days: this!.days ?? [],
       checkIn: this!.checkIn ?? DateTime.now(),
       checkOut: this!.checkOut ?? DateTime.now(),
-      password: this!.hashedPassword.orEmpty(),
-      salt: this!.salt.orEmpty(),
+      password: this!.password.orEmpty(),
       location: this!.location ?? GeoPoint(0, 0),
     );
   }
