@@ -87,8 +87,11 @@ class _JoinGroupBottomSheetState extends State<JoinGroupBottomSheet> {
                   return ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        //ckeck if the entered password is equal to the actual group password.
-                        if (_password == widget.groupEntity.password) {
+                        //ckeck if the entered password is equal to the actual group password after hashing it.
+                        final salt = widget.groupEntity.salt;
+                        final storedHash = widget.groupEntity.password;
+                        final enteredHash = hashPassword(_password!, salt);
+                        if (enteredHash == storedHash) {
                           //this joining group will be using group-id
                           widget.joinGroupCubit.joinGroup(
                             widget.groupEntity.id,
@@ -108,10 +111,9 @@ class _JoinGroupBottomSheetState extends State<JoinGroupBottomSheet> {
               ),
               // close button.
               Align(
-                alignment:
-                    LocalizationUtils.isCurrentLocalAr(context)
-                        ? Alignment.bottomLeft
-                        : Alignment.bottomRight,
+                alignment: LocalizationUtils.isCurrentLocalAr(context)
+                    ? Alignment.bottomLeft
+                    : Alignment.bottomRight,
                 child: TextButton(
                   onPressed: () => Navigator.pop(context),
                   child: Text(context.tr('close')),

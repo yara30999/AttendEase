@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'dart:math';
 
+import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -27,6 +29,22 @@ void hiveAdapters() {
 
 bool isLightTheme(BuildContext context) {
   return context.read<ThemeBloc>().state.themeMode == ThemeMode.light;
+}
+
+//hashing and salting functions (one way encryptiion), but i need to show
+// the group password in the UI, so the admin can copy it and send it to his members
+// asociated with that group only.
+// so, i need to use encryption instead of hashing.
+String generateSalt([int length = 16]) {
+  final random = Random.secure();
+  final values = List<int>.generate(length, (_) => random.nextInt(256));
+  return base64Url.encode(values);
+}
+
+String hashPassword(String password, String salt) {
+  final bytes = utf8.encode(password + salt);
+  final digest = sha256.convert(bytes);
+  return digest.toString();
 }
 
 String generateRandomPassword({int length = 8}) {
@@ -117,11 +135,10 @@ PersistentBottomSheetController showJoinGroupBottomSheet(
 ) {
   return showBottomSheet(
     context: context,
-    builder:
-        (context) => JoinGroupBottomSheet(
-          groupEntity: groupEntity,
-          joinGroupCubit: joinGroupCubit,
-        ),
+    builder: (context) => JoinGroupBottomSheet(
+      groupEntity: groupEntity,
+      joinGroupCubit: joinGroupCubit,
+    ),
   );
 }
 
@@ -132,10 +149,9 @@ PersistentBottomSheetController showTakePermissionBottomSheet(
 ) {
   return showBottomSheet(
     context: context,
-    builder:
-        (context) => TakePermissionBottomSheet(
-          groupEntity: groupEntity,
-          permissionCubit: permissionCubit,
-        ),
+    builder: (context) => TakePermissionBottomSheet(
+      groupEntity: groupEntity,
+      permissionCubit: permissionCubit,
+    ),
   );
 }

@@ -92,10 +92,14 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   @override
   Future<void> createGroup(CreateGroupRequest createGroupRequest) async {
     //write doc
+    String plainPassword = generateRandomPassword();
+    String salt = generateSalt();
+    String hashedPassword = hashPassword(plainPassword, salt);
     await groups.doc().set(
       GroupResponse(
         name: createGroupRequest.name,
-        password: generateRandomPassword(),
+        hashedPassword: hashedPassword,
+        salt: salt,
         checkIn: createGroupRequest.checkIn,
         checkOut: createGroupRequest.checkOut,
         days: createGroupRequest.days,
@@ -167,14 +171,13 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       return []; // Return an empty list if no data exists
     }
     // map each doc to UserResponse , then return list.
-    List<UserResponse> usersData =
-        usersQuery.docs
-            .map(
-              (doc) => UserResponse.fromFirestore(
-                doc as DocumentSnapshot<Map<String, dynamic>>,
-              ),
-            )
-            .toList();
+    List<UserResponse> usersData = usersQuery.docs
+        .map(
+          (doc) => UserResponse.fromFirestore(
+            doc as DocumentSnapshot<Map<String, dynamic>>,
+          ),
+        )
+        .toList();
     return usersData;
   }
 
@@ -189,14 +192,13 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       return []; // Return an empty list if no data exists
     }
     // map each doc to HistoryResponse , then return list.
-    List<HistoryResponse> usersHistoryData =
-        usersHistoryQuery.docs
-            .map(
-              (doc) => HistoryResponse.fromFirestore(
-                doc as DocumentSnapshot<Map<String, dynamic>>,
-              ),
-            )
-            .toList();
+    List<HistoryResponse> usersHistoryData = usersHistoryQuery.docs
+        .map(
+          (doc) => HistoryResponse.fromFirestore(
+            doc as DocumentSnapshot<Map<String, dynamic>>,
+          ),
+        )
+        .toList();
     return usersHistoryData;
   }
 
@@ -211,14 +213,13 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       return []; // Return an empty list if no data exists
     }
     // map each doc to PermissionResponse , then return list.
-    List<PermissionResponse> usersPermissionData =
-        usersPermissionsQuery.docs
-            .map(
-              (doc) => PermissionResponse.fromFirestore(
-                doc as DocumentSnapshot<Map<String, dynamic>>,
-              ),
-            )
-            .toList();
+    List<PermissionResponse> usersPermissionData = usersPermissionsQuery.docs
+        .map(
+          (doc) => PermissionResponse.fromFirestore(
+            doc as DocumentSnapshot<Map<String, dynamic>>,
+          ),
+        )
+        .toList();
     return usersPermissionData;
   }
 
