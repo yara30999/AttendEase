@@ -60,7 +60,6 @@ dependencies:
   geolocator: ^14.0.1
   intl: ^0.20.2
   path_provider: ^2.1.5
-  crypto: ^3.0.6
   encrypt: ^5.0.3
 
 dev_dependencies:

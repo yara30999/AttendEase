@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+import '../../app/encryption_helper.dart';
 import '../../app/extensions.dart';
 import '../../domain/entities/auth_entity.dart';
 import '../../domain/entities/group_entity.dart';
@@ -23,13 +23,27 @@ extension UserResponseMapper on UserResponse? {
 
 extension GroupResponseMapper on GroupResponse? {
   GroupEntity toDomain() {
+    // Decrypt the password if it exists and is not empty
+    String decryptedPassword = '';
+    if (this!.encryptedPassword != null &&
+        this!.encryptedPassword!.isNotEmpty) {
+      try {
+        decryptedPassword = EncryptionHelper.decryptPassword(
+          this!.encryptedPassword!,
+        );
+      } catch (e) {
+        // Handle decryption error - you might want to log this or handle it appropriately
+        print('Error decrypting password: $e');
+        decryptedPassword = ''; // Or handle this case as needed
+      }
+    }
     return GroupEntity(
       id: this!.id.orEmpty(),
       name: this!.name.orEmpty(),
       days: this!.days ?? [],
       checkIn: this!.checkIn ?? DateTime.now(),
       checkOut: this!.checkOut ?? DateTime.now(),
-      password: this!.password.orEmpty(),
+      password: decryptedPassword,
       location: this!.location ?? GeoPoint(0, 0),
     );
   }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../app/encryption_helper.dart';
 import '../../../../../app/functions.dart';
 import '../../../../../domain/entities/group_entity.dart';
 import '../../../../04_group_details_screen/view/widgets/group_password_row.dart';
@@ -18,9 +17,9 @@ class AdminGroupCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String decryptedGroupPassword = EncryptionHelper.decryptPassword(
-      groupEntity.password,
-    );
+    // final String decryptedGroupPassword = EncryptionHelper.decryptPassword(
+    //   groupEntity.password,
+    // );
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(
@@ -48,7 +47,7 @@ class AdminGroupCard extends StatelessWidget {
                     FittedBox(
                       fit: BoxFit.fitWidth,
                       child: GroupPasswordRow(
-                        passwordTxt: decryptedGroupPassword,
+                        passwordTxt: groupEntity.password,
                       ),
                     ),
                   ],

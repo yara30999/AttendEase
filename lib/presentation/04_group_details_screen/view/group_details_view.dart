@@ -25,19 +25,14 @@ class GroupDetailsView extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create:
-              (context) =>
-                  GroupMembersCubit(instance())
-                    ..getStreamMembers(groupEntity.id),
+          create: (context) =>
+              GroupMembersCubit(instance())..getStreamMembers(groupEntity.id),
         ),
         BlocProvider(
           create: (context) => DeleteMemberFromGroupCubit(instance()),
         ),
       ],
-      child: BlocListener<
-        DeleteMemberFromGroupCubit,
-        DeleteMemberFromGroupState
-      >(
+      child: BlocListener<DeleteMemberFromGroupCubit, DeleteMemberFromGroupState>(
         listener: (context, state) {
           if (state is DeleteMemberSuccess) {
             showToast(

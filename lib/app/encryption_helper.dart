@@ -1,25 +1,45 @@
 import 'package:encrypt/encrypt.dart';
+import 'dart:convert';
 import 'hidden_keys.dart';
 
 class EncryptionHelper {
   static final _key = Key.fromUtf8(
     Mykeys.encryption_key, // Ensure this key is 32 characters long
-    //myKeys are hidden.
   );
-  static final _iv = IV.fromLength(16);
 
   static String encryptPassword(String password) {
+    // Generate a new random IV for each encryption
+    final iv = IV.fromLength(16);
     final encrypter = Encrypter(AES(_key));
-    final encrypted = encrypter.encrypt(password, iv: _iv);
-    return encrypted.base64;
+    final encrypted = encrypter.encrypt(password, iv: iv);
+
+    // Store IV with the encrypted data
+    final combined = '${iv.base64}:${encrypted.base64}';
+    // Encode the combined string to base64 for storage
+    return base64Encode(utf8.encode(combined));
   }
 
   static String decryptPassword(String encryptedPassword) {
-    final encrypter = Encrypter(AES(_key));
-    final decrypted = encrypter.decrypt(
-      Encrypted.from64(encryptedPassword),
-      iv: _iv,
-    );
-    return decrypted;
+    try {
+      // Decode and split the combined data
+      final decodedBytes = base64Decode(encryptedPassword);
+      final decodedString = utf8.decode(decodedBytes);
+      final parts = decodedString.split(':');
+
+      if (parts.length != 2) {
+        throw Exception('Invalid encrypted data format');
+      }
+
+      // Extract IV and encrypted data
+      final iv = IV.fromBase64(parts[0]);
+      final encrypted = Encrypted.from64(parts[1]);
+
+      final encrypter = Encrypter(AES(_key));
+      final decrypted = encrypter.decrypt(encrypted, iv: iv);
+
+      return decrypted;
+    } catch (e) {
+      throw Exception('Failed to decrypt password: $e');
+    }
   }
 }
