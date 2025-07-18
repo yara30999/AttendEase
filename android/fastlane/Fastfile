@@ -19,16 +19,16 @@ platform :android do
 
   desc "lane for android firebase app distribution"
   lane :distribute_with_firebase do
-    sh "flutter build apk --release --build-name=1.0.0 --build-number=8 --no-tree-shake-icons"
+    sh "flutter build apk --release --build-name=1.0.1 --build-number=1 --no-tree-shake-icons"
     puts "You have just built the apk ❤ ✨ 👸"
     puts "Now you are starting distributing to firebase app distribution ❤ ✨ 👸"
     firebase_app_distribution(
     app: "1:117733279067:android:f09adf4ca0bbfd4bbe067e",
-    groups: "sprints_group",
+    testers: "yaranaserelniny30999@gmail.com"
     android_artifact_type: "APK",
-    firebase_cli_token: "1//03X14-oQ-doeaCgYIARAAGAMSNwF-L9IrlcNzhkXFOKV3cxLbAFYOeNZLOSmlLM7XkSbC08F5mkIv3hEX2_wfu2MWcyDWWA3j-to",
+    firebase_cli_token: ENV["FIREBASE_CLI_TOKEN"],
     android_artifact_path: "../build/app/outputs/flutter-apk/app-release.apk",
-    release_notes: "The app is COMPLETELY FINISHED; Last distribution In Shaa Allah 😆, this is version 8"
+    release_notes: "secure groups password, this distribution is runned by github actions",
     )
     puts "Everything works fine ❤ ✨ 👸 ✔"
   end
