@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
@@ -18,6 +19,7 @@ import 'simple_observer.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  await dotenv.load(fileName: ".env");
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: HydratedStorageDirectory(
       (await getTemporaryDirectory()).path,
@@ -44,8 +46,8 @@ void main() async {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create:
-                (_) => AuthBloc(instance(), instance(), instance(), instance()),
+            create: (_) =>
+                AuthBloc(instance(), instance(), instance(), instance()),
           ),
           BlocProvider(create: (_) => ThemeBloc(instance())..add(LoadTheme())),
         ],

@@ -30,6 +30,9 @@ jobs:
         bundler-cache: true
         working-directory: android
 
+    - name: Create .env file
+      run: echo "ENCRYPTION_KEY=${{ secrets.ENCRYPTION_KEY }}" > .env
+
     - name: Build and Distribute App
       env:
         FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}

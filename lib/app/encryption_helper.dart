@@ -1,10 +1,10 @@
 import 'package:encrypt/encrypt.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'dart:convert';
-import 'hidden_keys.dart';
 
 class EncryptionHelper {
   static final _key = Key.fromUtf8(
-    Mykeys.encryption_key, // Ensure this key is 32 characters long
+    dotenv.env['ENCRYPTION_KEY']!, // Ensure this key is 32 characters long
   );
 
   static String encryptPassword(String password) {
