@@ -19,7 +19,7 @@ platform :android do
 
   desc "lane for android firebase app distribution"
   lane :distribute_with_firebase do
-    sh "flutter build apk --release --build-name=1.0.1 --build-number=1 --no-tree-shake-icons"
+    sh "flutter build apk --release --build-name=1.0.1 --build-number=2 --no-tree-shake-icons"
     puts "You have just built the apk ❤ ✨ 👸"
     puts "Now you are starting distributing to firebase app distribution ❤ ✨ 👸"
     firebase_app_distribution(
