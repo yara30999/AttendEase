@@ -24,7 +24,7 @@ platform :android do
     puts "Now you are starting distributing to firebase app distribution ❤ ✨ 👸"
     firebase_app_distribution(
     app: "1:117733279067:android:f09adf4ca0bbfd4bbe067e",
-    testers: "yaranaserelniny30999@gmail.com"
+    testers: "yaranaserelniny30999@gmail.com",
     android_artifact_type: "APK",
     firebase_cli_token: ENV["FIREBASE_CLI_TOKEN"],
     android_artifact_path: "../build/app/outputs/flutter-apk/app-release.apk",
